@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.tsm.dao.SessionDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Session">
+    <id column="Session_Id" jdbcType="INTEGER" property="sessionId" />
+    <result column="Session_Name" jdbcType="VARCHAR" property="sessionName" />
+    <result column="AddName" jdbcType="VARCHAR" property="addname" />
+    <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+    <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+    <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Session_Id, Session_Name, AddName, AddTime, UpdateName, UpdateTime, DeleteName, DeleteTime, 
+    TimeLiness
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from session
+    where Session_Id = #{sessionId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectSession" resultMap="BaseResultMap">
+    select  <include refid="Base_Column_List"/> from session where TimeLiness=0
+  </select>
+
+  <select id="selectfindslike" parameterType="java.lang.String" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List"/>
+  from session where Session_Name like #{likeke} and timeliness = 0
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    update session set TimeLiness=1 where Session_Id = #{sessionId,jdbcType=INTEGER} and TimeLiness=0
+  </delete>
+
+  <update id="updateTimeliness" parameterType="com.trkj.tsm.entity.Session">
+    update session set TimeLiness = 1,DeleteName = #{deletename,jdbcType=VARCHAR},DeleteTime = #{deletetime,jdbcType=TIMESTAMP}
+    where Session_Id = #{sessionId,jdbcType=INTEGER} and TimeLiness=0
+  </update>
+
+  <insert id="insert" keyColumn="Session_Id" keyProperty="sessionId" parameterType="com.trkj.tsm.entity.Session" useGeneratedKeys="true">
+    insert into session (Session_Id, Session_Name, AddName,
+      UpdateName, UpdateTime, DeleteName, 
+      DeleteTime)
+    values (#{sessionId,jdbcType=INTEGER}, #{sessionName,jdbcType=VARCHAR}, #{addname,jdbcType=VARCHAR},
+      #{updatename,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{deletename,jdbcType=VARCHAR}, 
+      #{deletetime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Session">
+    update session
+    set Session_Name = #{sessionName,jdbcType=VARCHAR},
+      AddName = #{addname,jdbcType=VARCHAR},
+      AddTime = #{addtime,jdbcType=TIMESTAMP},
+      UpdateName = #{updatename,jdbcType=VARCHAR},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      DeleteName = #{deletename,jdbcType=VARCHAR},
+      DeleteTime = #{deletetime,jdbcType=TIMESTAMP},
+      TimeLiness = #{timeliness,jdbcType=INTEGER}
+    where Session_Id = #{sessionId,jdbcType=INTEGER}
+  </update>
+</mapper>

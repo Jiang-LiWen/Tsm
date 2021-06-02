@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../boot-part_3jm2/boot-part_3jm2.iml" filepath="$PROJECT_DIR$/../boot-part_3jm2/boot-part_3jm2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bootdemo1/bootdemo1.iml" filepath="$PROJECT_DIR$/bootdemo1/bootdemo1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo1/demo1.iml" filepath="$PROJECT_DIR$/demo1/demo1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/deptboot/dept.iml" filepath="$PROJECT_DIR$/deptboot/dept.iml" />
+      <module fileurl="file://$PROJECT_DIR$/deptdemo/deptdemo.iml" filepath="$PROJECT_DIR$/deptdemo/deptdemo.iml" />
+      <module fileurl="file://E:/eldata/eldata.iml" filepath="E:/eldata/eldata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/elrouter/elrouter.iml" filepath="$PROJECT_DIR$/elrouter/elrouter.iml" />
+      <module fileurl="file://D:/interconverboot/interconverboot.iml" filepath="D:/interconverboot/interconverboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../jpaboot/jpaboot.iml" filepath="$PROJECT_DIR$/../jpaboot/jpaboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jwtdemo/jwtdemo.iml" filepath="$PROJECT_DIR$/jwtdemo/jwtdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lesson1/lesson1.iml" filepath="$PROJECT_DIR$/lesson1/lesson1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lesson2/lesson2.iml" filepath="$PROJECT_DIR$/lesson2/lesson2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lesson8/lesson8.iml" filepath="$PROJECT_DIR$/lesson8/lesson8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis-jpa_zs/mybatis-jpa_zs.iml" filepath="$PROJECT_DIR$/mybatis-jpa_zs/mybatis-jpa_zs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../mybatisboot/mybatisboot.iml" filepath="$PROJECT_DIR$/../mybatisboot/mybatisboot.iml" />
+      <module fileurl="file://D:/navboot/navboot.iml" filepath="D:/navboot/navboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/redisboot/redisboot.iml" filepath="$PROJECT_DIR$/redisboot/redisboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tsm/tsm.iml" filepath="$PROJECT_DIR$/tsm/tsm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vueaxiosboot/vueaxiosboot.iml" filepath="$PROJECT_DIR$/vueaxiosboot/vueaxiosboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vueaxiosmvc/vueaxiosmvc.iml" filepath="$PROJECT_DIR$/vueaxiosmvc/vueaxiosmvc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vueupload/vueupload.iml" filepath="$PROJECT_DIR$/vueupload/vueupload.iml" />
+    </modules>
+  </component>
+</project>

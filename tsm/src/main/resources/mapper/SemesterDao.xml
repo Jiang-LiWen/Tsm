@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.tsm.dao.SemesterDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Semester">
+    <id column="Semester_Id" jdbcType="INTEGER" property="semesterId" />
+    <result column="Semester_Name" jdbcType="VARCHAR" property="semesterName" />
+    <result column="AddName" jdbcType="VARCHAR" property="addname" />
+    <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+    <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+    <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Semester_Id, Semester_Name, AddName, AddTime, UpdateName, UpdateTime, DeleteName, 
+    DeleteTime, TimeLiness
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from semester
+    where Semester_Id = #{semesterId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectSemester" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from semester where TimeLiness=0
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    update semester set TimeLiness=1 where Semester_Id = #{semesterId,jdbcType=INTEGER} and TimeLiness=0
+  </delete>
+
+  <insert id="insert" keyColumn="Semester_Id" keyProperty="semesterId" parameterType="com.trkj.tsm.entity.Semester" useGeneratedKeys="true">
+    insert into semester (Semester_Id,Semester_Name, AddName,
+      UpdateName, UpdateTime, DeleteName, 
+      DeleteTime)
+    values (#{semesterId,jdbcType=INTEGER}, #{semesterName,jdbcType=VARCHAR}, #{addname,jdbcType=VARCHAR},
+      #{updatename,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{deletename,jdbcType=VARCHAR}, 
+      #{deletetime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Semester">
+    update semester
+    set Semester_Name = #{semesterName,jdbcType=VARCHAR},
+      AddName = #{addname,jdbcType=VARCHAR},
+      AddTime = #{addtime,jdbcType=TIMESTAMP},
+      UpdateName = #{updatename,jdbcType=VARCHAR},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      DeleteName = #{deletename,jdbcType=VARCHAR},
+      DeleteTime = #{deletetime,jdbcType=TIMESTAMP},
+      TimeLiness = #{timeliness,jdbcType=INTEGER}
+    where Semester_Id = #{semesterId,jdbcType=INTEGER}
+  </update>
+</mapper>

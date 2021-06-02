@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://D:/untitled" />
+    <file type="web" url="file://$PROJECT_DIR$/../lesson6" />
+    <file type="web" url="file://$PROJECT_DIR$/bootdemo1" />
+    <file type="web" url="file://$PROJECT_DIR$/demo1" />
+    <file type="web" url="file://$PROJECT_DIR$/elrouter" />
+    <file type="web" url="file://$PROJECT_DIR$/jwtdemo" />
+    <file type="web" url="file://$PROJECT_DIR$/lesson3" />
+    <file type="web" url="file://$PROJECT_DIR$/lesson4" />
+    <file type="web" url="file://$PROJECT_DIR$/lesson5" />
+    <file type="web" url="file://$PROJECT_DIR$/lesson7" />
+    <file type="web" url="file://$PROJECT_DIR$/lesson8" />
+    <file type="web" url="file://$PROJECT_DIR$/Mvc1" />
+    <file type="web" url="file://$PROJECT_DIR$/vueaxiosboot" />
+    <file type="web" url="file://$PROJECT_DIR$/vueaxiosmvc" />
+    <file type="web" url="file://$PROJECT_DIR$/Work" />
+    <file type="web" url="file://$PROJECT_DIR$/Work2" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/lesson3/pom.xml" />
+        <option value="$PROJECT_DIR$/lesson4/pom.xml" />
+        <option value="$PROJECT_DIR$/lesson5/pom.xml" />
+        <option value="$PROJECT_DIR$/Work/pom.xml" />
+        <option value="$PROJECT_DIR$/lesson7/pom.xml" />
+        <option value="$PROJECT_DIR$/lesson8/pom.xml" />
+        <option value="$PROJECT_DIR$/Work2/pom.xml" />
+        <option value="$PROJECT_DIR$/Mvc1/pom.xml" />
+        <option value="$PROJECT_DIR$/demo1/pom.xml" />
+        <option value="$PROJECT_DIR$/bootdemo1/pom.xml" />
+        <option value="$PROJECT_DIR$/vueaxiosmvc/pom.xml" />
+        <option value="$PROJECT_DIR$/vueaxiosboot/pom.xml" />
+        <option value="$PROJECT_DIR$/jwtdemo/pom.xml" />
+        <option value="$PROJECT_DIR$/elrouter/pom.xml" />
+        <option value="$PROJECT_DIR$/vueupload/pom.xml" />
+        <option value="$PROJECT_DIR$/../jpaboot/pom.xml" />
+        <option value="$PROJECT_DIR$/../mybatisboot/pom.xml" />
+        <option value="$PROJECT_DIR$/../boot-part_3jm2/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis-jpa_zs/pom.xml" />
+        <option value="E:/eldata/pom.xml" />
+        <option value="D:/navboot/pom.xml" />
+        <option value="$PROJECT_DIR$/interconverboot/pom.xml" />
+        <option value="D:/interconverboot/pom.xml" />
+        <option value="$PROJECT_DIR$/deptdemo/pom.xml" />
+        <option value="$PROJECT_DIR$/redisboot/pom.xml" />
+        <option value="$PROJECT_DIR$/deptboot/pom.xml" />
+        <option value="$PROJECT_DIR$/tsm/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_14" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

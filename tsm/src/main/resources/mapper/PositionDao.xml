@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.tsm.dao.PositionDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Position">
+    <id column="Position_Id" jdbcType="INTEGER" property="positionId" />
+    <result column="Position_Name" jdbcType="VARCHAR" property="positionName" />
+    <result column="AddName" jdbcType="VARCHAR" property="addname" />
+    <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+    <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+    <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Position_Id, Position_Name, AddName, AddTime, UpdateName, UpdateTime, DeleteName, 
+    DeleteTime, TimeLiness
+  </sql>
+
+  <select id="selectPosition" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from position where TimeLiness=0
+  </select>
+
+  <select id="selectPositions" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from position where TimeLiness=0
+  </select>
+  <select id="selectPositionlike" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from position where Position_Name like #{likeke} and timeliness = 0
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    update position set TimeLiness=1
+    where Position_Id = #{positionId,jdbcType=INTEGER} and TimeLiness = 0
+  </delete>
+
+  <insert id="insert" keyColumn="Position_Id" keyProperty="positionId" parameterType="com.trkj.tsm.entity.Position" useGeneratedKeys="true">
+    insert into position (Position_Id, Position_Name, AddName,
+      UpdateName, UpdateTime, DeleteName, 
+      DeleteTime)
+    values (#{positionId,jdbcType=INTEGER}, #{positionName,jdbcType=VARCHAR}, #{addname,jdbcType=VARCHAR},
+      #{updatename,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{deletename,jdbcType=VARCHAR}, 
+      #{deletetime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Position">
+    update position
+    set Position_Name = #{positionName,jdbcType=VARCHAR},
+      AddName = #{addname,jdbcType=VARCHAR},
+      AddTime = #{addtime,jdbcType=TIMESTAMP},
+      UpdateName = #{updatename,jdbcType=VARCHAR},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      DeleteName = #{deletename,jdbcType=VARCHAR},
+      DeleteTime = #{deletetime,jdbcType=TIMESTAMP},
+      TimeLiness = #{timeliness,jdbcType=INTEGER}
+    where Position_Id = #{positionId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updatePositionTimeliness" parameterType="com.trkj.tsm.entity.Position">
+    update position set TimeLiness = 1,DeleteName = #{deletename,jdbcType=VARCHAR},DeleteTime = #{deletetime,jdbcType=TIMESTAMP}
+    where Position_Id = #{positionId,jdbcType=INTEGER} and TimeLiness=0
+  </update>
+
+</mapper>

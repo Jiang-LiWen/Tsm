@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="vueaxiosboot:war">
+    <output-path>$PROJECT_DIR$/vueaxiosboot/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>vueaxiosboot</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="vueaxiosboot.war">
+      <element id="artifact" artifact-name="vueaxiosboot:war exploded" />
+    </root>
+  </artifact>
+</component>
