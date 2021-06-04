@@ -104,6 +104,7 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     update emp set EmpState = 1,LoginState =1
     where Emp_Id = #{empId,jdbcType=INTEGER} and EmpState = 0
+
   </delete>
 
   <insert id="insert" keyColumn="Emp_Id" keyProperty="empId" parameterType="com.trkj.tsm.entity.Emp" useGeneratedKeys="true">
