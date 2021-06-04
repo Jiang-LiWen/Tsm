@@ -39,8 +39,8 @@
   </update>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    update dept set TimeLiness = 1
-    where Dept_Id = #{deptId,jdbcType=INTEGER} and TimeLiness = 0
+    delete from dept
+    where Dept_Id = #{deptId,jdbcType=INTEGER}
   </delete>
 
   <insert id="insert" keyColumn="Dept_Id" keyProperty="deptId" parameterType="com.trkj.tsm.entity.Dept" useGeneratedKeys="true">
