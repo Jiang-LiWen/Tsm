@@ -1,7 +1,8 @@
-package com.trkj.tsm.service;
+package com.trkj.tsm.service.impl;
 
 import com.trkj.tsm.dao.SystemtypeDao;
 import com.trkj.tsm.entity.Systemtype;
+import com.trkj.tsm.service.SystemTypeService;
 import com.trkj.tsm.util.BeanCopyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

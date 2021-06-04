@@ -1,7 +1,8 @@
-package com.trkj.tsm.service;
+package com.trkj.tsm.service.impl;
 
 import com.trkj.tsm.dao.BookDao;
 import com.trkj.tsm.entity.Book;
+import com.trkj.tsm.service.BookService;
 import com.trkj.tsm.util.BeanCopyUtil;
 import com.trkj.tsm.vo.BookVo;
 import lombok.extern.slf4j.Slf4j;

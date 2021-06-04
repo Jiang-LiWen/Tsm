@@ -1,7 +1,8 @@
-package com.trkj.tsm.service;
+package com.trkj.tsm.service.impl;
 
 import com.trkj.tsm.dao.ClassroomDao;
 import com.trkj.tsm.entity.Classroom;
+import com.trkj.tsm.service.ClassroomService;
 import com.trkj.tsm.util.BeanCopyUtil;
 import com.trkj.tsm.vo.ClassroomVo;
 import lombok.extern.slf4j.Slf4j;

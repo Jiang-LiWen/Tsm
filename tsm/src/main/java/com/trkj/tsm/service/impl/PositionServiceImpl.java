@@ -1,7 +1,8 @@
-package com.trkj.tsm.service;
+package com.trkj.tsm.service.impl;
 
 import com.trkj.tsm.dao.PositionDao;
 import com.trkj.tsm.entity.Position;
+import com.trkj.tsm.service.PositionService;
 import com.trkj.tsm.util.BeanCopyUtil;
 import com.trkj.tsm.vo.PositionVo;
 import lombok.extern.slf4j.Slf4j;

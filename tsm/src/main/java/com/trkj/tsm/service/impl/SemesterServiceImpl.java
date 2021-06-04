@@ -1,15 +1,14 @@
-package com.trkj.tsm.service;
+package com.trkj.tsm.service.impl;
 
 import com.trkj.tsm.dao.SemesterDao;
 import com.trkj.tsm.entity.Semester;
+import com.trkj.tsm.service.SemesterService;
 import com.trkj.tsm.util.BeanCopyUtil;
 import com.trkj.tsm.vo.SemesterVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @Service
