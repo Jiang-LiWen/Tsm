@@ -43,21 +43,21 @@ public class DeptController {
     @PostMapping("/addDept")
     public AjaxResponse addDept(@RequestBody @Valid DeptVo deptVo){
 
-        log.debug("新增年届信息");
+        log.debug("新增部门信息");
         deptService.insert(deptVo);
         return AjaxResponse.success(deptVo);
     }
     //删除操作
     @DeleteMapping("/deleteDept/{deptId}")
     public String deleteDept(@PathVariable("deptId") int deptId){
-        log.debug("根据id删除职位信息");
+        log.debug("根据id删除部门信息");
         deptService.deleteByPrimaryKey(deptId);
         return "删除成功";
     }
     //批量删除
     @PutMapping("/updateDeptTimeliness")
     public AjaxResponse updateDeptTimeliness(@RequestBody @Valid DeptVo deptVo){
-        log.debug("批量删除职位信息");
+        log.debug("批量删除部门信息");
         deptVo.setDeletetime(new Date());
         deptService.updateDeptTimeliness(deptVo);
         return AjaxResponse.success(deptVo);
@@ -65,7 +65,7 @@ public class DeptController {
     //修改操作
     @PutMapping("/updateDept")
     public AjaxResponse updateDept(@RequestBody @Valid DeptVo deptVo){
-        log.debug("修改年届信息");
+        log.debug("修改部门信息");
         deptVo.setUpdatetime(new Date());
         deptService.updateByPrimaryKey(deptVo);
         return AjaxResponse.success(deptVo);
