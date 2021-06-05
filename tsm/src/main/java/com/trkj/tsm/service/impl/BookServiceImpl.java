@@ -1,12 +1,8 @@
-package com.trkj.tsm.service.impl;
+package com.trkj.tsm.service;
 
 import com.trkj.tsm.dao.BookDao;
 import com.trkj.tsm.entity.Book;
-<<<<<<< HEAD:tsm/src/main/java/com/trkj/tsm/service/BookServiceImpl.java
 import com.trkj.tsm.entity.Classroom;
-=======
-import com.trkj.tsm.service.BookService;
->>>>>>> 47f2255cab8771c806c2144157ebaedfe8d0eab4:tsm/src/main/java/com/trkj/tsm/service/impl/BookServiceImpl.java
 import com.trkj.tsm.util.BeanCopyUtil;
 import com.trkj.tsm.vo.BookVo;
 import com.trkj.tsm.vo.ClassroomVo;
