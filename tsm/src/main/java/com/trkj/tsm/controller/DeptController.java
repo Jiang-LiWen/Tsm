@@ -5,7 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.trkj.tsm.service.DeptService;
 import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.DeptVo;
-import com.trkj.tsm.vo.PositionVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +20,8 @@ public class DeptController {
     private DeptService deptService;
     @GetMapping("/selectDeptlike")
     public PageInfo<DeptVo> selectDeptlike(@RequestParam("currentPage") int currentPage,
-                                            @RequestParam("pagesize") int pagesize,
-                                            @RequestParam("sech") String likeke){
+                                           @RequestParam("pagesize") int pagesize,
+                                           @RequestParam("sech") String likeke){
         log.debug("分页查询信息");
         String likekes="%"+likeke+"%";
         log.debug("---------------------------------------------------");
@@ -73,6 +72,12 @@ public class DeptController {
     }
     @GetMapping("/selectDepts")
     public List<DeptVo> selectDepts(){
+
         return deptService.selectDepts();
+    }
+
+    @GetMapping("/selectDeptss")
+    public List<DeptVo> selectDeptss(){
+        return deptService.selectDeptss();
     }
 }

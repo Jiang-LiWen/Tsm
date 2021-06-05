@@ -15,6 +15,7 @@ import java.util.List;
 public class DeptServiceImpl implements DeptService {
     @Autowired
     private DeptDao deptDao;
+
     @Override
     public int deleteByPrimaryKey(Integer deptId) {
         return deptDao.deleteByPrimaryKey(deptId);
@@ -55,6 +56,12 @@ public class DeptServiceImpl implements DeptService {
 
         return deptDao.selectDepts();
     }
+
+    @Override
+    public List<DeptVo> selectDeptss() {
+        return deptDao.selectDeptss();
+    }
+
     @Override
     public List<DeptVo> selectDeptlike(String likeke) {
 

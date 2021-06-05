@@ -1,34 +1,28 @@
-package com.trkj.tsm.entity;
+package com.trkj.tsm.vo;
 
-import java.io.Serializable;
-import java.util.Date;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import org.springframework.validation.annotation.Validated;
 
-/**
- * classroom
- * @author 
- */
+import java.util.Date;
+
 @Data
-public class Classroom implements Serializable {
+@Validated
+@AllArgsConstructor
+@NoArgsConstructor
+@NonNull
+public class PositionVo {
     /**
-     * 教室编号
+     * 职位编号
      */
-    private Integer classroomId;
+    private Integer positionId;
 
     /**
-     * 教室名称
+     * 职位名称
      */
-    private String classroomName;
-
-    /**
-     * 容纳量
-     */
-    private Integer catacity;
-
-    /**
-     * 教室地点
-     */
-    private String place;
+    private String positionName;
 
     /**
      * 增加人
@@ -61,7 +55,7 @@ public class Classroom implements Serializable {
     private Date deletetime;
 
     /**
-     * 时效性
+     * 时效性 0：未过期；1：已过期
      */
     private Integer timeliness;
 

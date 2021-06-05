@@ -1,15 +1,19 @@
-package com.trkj.tsm.entity;
+package com.trkj.tsm.vo;
 
-import java.io.Serializable;
-import java.util.Date;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import org.springframework.validation.annotation.Validated;
 
-/**
- * dept
- * @author 
- */
+import java.util.Date;
+
 @Data
-public class Dept implements Serializable {
+@NonNull
+@AllArgsConstructor
+@NoArgsConstructor
+@Validated
+public class DeptVo {
     /**
      * 部门编号
      */

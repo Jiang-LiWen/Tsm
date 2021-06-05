@@ -37,11 +37,13 @@ public class ClassroomServiceImpl implements ClassroomService {
         classroomDao.insert(d);
         return classroomVo;
     }
+
+
+
     @Override
     public ClassroomVo updateClassroom(ClassroomVo classroomVo) {
-        log.debug("修改到了");
         log.debug(classroomVo.toString());
-        Classroom d = new Classroom();
+        ClassroomVo d = new ClassroomVo();
         BeanCopyUtil.copyProperties(classroomVo, d);
         classroomDao.updateByPrimaryKey(d);
         return classroomVo;
@@ -50,15 +52,24 @@ public class ClassroomServiceImpl implements ClassroomService {
     @Override
     public int deleteClassroom(Integer ClassroomId) {
         log.debug("删除教室信息成功");
-        Classroom classroom=new Classroom();
-        classroom.setClassroomId(ClassroomId);
-        classroom.setTimeliness(1);
-        return classroomDao.updateByPrimaryKeySelective(classroom);
+        ClassroomVo classroomVo=new ClassroomVo();
+        classroomVo.setClassroomId(ClassroomId);
+        classroomVo.setTimeliness(1);
+        return classroomDao.updateByPrimaryKeySelective(classroomVo);
     }
 
     @Override
     public List<Classroom> selectClassroom(String classroomName) {
             log.debug("查询");
             return classroomDao.selectByPrimaryKey(classroomName);
+    }
+
+    @Override
+    public ClassroomVo updateByPrimaryKey(ClassroomVo classroomVo) {
+        log.debug("删除");
+        ClassroomVo d = new ClassroomVo();
+        BeanCopyUtil.copyProperties(classroomVo,d);
+        classroomDao.updateByPrimaryKey(d);
+        return classroomVo;
     }
 }

@@ -2,7 +2,9 @@ package com.trkj.tsm.service;
 
 import com.trkj.tsm.dao.SystemDao;
 import com.trkj.tsm.entity.System;
+import com.trkj.tsm.entity.Systemtype;
 import com.trkj.tsm.util.BeanCopyUtil;
+import com.trkj.tsm.vo.ClassroomVo;
 import com.trkj.tsm.vo.SystemVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -33,10 +35,45 @@ public class SystSeviceImpl implements SystSevice {
     @Override
     public int deleteSystem(Integer systemId) {
         log.debug("删除教室信息成功");
-        System system=new System();
-        system.setSystemId(systemId);
-        system.setTimeliness(1);
-        return systemDao.updateByPrimaryKeySelective(system);
+        SystemVo systemVo=new SystemVo();
+        systemVo.setSystemId(systemId);
+        systemVo.setTimeliness(1);
+        return systemDao.updateByPrimaryKeySelective(systemVo);
     }
 
+    @Override
+    public SystemVo updateByPrimaryKey1(SystemVo systemVo) {
+        log.debug("删除");
+        SystemVo d = new SystemVo();
+        BeanCopyUtil.copyProperties(systemVo,d);
+        systemDao.updateByPrimaryKey1(d);
+        return systemVo;
+    }
+
+    @Override
+    public SystemVo updateSysyem(SystemVo systemVo) {
+        log.debug("修改到了");
+        SystemVo d = new SystemVo();
+        BeanCopyUtil.copyProperties(systemVo, d);
+        systemDao.updateByPrimaryKeySelective1(d);
+        return systemVo;
+    }
+
+    @Override
+    public SystemVo updateByPrimaryKey2(SystemVo systemVo) {
+        log.debug("改变状态为1");
+        SystemVo d = new SystemVo();
+        BeanCopyUtil.copyProperties(systemVo, d);
+        systemDao.updateByPrimaryKey2(d);
+        return systemVo;
+    }
+
+    @Override
+    public SystemVo updateByPrimaryKey3(SystemVo systemVo) {
+        log.debug("改变状态为2");
+        SystemVo d = new SystemVo();
+        BeanCopyUtil.copyProperties(systemVo, d);
+        systemDao.updateByPrimaryKey3(d);
+        return systemVo;
+    }
 }
