@@ -2,18 +2,13 @@ package com.trkj.tsm.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * dept
  * @author 
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Dept implements Serializable {
     /**
      * 部门编号

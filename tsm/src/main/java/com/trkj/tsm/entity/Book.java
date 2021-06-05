@@ -1,9 +1,8 @@
 package com.trkj.tsm.entity;
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
+import lombok.Data;
 
 /**
  * book

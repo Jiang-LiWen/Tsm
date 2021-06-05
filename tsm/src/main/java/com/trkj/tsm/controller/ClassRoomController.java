@@ -4,6 +4,7 @@ package com.trkj.tsm.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.trkj.tsm.entity.Classroom;
+import com.trkj.tsm.entity.Systemtype;
 import com.trkj.tsm.service.ClassroomService;
 import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.ClassroomVo;
@@ -64,6 +65,14 @@ public class ClassRoomController {
         List<Classroom> classname = classroomService.selectClassroom(classroomName);
         PageInfo<Classroom> ClassPageInfo = new PageInfo<>(classname);
         return ClassPageInfo;
+    }
+
+    @PutMapping("/updateByPrimaryKey")
+    public AjaxResponse updateByPrimaryKey(@RequestBody @Valid ClassroomVo classroomVo){
+        classroomVo.setDeletetime(new Date());
+        log.debug("删除");
+        classroomService.updateByPrimaryKey(classroomVo);
+        return AjaxResponse.success(classroomVo);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.trkj.tsm.dao;
 
 import com.trkj.tsm.entity.Classroom;
+import com.trkj.tsm.vo.ClassroomVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -16,9 +17,10 @@ public interface ClassroomDao {
 
     List<Classroom> selectByPrimaryKey(String classroomName);
 
-    int updateByPrimaryKeySelective(Classroom record);
+    int updateByPrimaryKeySelective(ClassroomVo record);
 
-    int updateByPrimaryKey(Classroom record);
+    //批量删除
+    int updateByPrimaryKey(ClassroomVo classroom);
 
     List<Classroom> selectAlls();
 

@@ -1,8 +1,7 @@
-package com.trkj.tsm.service.impl;
+package com.trkj.tsm.service;
 
 import com.trkj.tsm.dao.DeptDao;
 import com.trkj.tsm.entity.Dept;
-import com.trkj.tsm.service.DeptService;
 import com.trkj.tsm.util.BeanCopyUtil;
 import com.trkj.tsm.vo.DeptVo;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +15,7 @@ import java.util.List;
 public class DeptServiceImpl implements DeptService {
     @Autowired
     private DeptDao deptDao;
+
     @Override
     public int deleteByPrimaryKey(Integer deptId) {
         return deptDao.deleteByPrimaryKey(deptId);
@@ -56,6 +56,12 @@ public class DeptServiceImpl implements DeptService {
 
         return deptDao.selectDepts();
     }
+
+    @Override
+    public List<DeptVo> selectDeptss() {
+        return deptDao.selectDeptss();
+    }
+
     @Override
     public List<DeptVo> selectDeptlike(String likeke) {
 
