@@ -1,10 +1,11 @@
-package com.trkj.tsmvueboot.service;
+package com.trkj.tsm.service.impl;
 
-import com.trkj.tsmvueboot.dao.AnnouncementDao;
-import com.trkj.tsmvueboot.entity.Announcement;
-import com.trkj.tsmvueboot.util.BeanCopyUtil;
-import com.trkj.tsmvueboot.vo.AnnouncementVo;
-import com.trkj.tsmvueboot.vo.AnnouncementtypeVo;
+import com.trkj.tsm.dao.AnnouncementDao;
+import com.trkj.tsm.entity.Announcement;
+import com.trkj.tsm.service.AnnouncementService;
+import com.trkj.tsm.util.BeanCopyUtil;
+import com.trkj.tsm.vo.AnnouncementVo;
+import com.trkj.tsm.vo.AnnouncementtypeVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,4 +1,4 @@
-package com.trkj.tsmvueboot.entity;
+package com.trkj.tsm.entity;
 
 import java.io.Serializable;
 import java.util.Date;

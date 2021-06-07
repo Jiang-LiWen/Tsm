@@ -1,12 +1,12 @@
-package com.trkj.tsmvueboot.controller;
+package com.trkj.tsm.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.trkj.tsmvueboot.entity.FaqQuestions;
-import com.trkj.tsmvueboot.service.AnnouncementTypeService;
-import com.trkj.tsmvueboot.vo.AjaxResponse;
-import com.trkj.tsmvueboot.vo.AnnouncementtypeVo;
-import com.trkj.tsmvueboot.vo.FaqQuestionsVo;
+import com.trkj.tsm.entity.FaqQuestions;
+import com.trkj.tsm.service.AnnouncementTypeService;
+import com.trkj.tsm.vo.AjaxResponse;
+import com.trkj.tsm.vo.AnnouncementtypeVo;
+import com.trkj.tsm.vo.FaqQuestionsVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

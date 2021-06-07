@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.trkj.tsmvueboot.dao.FaqQuestionsDao">
-  <resultMap id="BaseResultMap" type="com.trkj.tsmvueboot.entity.FaqQuestions">
+<mapper namespace="com.trkj.tsm.dao.FaqQuestionsDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.FaqQuestions">
     <id column="FAQ_Id" jdbcType="INTEGER" property="faqId" />
     <result column="Problem" jdbcType="VARCHAR" property="problem" />
     <result column="Answer" jdbcType="VARCHAR" property="answer" />
@@ -37,11 +37,11 @@
     where FAQ_Id = #{faqId,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insert" keyColumn="FAQ_Id" keyProperty="faqId" parameterType="com.trkj.tsmvueboot.entity.FaqQuestions" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="FAQ_Id" keyProperty="faqId" parameterType="com.trkj.tsm.entity.FaqQuestions" useGeneratedKeys="true">
     insert into faq_questions (FAQ_Id,Problem, Answer, AddName)
     values (#{faqId,jdbcType=INTEGER}, #{problem,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}, #{addname,jdbcType=VARCHAR})
   </insert>
-  <update id="updateTimeLiness" parameterType="com.trkj.tsmvueboot.entity.FaqQuestions">
+  <update id="updateTimeLiness" parameterType="com.trkj.tsm.entity.FaqQuestions">
     update faq_questions
     <set>
       TimeLiness = 1,
@@ -50,7 +50,7 @@
     </set>
     where FAQ_Id = #{faqId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.trkj.tsmvueboot.entity.FaqQuestions">
+  <update id="updateByPrimaryKeySelective" parameterType="com.trkj.tsm.entity.FaqQuestions">
     update faq_questions
     <set>
       <if test="problem != null">
@@ -86,7 +86,7 @@
     </set>
     where FAQ_Id = #{faqId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.trkj.tsmvueboot.entity.FaqQuestions">
+  <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.FaqQuestions">
     update faq_questions
     set Problem = #{problem,jdbcType=VARCHAR},
       Answer = #{answer,jdbcType=VARCHAR},

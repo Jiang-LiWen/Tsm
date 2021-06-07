@@ -1,8 +1,8 @@
-package com.trkj.tsmvueboot.service;
+package com.trkj.tsm.service;
 
-import com.trkj.tsmvueboot.entity.Announcementtype;
-import com.trkj.tsmvueboot.vo.AnnouncementtypeVo;
-import com.trkj.tsmvueboot.vo.FaqQuestionsVo;
+import com.trkj.tsm.entity.Announcementtype;
+import com.trkj.tsm.vo.AnnouncementtypeVo;
+import com.trkj.tsm.vo.FaqQuestionsVo;
 
 import java.util.List;
 

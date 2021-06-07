@@ -1,9 +1,9 @@
-package com.trkj.tsmvueboot.dao;
+package com.trkj.tsm.dao;
 
-import com.trkj.tsmvueboot.entity.Announcement;
-import com.trkj.tsmvueboot.vo.AnnouncementVo;
-import com.trkj.tsmvueboot.vo.AnnouncementtypeVo;
-import com.trkj.tsmvueboot.vo.FaqQuestionsVo;
+import com.trkj.tsm.entity.Announcement;
+import com.trkj.tsm.vo.AnnouncementVo;
+import com.trkj.tsm.vo.AnnouncementtypeVo;
+import com.trkj.tsm.vo.FaqQuestionsVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.trkj.tsmvueboot.dao.AnnouncementtypeDao">
-  <resultMap id="BaseResultMap" type="com.trkj.tsmvueboot.entity.Announcementtype">
+<mapper namespace="com.trkj.tsm.dao.AnnouncementtypeDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Announcementtype">
     <id column="AnnouncementType_Id" jdbcType="INTEGER" property="announcementtypeId" />
     <result column="AnnouncementType_Name" jdbcType="VARCHAR" property="announcementtypeName" />
     <result column="AddName" jdbcType="VARCHAR" property="addname" />
@@ -26,18 +26,18 @@
     delete from announcementtype
     where AnnouncementType_Id = #{announcementtypeId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="AnnouncementType_Id" keyProperty="announcementtypeId" parameterType="com.trkj.tsmvueboot.entity.Announcementtype" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="AnnouncementType_Id" keyProperty="announcementtypeId" parameterType="com.trkj.tsm.entity.Announcementtype" useGeneratedKeys="true">
     insert into announcementtype (AnnouncementType_Id,AnnouncementType_Name, AddName)
     values (#{announcementtypeId,jdbcType=INTEGER},#{announcementtypeName,jdbcType=VARCHAR}, #{addname,jdbcType=VARCHAR})
   </insert>
-  <update id="updateAnnounceType" parameterType="com.trkj.tsmvueboot.entity.Announcementtype">
+  <update id="updateAnnounceType" parameterType="com.trkj.tsm.entity.Announcementtype">
     update announcementtype
     set AnnouncementType_Name = #{announcementtypeName,jdbcType=VARCHAR},
       UpdateName = #{updatename,jdbcType=VARCHAR},
       UpdateTime = #{updatetime,jdbcType=TIMESTAMP}
     where AnnouncementType_Id = #{announcementtypeId,jdbcType=INTEGER}
   </update>
-  <update id="updateAnnounceTypeTimeLiness" parameterType="com.trkj.tsmvueboot.entity.Announcementtype">
+  <update id="updateAnnounceTypeTimeLiness" parameterType="com.trkj.tsm.entity.Announcementtype">
     update announcementType
     <set>
       TimeLiness = 1,
@@ -46,7 +46,7 @@
     </set>
     where AnnouncementType_Id = #{announcementtypeId,jdbcType=INTEGER}
   </update>
-  <insert id="insertSelective" keyColumn="AnnouncementType_Id" keyProperty="announcementtypeId" parameterType="com.trkj.tsmvueboot.entity.Announcementtype" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="AnnouncementType_Id" keyProperty="announcementtypeId" parameterType="com.trkj.tsm.entity.Announcementtype" useGeneratedKeys="true">
     insert into announcementtype
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="announcementtypeName != null">
@@ -101,7 +101,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.trkj.tsmvueboot.entity.Announcementtype">
+  <update id="updateByPrimaryKeySelective" parameterType="com.trkj.tsm.entity.Announcementtype">
     update announcementtype
     <set>
       <if test="announcementtypeName != null">

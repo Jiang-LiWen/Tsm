@@ -1,11 +1,12 @@
-package com.trkj.tsmvueboot.service;
+package com.trkj.tsm.service.impl;
 
-import com.trkj.tsmvueboot.dao.AnnouncementtypeDao;
-import com.trkj.tsmvueboot.dao.FaqQuestionsDao;
-import com.trkj.tsmvueboot.entity.Announcementtype;
-import com.trkj.tsmvueboot.entity.FaqQuestions;
-import com.trkj.tsmvueboot.util.BeanCopyUtil;
-import com.trkj.tsmvueboot.vo.AnnouncementtypeVo;
+import com.trkj.tsm.dao.AnnouncementtypeDao;
+import com.trkj.tsm.dao.FaqQuestionsDao;
+import com.trkj.tsm.entity.Announcementtype;
+import com.trkj.tsm.entity.FaqQuestions;
+import com.trkj.tsm.service.AnnouncementTypeService;
+import com.trkj.tsm.util.BeanCopyUtil;
+import com.trkj.tsm.vo.AnnouncementtypeVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

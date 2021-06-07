@@ -1,4 +1,4 @@
-package com.trkj.tsmvueboot.vo;
+package com.trkj.tsm.vo;
 
 import java.io.Serializable;
 import java.util.Date;

@@ -1,10 +1,10 @@
-package com.trkj.tsmvueboot.vo;
+package com.trkj.tsm.vo;
 
 import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.trkj.tsmvueboot.entity.Announcementtype;
+import com.trkj.tsm.entity.Announcementtype;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

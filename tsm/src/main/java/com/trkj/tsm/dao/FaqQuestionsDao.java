@@ -1,7 +1,7 @@
-package com.trkj.tsmvueboot.dao;
+package com.trkj.tsm.dao;
 
-import com.trkj.tsmvueboot.entity.FaqQuestions;
-import com.trkj.tsmvueboot.vo.FaqQuestionsVo;
+import com.trkj.tsm.entity.FaqQuestions;
+import com.trkj.tsm.vo.FaqQuestionsVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Date;

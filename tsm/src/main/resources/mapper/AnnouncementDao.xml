@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.trkj.tsmvueboot.dao.AnnouncementDao">
-  <resultMap id="BaseResultMap" type="com.trkj.tsmvueboot.entity.Announcement">
+<mapper namespace="com.trkj.tsm.dao.AnnouncementDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Announcement">
     <id column="Announcement_Id" jdbcType="INTEGER" property="announcementId" />
     <result column="Start_Time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="End_Time" jdbcType="TIMESTAMP" property="endTime" />
@@ -19,7 +19,7 @@
     <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
     <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
     <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
-      <association javaType="com.trkj.tsmvueboot.entity.Announcementtype" property="announcementtype">
+      <association javaType="com.trkj.tsm.entity.Announcementtype" property="announcementtype">
         <id column="AnnouncementType_Id" jdbcType="INTEGER" property="announcementtypeId" />
         <result column="AnnouncementType_Name" jdbcType="VARCHAR" property="announcementtypeName" />
         <result column="AddName" jdbcType="VARCHAR" property="addname" />
@@ -54,13 +54,13 @@
     where Announcement_Id = #{announcementId,jdbcType=INTEGER}
   </delete>
 <!--  添加-->
-  <insert id="insertAnnounceManage" keyColumn="Announcement_Id" keyProperty="announcementId" parameterType="com.trkj.tsmvueboot.entity.Announcement" useGeneratedKeys="true">
+  <insert id="insertAnnounceManage" keyColumn="Announcement_Id" keyProperty="announcementId" parameterType="com.trkj.tsm.entity.Announcement" useGeneratedKeys="true">
     insert into announcement (Announcement_Id,Announcement_Theme, Announcement_Content, Start_Time,
       End_Time, AnnouncementType_Id, AddName)
     values (#{announcementId,jdbcType=INTEGER}, #{announcementTheme,jdbcType=VARCHAR}, #{announcementContent,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP},
       #{endTime,jdbcType=TIMESTAMP}, #{announcementtypeId,jdbcType=INTEGER}, #{addname,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="Announcement_Id" keyProperty="announcementId" parameterType="com.trkj.tsmvueboot.entity.Announcement" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="Announcement_Id" keyProperty="announcementId" parameterType="com.trkj.tsm.entity.Announcement" useGeneratedKeys="true">
     insert into announcement
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="announcementtypeId != null">
@@ -169,7 +169,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.trkj.tsmvueboot.entity.Announcement">
+  <update id="updateByPrimaryKeySelective" parameterType="com.trkj.tsm.entity.Announcement">
     update announcement
     <set>
       <if test="announcementtypeId != null">
@@ -227,7 +227,7 @@
     where Announcement_Id = #{announcementId,jdbcType=INTEGER}
   </update>
 <!--  发布-->
-  <update id="updateByAnnouncementState" parameterType="com.trkj.tsmvueboot.vo.AnnouncementVo">
+  <update id="updateByAnnouncementState" parameterType="com.trkj.tsm.vo.AnnouncementVo">
     update announcement
     set
       Announcement_State = 1,
@@ -235,7 +235,7 @@
     where Announcement_Id = #{announcementId,jdbcType=INTEGER}
   </update>
 <!--  暂停-->
-  <update id="updateByAnnouncementState2" parameterType="com.trkj.tsmvueboot.vo.AnnouncementVo">
+  <update id="updateByAnnouncementState2" parameterType="com.trkj.tsm.vo.AnnouncementVo">
     update announcement
     set
       Announcement_State = 2,
@@ -243,7 +243,7 @@
     where Announcement_Id = #{announcementId,jdbcType=INTEGER}
   </update>
 <!--  删除-->
-  <update id="updateAnnounceManageTimeLiness" parameterType="com.trkj.tsmvueboot.vo.AnnouncementVo">
+  <update id="updateAnnounceManageTimeLiness" parameterType="com.trkj.tsm.vo.AnnouncementVo">
     update announcement
     <set>
       TimeLiness = 1,
@@ -253,7 +253,7 @@
     where Announcement_Id = #{announcementId,jdbcType=INTEGER}
   </update>
 <!--  修改-->
-  <update id="updateAnnounceManage" parameterType="com.trkj.tsmvueboot.vo.AnnouncementVo">
+  <update id="updateAnnounceManage" parameterType="com.trkj.tsm.vo.AnnouncementVo">
     update announcement
     <set>
       AnnouncementType_Id = #{announcementtypeId,jdbcType=INTEGER},

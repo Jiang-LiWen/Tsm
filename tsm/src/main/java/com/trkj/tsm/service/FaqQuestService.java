@@ -1,7 +1,7 @@
-package com.trkj.tsmvueboot.service;
+package com.trkj.tsm.service;
 
-import com.trkj.tsmvueboot.entity.FaqQuestions;
-import com.trkj.tsmvueboot.vo.FaqQuestionsVo;
+import com.trkj.tsm.entity.FaqQuestions;
+import com.trkj.tsm.vo.FaqQuestionsVo;
 
 import java.util.Date;
 import java.util.List;
