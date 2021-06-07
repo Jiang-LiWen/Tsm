@@ -20,7 +20,7 @@ public class SessionController {
     @Autowired
     private SessionService sessionService;
 
-    @GetMapping("/selectClasstypeslike")
+    @GetMapping("/selectSessionlike")
     public PageInfo<SessionVo> selectfindslike(@RequestParam("currentPage") int currentPage,
                                                  @RequestParam("pagesize") int pagesize,
                                                  @RequestParam("sech") String likeke){
