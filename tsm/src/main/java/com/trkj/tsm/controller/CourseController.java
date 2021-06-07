@@ -1,0 +1,71 @@
+package com.trkj.tsm.controller;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.trkj.tsm.service.CourseService;
+import com.trkj.tsm.vo.AjaxResponse;
+import com.trkj.tsm.vo.CourseVo;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.Date;
+import java.util.List;
+
+@RestController
+@Slf4j
+public class CourseController {
+    @Autowired
+    private CourseService courseService;
+
+    @GetMapping("/selectAllCourse")
+    public PageInfo<CourseVo> selectAllCourse(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){
+        log.debug("分页查询信息");
+        PageHelper.startPage(currentPage,pagesize);
+        log.debug("---------------------------------------------------");
+        List<CourseVo> entityPage =courseService.selectAllCourse();
+        PageInfo<CourseVo> courseVoPageInfo = new  PageInfo<>(entityPage);
+        return courseVoPageInfo;
+    }
+
+    @PutMapping("/updateCourseStateStop")
+    public AjaxResponse updateCourseStateStop(@RequestBody @Valid CourseVo courseVo){
+        courseVo.setStoptime(new Date());
+        log.debug("课程停报");
+        courseService.updateCourseStateStop(courseVo);
+        return AjaxResponse.success(courseVo);
+    }
+
+    @PutMapping("/updateCourseStateBegin")
+    public AjaxResponse updateCourseStateBegin(@RequestBody @Valid CourseVo courseVo){
+        courseVo.setBegintime(new Date());
+        log.debug("课程开报");
+        courseService.updateCourseStateBegin(courseVo);
+        return AjaxResponse.success(courseVo);
+    }
+
+    @PutMapping("/updateCourseclasshours")
+    public AjaxResponse updateCourseclasshours(@RequestBody @Valid CourseVo courseVo){
+        log.debug(courseVo+"111111111111111111111");
+        courseService.updateCourseclasshours(courseVo);
+        return AjaxResponse.success(courseVo);
+    }
+
+    @PostMapping("/insertCourse")
+    public AjaxResponse insertCourse(@RequestBody @Valid CourseVo coursevo){
+        log.debug(coursevo.toString()+"=================");
+        log.debug("新增课程信息");
+        courseService.insertCourse(coursevo);
+        return AjaxResponse.success(coursevo);
+    }
+
+    @PutMapping("/updateCourse")
+    public AjaxResponse updateCourse(@RequestBody @Valid CourseVo courseVo){
+        courseVo.setUpdatetime(new Date());
+        log.debug("课程开报");
+        courseService.updateCourse(courseVo);
+        return AjaxResponse.success(courseVo);
+    }
+
+}
