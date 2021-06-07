@@ -100,6 +100,6 @@
     <select id="selectEnterpriselike" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from Enterprise where Enterprise_Name like #{likeke} and timeliness = 0
+        from Enterprise where Enterprise_Name like #{likeke}
     </select>
 </mapper>
