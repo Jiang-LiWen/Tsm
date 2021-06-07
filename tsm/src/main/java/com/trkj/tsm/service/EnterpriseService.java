@@ -6,7 +6,7 @@ import com.trkj.tsm.vo.EnterpriseVo;
 import java.util.List;
 
 public interface EnterpriseService {
-    List<Enterprise> selectfinds();
+    List<EnterpriseVo> selectfinds();
 
     EnterpriseVo addEnterprise(EnterpriseVo enterpriseVo);
 
@@ -15,4 +15,6 @@ public interface EnterpriseService {
     int deleteEnterprise(Integer enterpriseId);
 
     Enterprise selectEnterprise(Integer enterpriseId);
+
+    List<EnterpriseVo> selectEnterpriselike(String likeke);
 }

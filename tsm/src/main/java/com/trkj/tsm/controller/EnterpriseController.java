@@ -1,8 +1,11 @@
 package com.trkj.tsm.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.trkj.tsm.entity.Enterprise;
 import com.trkj.tsm.service.EnterpriseService;
 import com.trkj.tsm.vo.AjaxResponse;
+import com.trkj.tsm.vo.DeptVo;
 import com.trkj.tsm.vo.EnterpriseVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +21,27 @@ public class EnterpriseController {
     private EnterpriseService enterpriseService;
 
     @GetMapping("/selectfinds")
-    public List<Enterprise> selectfinds() {
-        log.debug("查询全部企业档案信息");
-        return enterpriseService.selectfinds();
-    }
+        public PageInfo<EnterpriseVo> selectDept(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){
+            log.debug("分页查询部门");
+            PageHelper.startPage(currentPage,pagesize);
+            log.debug("---------------------------------------------------");
+            List<EnterpriseVo> entityPage =enterpriseService.selectfinds();
+            PageInfo<EnterpriseVo> enterpriseVoPageInfo = new  PageInfo<>(entityPage);
+            return enterpriseVoPageInfo;
+        }
 
+    @GetMapping("/selectEnterpriselike")
+    public PageInfo<EnterpriseVo> selectDeptlike(@RequestParam("currentPage") int currentPage,
+                                           @RequestParam("pagesize") int pagesize,
+                                           @RequestParam("sech") String likeke){
+        log.debug("分页查询信息");
+        String likekes="%"+likeke+"%";
+        log.debug("---------------------------------------------------");
+        List<EnterpriseVo> entityPage =enterpriseService.selectEnterpriselike(likekes);
+        PageHelper.startPage(currentPage,pagesize);
+        PageInfo<EnterpriseVo> enterpriseVoPageInfo = new  PageInfo<>(entityPage);
+        return enterpriseVoPageInfo;
+    }
 //    @GetMapping("/selectEnterprise/{enterpriseId}")
 //    public Enterprise selectById(@PathVariable("enterpriseId") int enterpriseId){
 //        log.debug("根据id查询企业档案信息");

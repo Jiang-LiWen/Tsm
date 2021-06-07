@@ -1,6 +1,7 @@
 package com.trkj.tsm.dao;
 
 import com.trkj.tsm.entity.Enterprise;
+import com.trkj.tsm.vo.EnterpriseVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -15,5 +16,7 @@ public interface EnterpriseDao {
 
     int updateByPrimaryKey(Enterprise enterprise);
 
-    List<Enterprise> selectfinds();
+    List<EnterpriseVo> selectfinds();
+
+    List<EnterpriseVo> selectEnterpriselike(String likeke);
 }
