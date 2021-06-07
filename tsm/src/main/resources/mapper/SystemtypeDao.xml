@@ -135,11 +135,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.vo.SystemtypeVo">
     update systemtype
-    set SystemType_Name = #{systemtypeName,jdbcType=VARCHAR},
-      AddName = #{addname,jdbcType=VARCHAR},
-      UpdateName = #{updatename,jdbcType=VARCHAR},
-      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
-      DeleteName = #{deletename,jdbcType=VARCHAR}
-    where SystemType_Id = #{systemtypeId,jdbcType=INTEGER}
+      set TimeLiness = 1
+    where SystemType_Id = #{systemtypeId,jdbcType=INTEGER} and TimeLiness = 0
   </update>
 </mapper>

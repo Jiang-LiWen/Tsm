@@ -15,7 +15,7 @@
     <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
   </resultMap>
   <sql id="Base_Column_List">
-    Dept_Id, Dept_Name, Dept_SortNumber, Superiors_Dept_Id, AddName, AddTime, UpdateName, 
+    Dept_Id, Dept_Name, Dept_SortNumber, Superiors_Dept_Id, AddName, AddTime, UpdateName,
     UpdateTime, DeleteName, DeleteTime, TimeLiness
   </sql>
 
@@ -24,6 +24,10 @@
   </select>
 
   <select id="selectDepts" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from dept where TimeLiness = 0
+  </select>
+
+  <select id="selectDeptss" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/> from dept where TimeLiness = 0
   </select>
 
@@ -39,16 +43,16 @@
   </update>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from dept
-    where Dept_Id = #{deptId,jdbcType=INTEGER}
+    update dept set TimeLiness = 1
+    where Dept_Id = #{deptId,jdbcType=INTEGER} and TimeLiness = 0
   </delete>
 
   <insert id="insert" keyColumn="Dept_Id" keyProperty="deptId" parameterType="com.trkj.tsm.entity.Dept" useGeneratedKeys="true">
-    insert into dept (Dept_Name, Dept_SortNumber, Superiors_Dept_Id, 
+    insert into dept (Dept_Name, Dept_SortNumber, Superiors_Dept_Id,
       AddName, UpdateName,
       UpdateTime, DeleteName, DeleteTime
       )
-    values (#{deptName,jdbcType=VARCHAR}, #{deptSortnumber,jdbcType=VARCHAR}, #{superiorsDeptId,jdbcType=INTEGER}, 
+    values (#{deptName,jdbcType=VARCHAR}, #{deptSortnumber,jdbcType=VARCHAR}, #{superiorsDeptId,jdbcType=INTEGER},
       #{addname,jdbcType=VARCHAR}, #{updatename,jdbcType=VARCHAR},
       #{updatetime,jdbcType=TIMESTAMP}, #{deletename,jdbcType=VARCHAR}, #{deletetime,jdbcType=TIMESTAMP}
       )

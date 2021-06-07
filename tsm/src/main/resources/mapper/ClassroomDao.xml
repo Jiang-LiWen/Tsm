@@ -27,13 +27,14 @@
         ClassRoom_Name like concat(concat('%',#{classroomName,jdbcType=INTEGER},'%'))
       </if>
     </where>
-    order by ClassRoom_Id
+    order by ClassRoom_Id and TimeLiness=0
   </select>
+
     <select id="selectAlls" resultMap="BaseResultMap">
       select
       <include refid="Base_Column_List" />
       from classroom
-      where timeliness=0
+      where TimeLiness=0
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from classroom
@@ -149,11 +150,9 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Classroom">
     update classroom
-    set ClassRoom_Name = #{classroomName,jdbcType=VARCHAR},
-      Catacity = #{catacity,jdbcType=INTEGER},
-      Place = #{place,jdbcType=VARCHAR},
-      UpdateName = #{updatename,jdbcType=VARCHAR},
-      UpdateTime = #{updatetime,jdbcType=TIMESTAMP}
-    where ClassRoom_Id = #{classroomId,jdbcType=INTEGER}
+    set TimeLiness = 1,
+        DeleteName = #{deletename,jdbcType=VARCHAR},
+        DeleteTime = #{deletetime,jdbcType=TIMESTAMP}
+    where ClassRoom_Id = #{classroomId,jdbcType=INTEGER} and TimeLiness = 0
   </update>
 </mapper>
