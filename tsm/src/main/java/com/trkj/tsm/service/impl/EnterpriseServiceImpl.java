@@ -26,6 +26,10 @@ public class EnterpriseServiceImpl implements EnterpriseService {
         return enterpriseDao.selectfinds();
     }
 
+    public List<EnterpriseVo> selectfindss(){
+        return enterpriseDao.selectfindss();
+    }
+
     @Override
     public List<EnterpriseVo> selectEnterpriselike(String likeke) {
         log.debug("controller查询全部信息");

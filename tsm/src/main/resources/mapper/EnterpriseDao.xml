@@ -102,4 +102,9 @@
         <include refid="Base_Column_List"/>
         from Enterprise where Enterprise_Name like #{likeke}
     </select>
+
+    <select id="selectfindss" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from Enterprise
+    </select>
 </mapper>

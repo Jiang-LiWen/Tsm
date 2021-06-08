@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -34,6 +35,7 @@ public class SemesterController {
     public AjaxResponse addSemester(@RequestBody @Valid SemesterVo semesterVo){
 
         log.debug("新增xueq信息");
+        semesterVo.setAddname("wenwen");
         semesterService.insert(semesterVo);
         return AjaxResponse.success(semesterVo);
     }
@@ -48,6 +50,8 @@ public class SemesterController {
     @PutMapping("/updateSemester")
     public AjaxResponse updateSemester(@RequestBody @Valid SemesterVo semesterVo){
         log.debug("修改学期信息");
+        semesterVo.setUpdatename("wen");
+        semesterVo.setUpdatetime(new Date());
         semesterService.updateByPrimaryKey(semesterVo);
         return AjaxResponse.success(semesterVo);
     }
