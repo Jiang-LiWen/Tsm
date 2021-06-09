@@ -2,10 +2,8 @@ package com.trkj.tsm.service.impl;
 
 import com.trkj.tsm.dao.SystemDao;
 import com.trkj.tsm.entity.System;
-import com.trkj.tsm.entity.Systemtype;
 import com.trkj.tsm.service.SystSevice;
 import com.trkj.tsm.util.BeanCopyUtil;
-import com.trkj.tsm.vo.ClassroomVo;
 import com.trkj.tsm.vo.SystemVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,6 +19,7 @@ public class SystSeviceImpl implements SystSevice {
 
     @Override
     public List<SystemVo> selectAllSystem() {
+
         return systemDao.selectAllSystem();
     }
 
