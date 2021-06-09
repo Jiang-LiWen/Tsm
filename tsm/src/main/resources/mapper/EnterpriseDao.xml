@@ -105,6 +105,6 @@
 
     <select id="selectfindss" resultMap="BaseResultMap">
         select <include refid="Base_Column_List"/>
-        from Enterprise
+        from enterprise
     </select>
 </mapper>
