@@ -47,6 +47,7 @@ public class PositionController {
     public AjaxResponse addPosition(@RequestBody @Valid PositionVo positionVo){
 
         log.debug("新增年届信息");
+        positionVo.setAddname("wenshao");
         positionService.insert(positionVo);
         return AjaxResponse.success(positionVo);
     }
@@ -54,6 +55,7 @@ public class PositionController {
     @DeleteMapping("/deletePosition/{positionId}")
     public String deletePosition(@PathVariable("positionId") int positionId){
         log.debug("根据id删除职位信息");
+
         positionService.deleteByPrimaryKey(positionId);
         return "删除成功";
     }
@@ -69,6 +71,7 @@ public class PositionController {
     @PutMapping("/updatePosition")
     public AjaxResponse updatePosition(@RequestBody @Valid PositionVo positionVo){
         log.debug("修改年届信息");
+        positionVo.setUpdatename("wengege");
         positionVo.setUpdatetime(new Date());
         positionService.updateByPrimaryKey(positionVo);
         return AjaxResponse.success(positionVo);

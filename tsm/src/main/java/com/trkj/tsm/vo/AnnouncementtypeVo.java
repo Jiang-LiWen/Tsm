@@ -3,6 +3,7 @@ package com.trkj.tsm.vo;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,6 +38,7 @@ public class AnnouncementtypeVo implements Serializable {
     /**
      * 增加时间
      */
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date addtime;
 
     /**
@@ -47,6 +49,7 @@ public class AnnouncementtypeVo implements Serializable {
     /**
      * 最后修改时间
      */
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updatetime;
 
     /**
@@ -57,6 +60,7 @@ public class AnnouncementtypeVo implements Serializable {
     /**
      * 删除时间
      */
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date deletetime;
 
     /**

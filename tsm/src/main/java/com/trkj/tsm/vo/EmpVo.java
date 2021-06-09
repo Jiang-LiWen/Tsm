@@ -91,7 +91,7 @@ public class EmpVo {
     /**
      * 生日
      */
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
     /**

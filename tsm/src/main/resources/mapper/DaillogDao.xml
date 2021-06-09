@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.tsm.dao.DaillogDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Daillog">
+    <id column="DailLog_Id" jdbcType="INTEGER" property="daillogId" />
+    <result column="HandoverMatters" jdbcType="VARCHAR" property="handovermatters" />
+    <result column="HandoverName" jdbcType="VARCHAR" property="handovername" />
+    <result column="LogState" jdbcType="INTEGER" property="logstate" />
+    <result column="DelteName" jdbcType="VARCHAR" property="deltename" />
+    <result column="DelteTime" jdbcType="TIMESTAMP" property="deltetime" />
+    <result column="AddName" jdbcType="VARCHAR" property="addname" />
+    <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DailLog_Id, HandoverMatters, HandoverName, LogState, DelteName, DelteTime, AddName, 
+    AddTime, TimeLiness
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from daillog
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from daillog
+    where DailLog_Id = #{daillogId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="DailLog_Id" keyProperty="daillogId" parameterType="com.trkj.tsm.entity.Daillog" useGeneratedKeys="true">
+    insert into daillog (HandoverMatters, HandoverName, LogState, 
+       AddName)
+    values (#{handovermatters,jdbcType=VARCHAR}, #{handovername,jdbcType=VARCHAR}, #{logstate,jdbcType=INTEGER}, #{addname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="DailLog_Id" keyProperty="daillogId" parameterType="com.trkj.tsm.entity.Daillog" useGeneratedKeys="true">
+    insert into daillog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="handovermatters != null">
+        HandoverMatters,
+      </if>
+      <if test="handovername != null">
+        HandoverName,
+      </if>
+      <if test="logstate != null">
+        LogState,
+      </if>
+      <if test="deltename != null">
+        DelteName,
+      </if>
+      <if test="deltetime != null">
+        DelteTime,
+      </if>
+      <if test="addname != null">
+        AddName,
+      </if>
+      <if test="addtime != null">
+        AddTime,
+      </if>
+      <if test="timeliness != null">
+        TimeLiness,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="handovermatters != null">
+        #{handovermatters,jdbcType=VARCHAR},
+      </if>
+      <if test="handovername != null">
+        #{handovername,jdbcType=VARCHAR},
+      </if>
+      <if test="logstate != null">
+        #{logstate,jdbcType=INTEGER},
+      </if>
+      <if test="deltename != null">
+        #{deltename,jdbcType=VARCHAR},
+      </if>
+      <if test="deltetime != null">
+        #{deltetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addname != null">
+        #{addname,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeliness != null">
+        #{timeliness,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.trkj.tsm.entity.Daillog">
+    update daillog
+    <set>
+      <if test="handovermatters != null">
+        HandoverMatters = #{handovermatters,jdbcType=VARCHAR},
+      </if>
+      <if test="handovername != null">
+        HandoverName = #{handovername,jdbcType=VARCHAR},
+      </if>
+      <if test="logstate != null">
+        LogState = #{logstate,jdbcType=INTEGER},
+      </if>
+      <if test="deltename != null">
+        DelteName = #{deltename,jdbcType=VARCHAR},
+      </if>
+      <if test="deltetime != null">
+        DelteTime = #{deltetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addname != null">
+        AddName = #{addname,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        AddTime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeliness != null">
+        TimeLiness = #{timeliness,jdbcType=INTEGER},
+      </if>
+    </set>
+    where DailLog_Id = #{daillogId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Daillog">
+    update daillog
+    set HandoverMatters = #{handovermatters,jdbcType=VARCHAR},
+      HandoverName = #{handovername,jdbcType=VARCHAR},
+      LogState = #{logstate,jdbcType=INTEGER},
+      DelteName = #{deltename,jdbcType=VARCHAR},
+      DelteTime = #{deltetime,jdbcType=TIMESTAMP},
+      AddName = #{addname,jdbcType=VARCHAR},
+      AddTime = #{addtime,jdbcType=TIMESTAMP},
+      TimeLiness = #{timeliness,jdbcType=INTEGER}
+    where DailLog_Id = #{daillogId,jdbcType=INTEGER}
+  </update>
+</mapper>

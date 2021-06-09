@@ -32,13 +32,13 @@ public class Announcement implements Serializable {
     /**
      * 开始时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
     private Date startTime;
 
     /**
      * 结束时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
     private Date endTime;
 
     /**
@@ -64,7 +64,7 @@ public class Announcement implements Serializable {
     /**
      * 录入时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
     private Date addtime;
 
     /**
@@ -75,7 +75,7 @@ public class Announcement implements Serializable {
     /**
      * 最后发布时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
     private Date publishtime;
 
     /**
@@ -86,7 +86,7 @@ public class Announcement implements Serializable {
     /**
      * 最后暂停时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
     private Date suspendtime;
 
     /**
@@ -97,7 +97,7 @@ public class Announcement implements Serializable {
     /**
      * 最后修改时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
     private Date updatetime;
 
     /**
@@ -108,7 +108,7 @@ public class Announcement implements Serializable {
     /**
      * 删除时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
     private Date deletetime;
 
     /**

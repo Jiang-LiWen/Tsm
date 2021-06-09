@@ -18,5 +18,7 @@ public interface EnterpriseDao {
 
     List<EnterpriseVo> selectfinds();
 
+    List<EnterpriseVo> selectfindss();
+
     List<EnterpriseVo> selectEnterpriselike(String likeke);
 }

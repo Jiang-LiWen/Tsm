@@ -44,6 +44,7 @@ public class DeptController {
     public AjaxResponse addDept(@RequestBody @Valid DeptVo deptVo){
 
         log.debug("新增部门信息");
+        deptVo.setAddname("wenwen");
         deptService.insert(deptVo);
         return AjaxResponse.success(deptVo);
     }
@@ -66,6 +67,7 @@ public class DeptController {
     @PutMapping("/updateDept")
     public AjaxResponse updateDept(@RequestBody @Valid DeptVo deptVo){
         log.debug("修改部门信息");
+        deptVo.setUpdatename("wewe");
         deptVo.setUpdatetime(new Date());
         deptService.updateByPrimaryKey(deptVo);
         return AjaxResponse.success(deptVo);

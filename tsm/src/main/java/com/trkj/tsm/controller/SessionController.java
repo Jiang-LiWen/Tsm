@@ -47,6 +47,7 @@ public class SessionController {
     public AjaxResponse addSession(@RequestBody @Valid SessionVo sessionVo){
 
         log.debug("新增年届信息");
+        sessionVo.setAddname("wengege");
         sessionService.insert(sessionVo);
         return AjaxResponse.success(sessionVo);
     }
@@ -70,6 +71,7 @@ public class SessionController {
     @PutMapping("/updateSession")
     public AjaxResponse updateSession(@RequestBody @Valid SessionVo sessionVo){
         log.debug("修改年届信息");
+        sessionVo.setUpdatename("wenyeye");
         sessionVo.setUpdatetime(new Date());
         sessionService.updateByPrimaryKey(sessionVo);
         return AjaxResponse.success(sessionVo);

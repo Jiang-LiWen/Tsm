@@ -16,5 +16,7 @@ public interface EnterpriseService {
 
     Enterprise selectEnterprise(Integer enterpriseId);
 
+    List<EnterpriseVo> selectfindss();
+
     List<EnterpriseVo> selectEnterpriselike(String likeke);
 }

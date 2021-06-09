@@ -2,6 +2,8 @@ package com.trkj.tsm.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -28,6 +30,7 @@ public class Announcementtype implements Serializable {
     /**
      * 增加时间
      */
+
     private Date addtime;
 
     /**
@@ -38,6 +41,7 @@ public class Announcementtype implements Serializable {
     /**
      * 最后修改时间
      */
+
     private Date updatetime;
 
     /**
@@ -48,6 +52,7 @@ public class Announcementtype implements Serializable {
     /**
      * 删除时间
      */
+
     private Date deletetime;
 
     /**
