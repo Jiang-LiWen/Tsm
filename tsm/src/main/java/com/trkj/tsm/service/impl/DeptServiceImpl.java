@@ -9,12 +9,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 @Slf4j
 public class DeptServiceImpl implements DeptService {
-    @Autowired
+    @Resource
     private DeptDao deptDao;
 
     @Override
@@ -34,6 +35,7 @@ public class DeptServiceImpl implements DeptService {
     public DeptVo insert(DeptVo deptVo) {
         Dept d = new Dept();
         BeanCopyUtil.copyProperties(deptVo,d);
+        d.setDeptId(deptVo.getDeptId());
         deptDao.insert(d);
         return deptVo;
     }
@@ -42,6 +44,7 @@ public class DeptServiceImpl implements DeptService {
     public DeptVo updateByPrimaryKey(DeptVo deptVo) {
         Dept d = new Dept();
         BeanCopyUtil.copyProperties(deptVo,d);
+        d.setDeptId(deptVo.getDeptId());
         deptDao.updateByPrimaryKey(d);
         return deptVo;
     }
