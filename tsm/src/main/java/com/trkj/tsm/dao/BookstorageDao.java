@@ -17,17 +17,15 @@ public interface BookstorageDao {
     //增加
     int insertSelective(BookstorageVo record);
 
-    Bookstorage selectByPrimaryKey(Integer mbookstorageId);
+    BookstorageVo selectByPrimaryKey(Integer mbookstorageId);
 
-    List<Bookstorage> selectByPrimaryKey1(String systemtypeName);
+    int updateByPrimaryKeySelective(BookstorageVo record);
 
-    int updateByPrimaryKeySelective(Bookstorage record);
+    int updateByPrimaryKeyw(BookstorageVo bookstorageVo);
 
-    int updateByPrimaryKey(Bookstorage record);
+    List<BookstorageVo> selectAllsdd(String flag);
 
-    List<Bookstorage> selectAllsdd();
-
-    int addBookstorage(Bookstorage record);
+    int addBookstorage(BookstorageVo record);
 
 
 }

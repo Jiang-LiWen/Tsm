@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public interface ClassroomService {
-    List<Classroom> selectAlls();
+    List<Classroom> selectAlls(String flag);
 
     ClassroomVo addClassroom(ClassroomVo classroomVo);
 
@@ -17,7 +17,6 @@ public interface ClassroomService {
 
     int deleteClassroom(Integer ClassroomId);//删除
 
-    List<Classroom> selectClassroom(String classroomName);
 
     ClassroomVo updateByPrimaryKey(ClassroomVo classroomVo);
 }

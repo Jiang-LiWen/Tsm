@@ -5,6 +5,7 @@ import com.trkj.tsm.entity.Emp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.springframework.validation.annotation.Validated;
 
 import java.io.Serializable;
@@ -19,6 +20,7 @@ import java.util.Date;
 @Validated
 @NoArgsConstructor
 @AllArgsConstructor
+@NonNull
 public class BookstorageVo{
     /**
      * 教材入库编号
@@ -28,7 +30,7 @@ public class BookstorageVo{
     /**
      * 入库员职工编号
      */
-    private EmpVo empVo;
+    private Emp emp;
     private Integer empId;
 
     /**
@@ -44,7 +46,7 @@ public class BookstorageVo{
     /**
      * 教材编号
      */
-    private BookVo bookVo;
+    private Book book;
     private Integer bookId;
 
     /**

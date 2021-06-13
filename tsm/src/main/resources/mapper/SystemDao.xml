@@ -74,8 +74,11 @@
     <include refid="Base_Column_Syst" />
     from system1 cr
     inner join dept de on cr.Dept_Id=de.Dept_Id
-    inner join Systemtype sy on cr.SystemType_Id=sy.SystemType_Id
+    inner join systemtype sy on cr.SystemType_Id=sy.SystemType_Id
     where cr.TimeLiness=0
+    <if test="bookname!=null">
+      AND bo.BookName like CONCAT ('%',#{flag,jdbcType=VARCHAR},'%')
+    </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from system1

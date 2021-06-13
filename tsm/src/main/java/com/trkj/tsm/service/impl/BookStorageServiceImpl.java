@@ -2,23 +2,17 @@ package com.trkj.tsm.service.impl;
 
 import com.trkj.tsm.dao.BookDao;
 import com.trkj.tsm.dao.BookstorageDao;
-import com.trkj.tsm.entity.Book;
 import com.trkj.tsm.entity.Bookstorage;
-import com.trkj.tsm.entity.System;
+import com.trkj.tsm.entity.Classtype;
 import com.trkj.tsm.service.BookStorageService;
 import com.trkj.tsm.util.BeanCopyUtil;
-import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.BookVo;
 import com.trkj.tsm.vo.BookstorageVo;
-import com.trkj.tsm.vo.SystemVo;
+import com.trkj.tsm.vo.ClassroomVo;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.annotation.Resource;
-import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -31,9 +25,9 @@ public class BookStorageServiceImpl implements BookStorageService {
     private BookDao bookDao;
 
     @Override
-    public List<Bookstorage> selectAllsdd() {
-        log.debug("查询所有 ——————————————");
-        return bookstorageDao.selectAllsdd();
+    public List<BookstorageVo> selectAllsdd(String flag) {
+        log.debug("模糊查询所有 ——————————————");
+        return bookstorageDao.selectAllsdd(flag);
     }
 
     @Override
@@ -49,15 +43,16 @@ public class BookStorageServiceImpl implements BookStorageService {
         return 1;
     }
 
-
     @Override
-    public Bookstorage updateByPrimaryKey(Bookstorage bookstorage) {
-        return null;
+    public BookstorageVo updateByPrimaryKeyw(BookstorageVo bookstorageVo) {
+        log.debug("删除");
+        BookstorageVo d = new BookstorageVo();
+        BeanCopyUtil.copyProperties(bookstorageVo,d);
+        bookstorageDao.updateByPrimaryKeyw(d);
+        return bookstorageVo;
+
+
     }
 
-    @Override
-    public int deleteByPrimaryKey(int mbookstorageId) {
-        return 0;
-    }
 
 }

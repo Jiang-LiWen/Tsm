@@ -2,13 +2,20 @@ package com.trkj.tsm.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 /**
  * book
  * @author 
  */
 @Data
+@NonNull
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book implements Serializable {
     /**
      * 教材编号

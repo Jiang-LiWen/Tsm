@@ -30,12 +30,6 @@
     where Book_Id = #{bookId,jdbcType=INTEGER}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    select
-    <include refid="Base_Column_List" />
-    from book
-    where Book_Id = #{I,jdbcType=INTEGER}
-  </delete>
   <insert id="insert" keyColumn="Book_Id" keyProperty="bookId" parameterType="com.trkj.tsm.vo.BookVo" useGeneratedKeys="true">
     insert into book (BookName, DeliveryCount, BookSprice, 
       BookJprice, SafeStock, Press

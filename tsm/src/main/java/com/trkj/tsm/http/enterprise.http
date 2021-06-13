@@ -1,3 +1,13 @@
+PUT http://localhost:8089/tsm/updateByPrimaryKeyw
+Content-Type: application/json
+
+{
+  "mbookstorageId": 1
+}
+
+###
+
+###
 GET http://localhost:8089/tsm/selectAllsdd
 Accept: application/json
 

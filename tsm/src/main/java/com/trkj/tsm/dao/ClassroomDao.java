@@ -15,13 +15,12 @@ public interface ClassroomDao {
 
     int insertSelective(Classroom record);
 
-    List<Classroom> selectByPrimaryKey(String classroomName);
 
     int updateByPrimaryKeySelective(ClassroomVo record);
 
     //批量删除
     int updateByPrimaryKey(ClassroomVo classroom);
 
-    List<Classroom> selectAlls();
+    List<Classroom> selectAlls(String flag);
 
 }

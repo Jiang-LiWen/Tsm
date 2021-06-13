@@ -3,13 +3,20 @@ package com.trkj.tsm.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 /**
  * bookstorage
  * @author 
  */
 @Data
+@NonNull
+@AllArgsConstructor
+@NoArgsConstructor
 public class Bookstorage implements Serializable {
     /**
      * 教材入库编号

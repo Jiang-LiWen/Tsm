@@ -26,11 +26,12 @@ public class ClassRoomController {
 
     //显示教室表的全部内容
     @GetMapping("/selectAlls")
-    public PageInfo<Classroom> selectAllSources(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){
+    public PageInfo<Classroom> selectAllSources(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize, @RequestParam("flag") String flag){
         PageHelper.startPage(currentPage,pagesize);
         log.debug("--------------------");
-        List<Classroom> entityPage=classroomService.selectAlls();
+        List<Classroom> entityPage=classroomService.selectAlls(flag);
         PageInfo<Classroom> ClassrommVoPageInfo=new PageInfo<>(entityPage);
+        log.debug(ClassrommVoPageInfo.toString());
         return  ClassrommVoPageInfo;
     }
 
@@ -59,13 +60,6 @@ public class ClassRoomController {
         return "删除成功";
     }
 
-    @GetMapping("/classroomName")
-    public PageInfo<Classroom> classroomName(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize, @RequestParam("classroomName") String classroomName) {
-        PageHelper.startPage(currentPage, pagesize);
-        List<Classroom> classname = classroomService.selectClassroom(classroomName);
-        PageInfo<Classroom> ClassPageInfo = new PageInfo<>(classname);
-        return ClassPageInfo;
-    }
 
     @PutMapping("/updateByPrimaryKey")
     public AjaxResponse updateByPrimaryKey(@RequestBody @Valid ClassroomVo classroomVo){

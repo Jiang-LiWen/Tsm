@@ -6,6 +6,7 @@ import com.trkj.tsm.entity.Bookstorage;
 import com.trkj.tsm.service.BookStorageService;
 import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.BookstorageVo;
+import com.trkj.tsm.vo.ClasstypeVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +22,12 @@ public class BookStorageController {
     private BookStorageService bookStorageService;
 
     @GetMapping("/selectAllsdd")
-    public PageInfo<Bookstorage> selectAllsdd(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){
+    public PageInfo<BookstorageVo> selectAllsdd(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize , @RequestParam("flag") String flag){
         PageHelper.startPage(currentPage,pagesize);
         log.debug("查询所有--------------------");
-        List<Bookstorage> entityPage=bookStorageService.selectAllsdd();
-        PageInfo<Bookstorage> BookstoragePageInfo=new PageInfo<>(entityPage);
-        return  BookstoragePageInfo;
+        List<BookstorageVo> entityPage=bookStorageService.selectAllsdd(flag);
+        PageInfo<BookstorageVo> bookstoragePageInfo=new PageInfo<>(entityPage);
+        return  bookstoragePageInfo;
     }
 
 
@@ -37,4 +38,15 @@ public class BookStorageController {
         bookStorageService.addBookstorage(bookstorageVo);
         return AjaxResponse.success(bookstorageVo);
     }
+
+
+    @PutMapping("/updateByPrimaryKeyw")
+    public AjaxResponse updateByPrimaryKeyw(@RequestBody @Valid BookstorageVo bookstorageVo){
+        bookstorageVo.setDeletetime(new Date());
+        log.debug("删除");
+        bookStorageService.updateByPrimaryKeyw(bookstorageVo);
+        return AjaxResponse.success(bookstorageVo);
+    }
+
+
 }

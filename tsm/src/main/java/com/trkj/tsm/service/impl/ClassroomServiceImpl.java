@@ -21,9 +21,9 @@ public class ClassroomServiceImpl implements ClassroomService {
     private ClassroomDao classroomDao;
 
     @Override
-    public List<Classroom> selectAlls() {
+    public List<Classroom> selectAlls(String flag) {
         log.debug("controller查询全部信息");
-        return classroomDao.selectAlls();
+        return classroomDao.selectAlls(flag);
     }
 
 
@@ -57,12 +57,6 @@ public class ClassroomServiceImpl implements ClassroomService {
         classroomVo.setClassroomId(ClassroomId);
         classroomVo.setTimeliness(1);
         return classroomDao.updateByPrimaryKeySelective(classroomVo);
-    }
-
-    @Override
-    public List<Classroom> selectClassroom(String classroomName) {
-            log.debug("查询");
-            return classroomDao.selectByPrimaryKey(classroomName);
     }
 
     @Override

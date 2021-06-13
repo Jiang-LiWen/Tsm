@@ -75,30 +75,44 @@
     bo.Storagee
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from bookstorage
     where MBookStorage_Id = #{mbookstorageId,jdbcType=INTEGER}
   </select>
+  <select id="selectAllsdd" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />,
+    <include refid="emp" />,
+    <include refid="book" />
+    from bookstorage st
+    inner join book bo on st.Book_Id=bo.Book_Id
+    inner join emp em on st.Emp_Id=em.Emp_Id
+    where st.TimeLiness=0
+    <if test="bookname!=null">
+    AND bo.BookName like CONCAT ('%',#{flag,jdbcType=VARCHAR},'%')
+    </if>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from bookstorage
     where MBookStorage_Id = #{mbookstorageId,jdbcType=INTEGER}
   </delete>
-  <insert id="addBookstorage" keyColumn="Mbookstorage_Id" keyProperty="mbookstorageId" parameterType="com.trkj.tsm.entity.Bookstorage" useGeneratedKeys="true">
+  <insert id="addBookstorage" keyColumn="Mbookstorage_Id" keyProperty="mbookstorageId" parameterType="com.trkj.tsm.vo.BookstorageVo" useGeneratedKeys="true">
     insert into bookstorage (Emp_Id, Book_Id,StorageCount,StorageTime,TotalPrice)
     values (#{empId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER},#{storagecount,jdbcType=INTEGER},#{storagetime,jdbcType=TIMESTAMP},#{totalprice,jdbcType=DECIMAL})
   </insert>
-  <insert id="insert" keyColumn="MBookStorage_Id" keyProperty="mbookstorageId" parameterType="com.trkj.tsm.entity.Bookstorage" useGeneratedKeys="true">
-    insert into bookstorage (Emp_Id, StorageCount, StorageTime, 
-      Book_Id, TotalPrice, Approval, 
-      AppName, AppTime, Revoke_AppName, 
-      Revoke_AppTime, UpdateName, UpdateTime, 
+  <insert id="insert" keyColumn="MBookStorage_Id" keyProperty="mbookstorageId" parameterType="com.trkj.tsm.vo.BookstorageVo" useGeneratedKeys="true">
+    insert into bookstorage (Emp_Id, StorageCount, StorageTime,
+      Book_Id, TotalPrice, Approval,
+      AppName, AppTime, Revoke_AppName,
+      Revoke_AppTime, UpdateName, UpdateTime,
       DeleteName, DeleteTime, TimeLiness
       )
-    values (#{empId,jdbcType=INTEGER}, #{storagecount,jdbcType=INTEGER}, #{storagetime,jdbcType=TIMESTAMP}, 
-      #{bookId,jdbcType=INTEGER}, #{totalprice,jdbcType=DECIMAL}, #{approval,jdbcType=INTEGER}, 
-      #{appname,jdbcType=VARCHAR}, #{apptime,jdbcType=TIMESTAMP}, #{revokeAppname,jdbcType=VARCHAR}, 
-      #{revokeApptime,jdbcType=TIMESTAMP}, #{updatename,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+    values (#{empId,jdbcType=INTEGER}, #{storagecount,jdbcType=INTEGER}, #{storagetime,jdbcType=TIMESTAMP},
+      #{bookId,jdbcType=INTEGER}, #{totalprice,jdbcType=DECIMAL}, #{approval,jdbcType=INTEGER},
+      #{appname,jdbcType=VARCHAR}, #{apptime,jdbcType=TIMESTAMP}, #{revokeAppname,jdbcType=VARCHAR},
+      #{revokeApptime,jdbcType=TIMESTAMP}, #{updatename,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
       #{deletename,jdbcType=VARCHAR}, #{deletetime,jdbcType=TIMESTAMP}, #{timeliness,jdbcType=INTEGER}
       )
   </insert>
@@ -202,18 +216,7 @@
       </if>
     </trim>
   </insert>
-  <select id="selectByPrimaryKey1" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from bookstorage
-    <where>
-      <if test="BookName !=null">
-        BookName like concat(concat('%',#{bookname,jdbcType=VARCHAR},'%'))
-      </if>
-    </where>
-    order by MBookStorage_Id
-  </select>
-  <update id="updateByPrimaryKeySelective" parameterType="com.trkj.tsm.entity.Bookstorage">
+  <update id="updateByPrimaryKeySelective" parameterType="com.trkj.tsm.vo.BookstorageVo">
     update bookstorage
     <set>
       <if test="empId != null">
@@ -265,34 +268,12 @@
     where MBookStorage_Id = #{mbookstorageId,jdbcType=INTEGER}
   </update>
 
-  <select id="selectAllsdd" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />,
-    <include refid="emp" />,
-    <include refid="book" />
-    from BookStorage st
-    inner join book bo on st.Book_Id=bo.Book_Id
-    inner join emp em on st.Emp_Id=em.Emp_Id
-    where st.TimeLiness=0
-  </select>
-
-  <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Bookstorage">
+  <update id="updateByPrimaryKeyw" parameterType="com.trkj.tsm.vo.BookstorageVo">
     update bookstorage
-    set Emp_Id = #{empId,jdbcType=INTEGER},
-      StorageCount = #{storagecount,jdbcType=INTEGER},
-      StorageTime = #{storagetime,jdbcType=TIMESTAMP},
-      Book_Id = #{bookId,jdbcType=INTEGER},
-      TotalPrice = #{totalprice,jdbcType=DECIMAL},
-      Approval = #{approval,jdbcType=INTEGER},
-      AppName = #{appname,jdbcType=VARCHAR},
-      AppTime = #{apptime,jdbcType=TIMESTAMP},
-      Revoke_AppName = #{revokeAppname,jdbcType=VARCHAR},
-      Revoke_AppTime = #{revokeApptime,jdbcType=TIMESTAMP},
-      UpdateName = #{updatename,jdbcType=VARCHAR},
-      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
-      DeleteName = #{deletename,jdbcType=VARCHAR},
-      DeleteTime = #{deletetime,jdbcType=TIMESTAMP},
-      TimeLiness = #{timeliness,jdbcType=INTEGER}
-    where MBookStorage_Id = #{mbookstorageId,jdbcType=INTEGER}
+    set TimeLiness = 1,
+        DeleteName = #{deletename,jdbcType=VARCHAR},
+        DeleteTime = #{deletetime,jdbcType=TIMESTAMP}
+    where MBookStorage_Id = #{mbookstorageId,jdbcType=INTEGER} and TimeLiness = 0
   </update>
+
 </mapper>

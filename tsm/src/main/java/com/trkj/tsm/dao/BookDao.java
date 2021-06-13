@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface BookDao {
-    int deleteByPrimaryKey(Integer bookId);
+
 
     int insert(BookVo record);
 
