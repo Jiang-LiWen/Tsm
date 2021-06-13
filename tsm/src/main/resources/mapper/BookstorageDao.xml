@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.tsm.dao.BookstorageDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Bookstorage">
+    <id column="MBookStorage_Id" jdbcType="INTEGER" property="mbookstorageId" />
+    <result column="Emp_Id" jdbcType="INTEGER" property="empId" />
+    <result column="StorageCount" jdbcType="INTEGER" property="storagecount" />
+    <result column="StorageTime" jdbcType="TIMESTAMP" property="storagetime" />
+    <result column="Book_Id" jdbcType="INTEGER" property="bookId" />
+    <result column="TotalPrice" jdbcType="DECIMAL" property="totalprice" />
+    <result column="Approval" jdbcType="INTEGER" property="approval" />
+    <result column="AppName" jdbcType="VARCHAR" property="appname" />
+    <result column="AppTime" jdbcType="TIMESTAMP" property="apptime" />
+    <result column="Revoke_AppName" jdbcType="VARCHAR" property="revokeAppname" />
+    <result column="Revoke_AppTime" jdbcType="TIMESTAMP" property="revokeApptime" />
+    <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+    <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+    <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+
+    <association property="book" javaType="com.trkj.tsm.entity.Book">
+      <id column="Book_Id" jdbcType="INTEGER" property="bookId" />
+      <result column="BookName" jdbcType="VARCHAR" property="bookname" />
+      <result column="DeliveryCount" jdbcType="INTEGER" property="deliverycount" />
+      <result column="BookSprice" jdbcType="DECIMAL" property="booksprice" />
+      <result column="BookJprice" jdbcType="DECIMAL" property="bookjprice" />
+      <result column="SafeStock" jdbcType="INTEGER" property="safestock" />
+      <result column="Press" jdbcType="VARCHAR" property="press" />
+      <result column="State" jdbcType="INTEGER" property="state" />
+    </association>
+
+    <collection property="emp" ofType="com.trkj.tsm.entity.Emp">
+      <id column="Emp_Id" jdbcType="INTEGER" property="empId" />
+      <result column="Dept_Id" jdbcType="INTEGER" property="deptId" />
+      <result column="Position_Id" jdbcType="INTEGER" property="positionId" />
+      <result column="Enterprise_Id" jdbcType="INTEGER" property="enterpriseId" />
+      <result column="UserImg" jdbcType="VARCHAR" property="userimg" />
+      <result column="IndividualImg" jdbcType="VARCHAR" property="individualimg" />
+      <result column="JobNumber" jdbcType="VARCHAR" property="jobnumber" />
+      <result column="Emp_Name" jdbcType="VARCHAR" property="empName" />
+      <result column="Emp_Sex" jdbcType="CHAR" property="empSex" />
+      <result column="Emp_Phone" jdbcType="VARCHAR" property="empPhone" />
+      <result column="E_mail" jdbcType="VARCHAR" property="eMail" />
+      <result column="Birthday" jdbcType="TIMESTAMP" property="birthday" />
+      <result column="Remarks" jdbcType="VARCHAR" property="remarks" />
+      <result column="Address" jdbcType="VARCHAR" property="address" />
+      <result column="EmpState" jdbcType="INTEGER" property="empstate" />
+      <result column="Passwords" jdbcType="VARCHAR" property="passwords" />
+      <result column="Addname" jdbcType="VARCHAR" property="addname" />
+      <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="LoginState" jdbcType="INTEGER" property="loginstate" />
+      <result column="Education" jdbcType="VARCHAR" property="education" />
+      <result column="Graduate" jdbcType="VARCHAR" property="graduate" />
+    </collection>
+
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    st.MBookStorage_Id, st.Emp_Id, st.StorageCount, st.StorageTime, st.Book_Id, st.TotalPrice, st.Approval,
+    st.AppName, st.AppTime, st.Revoke_AppName, st.Revoke_AppTime, st.UpdateName, st.UpdateTime, st.DeleteName,
+    st.DeleteTime, st.TimeLiness
+  </sql>
+  <sql id="emp">
+    em.Emp_Id, em.Dept_Id, em.Position_Id, em.Enterprise_Id, em.UserImg, em.IndividualImg, em.JobNumber, em.Emp_Name,
+    em.Emp_Sex, em.Emp_Phone, em.E_mail, em.Birthday, em.Remarks, em.Address, em.EmpState, em.Passwords, em.Addname,
+    em.AddTime, em.UpdateName, em.UpdateTime, em.DeleteName, em.DeleteTime, em.LoginState, em.Education, em.Graduate
+  </sql>
+  <sql id="book">
+    bo.Book_Id, bo.BookName, bo.DeliveryCount, bo.BookSprice, bo.BookJprice, bo.SafeStock, bo.Press, bo.`State`,
+    bo.Storagee
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bookstorage
+    where MBookStorage_Id = #{mbookstorageId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bookstorage
+    where MBookStorage_Id = #{mbookstorageId,jdbcType=INTEGER}
+  </delete>
+  <insert id="addBookstorage" keyColumn="Mbookstorage_Id" keyProperty="mbookstorageId" parameterType="com.trkj.tsm.entity.Bookstorage" useGeneratedKeys="true">
+    insert into bookstorage (Emp_Id, Book_Id,StorageCount,StorageTime,TotalPrice)
+    values (#{empId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER},#{storagecount,jdbcType=INTEGER},#{storagetime,jdbcType=TIMESTAMP},#{totalprice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insert" keyColumn="MBookStorage_Id" keyProperty="mbookstorageId" parameterType="com.trkj.tsm.entity.Bookstorage" useGeneratedKeys="true">
+    insert into bookstorage (Emp_Id, StorageCount, StorageTime, 
+      Book_Id, TotalPrice, Approval, 
+      AppName, AppTime, Revoke_AppName, 
+      Revoke_AppTime, UpdateName, UpdateTime, 
+      DeleteName, DeleteTime, TimeLiness
+      )
+    values (#{empId,jdbcType=INTEGER}, #{storagecount,jdbcType=INTEGER}, #{storagetime,jdbcType=TIMESTAMP}, 
+      #{bookId,jdbcType=INTEGER}, #{totalprice,jdbcType=DECIMAL}, #{approval,jdbcType=INTEGER}, 
+      #{appname,jdbcType=VARCHAR}, #{apptime,jdbcType=TIMESTAMP}, #{revokeAppname,jdbcType=VARCHAR}, 
+      #{revokeApptime,jdbcType=TIMESTAMP}, #{updatename,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{deletename,jdbcType=VARCHAR}, #{deletetime,jdbcType=TIMESTAMP}, #{timeliness,jdbcType=INTEGER}
+      )
+  </insert>
+
+
+
+  <insert id="insertSelective" keyColumn="MBookStorage_Id" keyProperty="mbookstorageId" parameterType="com.trkj.tsm.vo.BookstorageVo" useGeneratedKeys="true">
+    insert into bookstorage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="empId != null">
+        Emp_Id,
+      </if>
+      <if test="storagecount != null">
+        StorageCount,
+      </if>
+      <if test="storagetime != null">
+        StorageTime,
+      </if>
+      <if test="bookId != null">
+        Book_Id,
+      </if>
+      <if test="totalprice != null">
+        TotalPrice,
+      </if>
+      <if test="approval != null">
+        Approval,
+      </if>
+      <if test="appname != null">
+        AppName,
+      </if>
+      <if test="apptime != null">
+        AppTime,
+      </if>
+      <if test="revokeAppname != null">
+        Revoke_AppName,
+      </if>
+      <if test="revokeApptime != null">
+        Revoke_AppTime,
+      </if>
+      <if test="updatename != null">
+        UpdateName,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+      <if test="deletename != null">
+        DeleteName,
+      </if>
+      <if test="deletetime != null">
+        DeleteTime,
+      </if>
+      <if test="timeliness != null">
+        TimeLiness,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="empId != null">
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="storagecount != null">
+        #{storagecount,jdbcType=INTEGER},
+      </if>
+      <if test="storagetime != null">
+        #{storagetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookId != null">
+        #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="totalprice != null">
+        #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="approval != null">
+        #{approval,jdbcType=INTEGER},
+      </if>
+      <if test="appname != null">
+        #{appname,jdbcType=VARCHAR},
+      </if>
+      <if test="apptime != null">
+        #{apptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revokeAppname != null">
+        #{revokeAppname,jdbcType=VARCHAR},
+      </if>
+      <if test="revokeApptime != null">
+        #{revokeApptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatename != null">
+        #{updatename,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletename != null">
+        #{deletename,jdbcType=VARCHAR},
+      </if>
+      <if test="deletetime != null">
+        #{deletetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeliness != null">
+        #{timeliness,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectByPrimaryKey1" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bookstorage
+    <where>
+      <if test="BookName !=null">
+        BookName like concat(concat('%',#{bookname,jdbcType=VARCHAR},'%'))
+      </if>
+    </where>
+    order by MBookStorage_Id
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.trkj.tsm.entity.Bookstorage">
+    update bookstorage
+    <set>
+      <if test="empId != null">
+        Emp_Id = #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="storagecount != null">
+        StorageCount = #{storagecount,jdbcType=INTEGER},
+      </if>
+      <if test="storagetime != null">
+        StorageTime = #{storagetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookId != null">
+        Book_Id = #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="totalprice != null">
+        TotalPrice = #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="approval != null">
+        Approval = #{approval,jdbcType=INTEGER},
+      </if>
+      <if test="appname != null">
+        AppName = #{appname,jdbcType=VARCHAR},
+      </if>
+      <if test="apptime != null">
+        AppTime = #{apptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revokeAppname != null">
+        Revoke_AppName = #{revokeAppname,jdbcType=VARCHAR},
+      </if>
+      <if test="revokeApptime != null">
+        Revoke_AppTime = #{revokeApptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatename != null">
+        UpdateName = #{updatename,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletename != null">
+        DeleteName = #{deletename,jdbcType=VARCHAR},
+      </if>
+      <if test="deletetime != null">
+        DeleteTime = #{deletetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeliness != null">
+        TimeLiness = #{timeliness,jdbcType=INTEGER},
+      </if>
+    </set>
+    where MBookStorage_Id = #{mbookstorageId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAllsdd" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />,
+    <include refid="emp" />,
+    <include refid="book" />
+    from BookStorage st
+    inner join book bo on st.Book_Id=bo.Book_Id
+    inner join emp em on st.Emp_Id=em.Emp_Id
+    where st.TimeLiness=0
+  </select>
+
+  <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Bookstorage">
+    update bookstorage
+    set Emp_Id = #{empId,jdbcType=INTEGER},
+      StorageCount = #{storagecount,jdbcType=INTEGER},
+      StorageTime = #{storagetime,jdbcType=TIMESTAMP},
+      Book_Id = #{bookId,jdbcType=INTEGER},
+      TotalPrice = #{totalprice,jdbcType=DECIMAL},
+      Approval = #{approval,jdbcType=INTEGER},
+      AppName = #{appname,jdbcType=VARCHAR},
+      AppTime = #{apptime,jdbcType=TIMESTAMP},
+      Revoke_AppName = #{revokeAppname,jdbcType=VARCHAR},
+      Revoke_AppTime = #{revokeApptime,jdbcType=TIMESTAMP},
+      UpdateName = #{updatename,jdbcType=VARCHAR},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      DeleteName = #{deletename,jdbcType=VARCHAR},
+      DeleteTime = #{deletetime,jdbcType=TIMESTAMP},
+      TimeLiness = #{timeliness,jdbcType=INTEGER}
+    where MBookStorage_Id = #{mbookstorageId,jdbcType=INTEGER}
+  </update>
+</mapper>

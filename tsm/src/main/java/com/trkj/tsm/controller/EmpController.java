@@ -2,6 +2,7 @@ package com.trkj.tsm.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.trkj.tsm.entity.Emp;
 import com.trkj.tsm.service.EmpService;
 import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.DeptVo;
@@ -46,6 +47,15 @@ public class EmpController {
         PageInfo<EmpVo> empVoPageInfo = new  PageInfo<>(entityPage);
         return empVoPageInfo;
     }
+
+    //教材入库
+    @GetMapping("/wjselectEmp")
+    public List<EmpVo> wj1selectAll(){
+        List<EmpVo> entityPage =empService.selectEmp();
+        return  entityPage;
+    }
+
+
     @GetMapping("/selectEmp")
     public PageInfo<EmpVo> selectEmp(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){
         log.debug("分页查询部门");

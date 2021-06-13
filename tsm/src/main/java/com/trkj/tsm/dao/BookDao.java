@@ -12,9 +12,11 @@ public interface BookDao {
 
     int insert(BookVo record);
 
-    int insertSelective(BookVo record);
+    int insertSelective(Book record);
 
     List<Book> selectByPrimaryKey(String bookname);
+
+    BookVo selectByPrimaryKey(Integer bookId);
 
     int updateByPrimaryKeySelective(Book record);
 

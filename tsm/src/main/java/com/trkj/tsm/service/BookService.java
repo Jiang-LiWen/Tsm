@@ -13,4 +13,5 @@ public interface BookService {
 
     List<Book> selectBook(String bookname);
 
+    List<Book> selsebook();
 }

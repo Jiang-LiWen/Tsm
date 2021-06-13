@@ -1,5 +1,6 @@
 package com.trkj.tsm.vo;
 
+import com.trkj.tsm.entity.Dept;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,10 @@ public class DeptVo {
      */
     private Integer deptId;
 
+    /**
+     * 部门
+     */
+    private Dept dept;
     /**
      * 部门名称
      */
