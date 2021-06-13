@@ -5,10 +5,16 @@ server:
 
 spring:
   datasource:
+<<<<<<< HEAD
     url: jdbc:mysql://8.140.157.211:3306/tr01904?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
 
+=======
+
+    url: jdbc:mysql://8.140.157.211:3306/tr01904?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+>>>>>>> efde69062690c3fc86d4bcbca302f8dd28cb8d4d
     username: root
     password: Root!!2018
+
     driver-class-name: com.mysql.cj.jdbc.Driver
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.tsm.dao.ClassesDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Classes">
+    <id column="Classes_Id" jdbcType="INTEGER" property="classesId" />
+    <result column="Course_Id" jdbcType="INTEGER" property="courseId" />
+    <result column="Teacher_Id" jdbcType="INTEGER" property="teacherId" />
+    <result column="Emp_Id" jdbcType="INTEGER" property="empId" />
+    <result column="DetailCourse_Id" jdbcType="INTEGER" property="detailcourseId" />
+    <result column="Classes_Name" jdbcType="VARCHAR" property="classesName" />
+    <result column="Classes_Open" jdbcType="INTEGER" property="classesOpen" />
+    <result column="OpenDate" jdbcType="TIMESTAMP" property="opendate" />
+    <result column="Classes_State" jdbcType="INTEGER" property="classesState" />
+    <result column="EndDate" jdbcType="TIMESTAMP" property="enddate" />
+    <result column="AddName" jdbcType="VARCHAR" property="addname" />
+    <result column="AddTIME" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+    <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+    <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    <association property="course" javaType="com.trkj.tsm.entity.Course">
+      <id column="Course_Id" jdbcType="INTEGER" property="courseId" />
+      <result column="Commission" jdbcType="DECIMAL" property="commission" />
+      <result column="Course_Name" jdbcType="VARCHAR" property="courseName" />
+      <result column="Course_State" jdbcType="INTEGER" property="courseState" />
+      <result column="Classhours" jdbcType="INTEGER" property="classhours" />
+      <result column="Course_Money" jdbcType="DECIMAL" property="courseMoney" />
+      <result column="ClassType_Id" jdbcType="INTEGER" property="classtypeId" />
+      <result column="AddName" jdbcType="VARCHAR" property="addname" />
+      <result column="ADDTIME" jdbcType="TIMESTAMP" property="addtime" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="StopName" jdbcType="VARCHAR" property="stopname" />
+      <result column="StopTime" jdbcType="TIMESTAMP" property="stoptime" />
+      <result column="BeginName" jdbcType="VARCHAR" property="beginname" />
+      <result column="BeginTime" jdbcType="TIMESTAMP" property="begintime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    </association>
+    <association property="cteacher" javaType="com.trkj.tsm.entity.Emp">
+      <id column="Emp_Id" jdbcType="INTEGER" property="empId" />
+      <result column="Dept_Id" jdbcType="INTEGER" property="deptId" />
+      <result column="Position_Id" jdbcType="INTEGER" property="positionId" />
+      <result column="Enterprise_Id" jdbcType="INTEGER" property="enterpriseId" />
+      <result column="UserImg" jdbcType="VARCHAR" property="userimg" />
+      <result column="IndividualImg" jdbcType="VARCHAR" property="individualimg" />
+      <result column="JobNumber" jdbcType="VARCHAR" property="jobnumber" />
+      <result column="Emp_Name" jdbcType="VARCHAR" property="empName" />
+      <result column="Emp_Sex" jdbcType="CHAR" property="empSex" />
+      <result column="Emp_Phone" jdbcType="VARCHAR" property="empPhone" />
+      <result column="E_mail" jdbcType="VARCHAR" property="eMail" />
+      <result column="Birthday" jdbcType="TIMESTAMP" property="birthday" />
+      <result column="Remarks" jdbcType="VARCHAR" property="remarks" />
+      <result column="Address" jdbcType="VARCHAR" property="address" />
+      <result column="EmpState" jdbcType="INTEGER" property="empstate" />
+      <result column="Passwords" jdbcType="VARCHAR" property="passwords" />
+      <result column="Addname" jdbcType="VARCHAR" property="addname" />
+      <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="LoginState" jdbcType="INTEGER" property="loginstate" />
+      <result column="Education" jdbcType="VARCHAR" property="education" />
+      <result column="Graduate" jdbcType="VARCHAR" property="graduate" />
+    </association>
+    <association property="tteacher" javaType="com.trkj.tsm.entity.Emp">
+      <id column="Teachers_Emp_Id" jdbcType="INTEGER" property="empId" />
+      <result column="Teachers_Dept_Id" jdbcType="INTEGER" property="deptId" />
+      <result column="Teachers_Position_Id" jdbcType="INTEGER" property="positionId" />
+      <result column="Teachers_Enterprise_Id" jdbcType="INTEGER" property="enterpriseId" />
+      <result column="Teachers_UserImg" jdbcType="VARCHAR" property="userimg" />
+      <result column="Teachers_IndividualImg" jdbcType="VARCHAR" property="individualimg" />
+      <result column="Teachers_JobNumber" jdbcType="VARCHAR" property="jobnumber" />
+      <result column="Teachers_Name" jdbcType="VARCHAR" property="empName" />
+      <result column="Teachers_Emp_Sex" jdbcType="CHAR" property="empSex" />
+      <result column="Teachers_Emp_Phone" jdbcType="VARCHAR" property="empPhone" />
+      <result column="Teachers_E_mail" jdbcType="VARCHAR" property="eMail" />
+      <result column="Teachers_Birthday" jdbcType="TIMESTAMP" property="birthday" />
+      <result column="Teachers_Remarks" jdbcType="VARCHAR" property="remarks" />
+      <result column="Teachers_Address" jdbcType="VARCHAR" property="address" />
+      <result column="Teachers_EmpState" jdbcType="INTEGER" property="empstate" />
+      <result column="Teachers_Passwords" jdbcType="VARCHAR" property="passwords" />
+      <result column="Teachers_Addname" jdbcType="VARCHAR" property="addname" />
+      <result column="Teachers_AddTime" jdbcType="TIMESTAMP" property="addtime" />
+      <result column="Teachers_UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="Teachers_UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="Teachers_DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="Teachers_DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="Teachers_LoginState" jdbcType="INTEGER" property="loginstate" />
+      <result column="Teachers_Education" jdbcType="VARCHAR" property="education" />
+      <result column="Teachers_Graduate" jdbcType="VARCHAR" property="graduate" />
+    </association>
+    <association property="detailcourse" javaType="com.trkj.tsm.entity.Detailcourse">
+      <id column="DetailCourse_Id" jdbcType="INTEGER" property="detailcourseId" />
+      <result column="Course_Id" jdbcType="INTEGER" property="courseId" />
+      <result column="DetailCourse_Name" jdbcType="VARCHAR" property="detailcourseName" />
+      <result column="Serial" jdbcType="INTEGER" property="serial" />
+      <result column="AddName" jdbcType="VARCHAR" property="addname" />
+      <result column="ADDTIME" jdbcType="TIMESTAMP" property="addtime" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="StopName" jdbcType="VARCHAR" property="stopname" />
+      <result column="StopTime" jdbcType="TIMESTAMP" property="stoptime" />
+      <result column="BeginName" jdbcType="VARCHAR" property="beginname" />
+      <result column="BeginTime" jdbcType="TIMESTAMP" property="begintime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List">
+    classes.Classes_Id, classes.Course_Id, classes.Teacher_Id, classes.Emp_Id, classes.DetailCourse_Id,
+    classes.Classes_Name, classes.Classes_Open,classes.OpenDate, classes.Classes_State,
+    classes.EndDate, classes.AddName, classes.AddTIME, classes.UpdateName, classes.UpdateTime,
+    classes.DeleteName,classes.DeleteTime, classes.TimeLiness
+  </sql>
+  <sql id="Base_Column_Listcourse">
+    course.Course_Id, course.Commission, course.Course_Name, course.Course_State, course.Classhours,
+    course.Course_Money, course.ClassType_Id, course.AddName, course.ADDTIME, course.UpdateName,
+    course.UpdateTime, course.StopName, course.StopTime, course.BeginName, course.BeginTime,
+    course.DeleteName, course.DeleteTime, course.TimeLiness
+  </sql>
+  <sql id="Base_Column_Liste">
+    e.Emp_Id, e.Dept_Id, e.Position_Id, e.Enterprise_Id, e.UserImg, e.IndividualImg, e.JobNumber,
+    e.Emp_Name, e.Emp_Sex, e.Emp_Phone, e.E_mail, e.Birthday, e.Remarks, e.Address, e.EmpState,
+    e.Passwords, e.Addname, e.AddTime, e.UpdateName, e.UpdateTime, e.DeleteName, e.DeleteTime,
+    e.LoginState, e.Education, e.Graduate
+  </sql>
+  <sql id="Base_Column_Listt">
+    t.Emp_Id Teachers_Emp_Id, t.Dept_Id Teachers_Dept_Id, t.Position_Id Teachers_Position,
+    t.Enterprise_Id Teachers_Enterprise_Id, t.UserImg Teachers_UserImg,
+    t.IndividualImg Teachers_IndividualImg, t.JobNumber Teachers_JobNumber,
+    t.Emp_Name Teachers_Name, t.Emp_Sex Teachers_Emp_Sex, t.Emp_Phone Teachers_Emp_Phone,
+    t.E_mail Teachers_E_mail, t.Birthday Teachers_Birthday, t.Remarks Teachers_Remarks,
+    t.Address Teachers_Address, t.EmpState Teachers_EmpState,t.Passwords Teachers_Passwords,
+    t.Addname Teachers_Addname, t.AddTime Teachers_AddTime, t.UpdateName Teachers_UpdateName,
+    t.UpdateTime Teachers_UpdateTime, t.DeleteName Teachers_DeleteName,
+    t.DeleteTime Teachers_DeleteTime,t.LoginState Teachers_LoginState,
+    t.Education Teachers_Education, t.Graduate Teachers_Graduate
+  </sql>
+  <sql id="Base_Column_Listdetailcourse">
+    detailcourse.DetailCourse_Id, detailcourse.Course_Id, detailcourse.DetailCourse_Name,
+    detailcourse.Serial, detailcourse.AddName, detailcourse.ADDTIME, detailcourse.UpdateName,
+    detailcourse.UpdateTime, detailcourse.StopName, detailcourse.StopTime,
+    detailcourse.BeginName, detailcourse.BeginTime, detailcourse.DeleteName,
+    detailcourse.DeleteTime, detailcourse.TimeLiness
+  </sql>
+
+  <select id="selectAllClasses" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />,
+    <include refid="Base_Column_Listcourse" />,
+    <include refid="Base_Column_Liste" />,
+    <include refid="Base_Column_Listt" />,
+    <include refid="Base_Column_Listdetailcourse" />
+
+     from classes
+     inner join course on classes.Course_Id=course.Course_Id
+     inner join emp e on classes.Emp_Id=e.Emp_Id
+     inner join emp t on classes.Teacher_Id=t.Emp_Id
+     inner join detailcourse on classes.DetailCourse_Id=detailcourse.DetailCourse_Id
+
+    where classes.TimeLiness=0 and
+    (classes.Classes_Name like #{likeke}
+    or e.Emp_Name like #{likeke}
+    or course.Course_Name like #{likeke})
+
+    order by classes.Classes_Id desc
+  </select>
+  <update id="updateClasses_Open" parameterType="com.trkj.tsm.entity.Classes">
+    update classes
+    set
+    classes.Classes_State = 1,
+    classes.OpenDate = #{opendate,jdbcType=TIMESTAMP}
+    where classes.Classes_Id = #{classesId,jdbcType=INTEGER}
+  </update>
+  <update id="updateClasses_State" parameterType="com.trkj.tsm.entity.Classes">
+    update classes
+    set
+    classes.Classes_State = 2,
+    classes.EndDate = #{enddate,jdbcType=TIMESTAMP}
+    where classes.Classes_Id = #{classesId,jdbcType=INTEGER}
+  </update>
+  <update id="updateClasses" parameterType="com.trkj.tsm.entity.Classes">
+    update classes
+    set
+    classes.Course_Id = #{courseId,jdbcType=INTEGER},
+    classes.Teacher_Id = #{teacherId,jdbcType=INTEGER},
+    classes.Emp_Id = #{empId,jdbcType=INTEGER},
+    classes.DetailCourse_Id = #{detailcourseId,jdbcType=INTEGER},
+    classes.Classes_Name = #{classesName,jdbcType=VARCHAR},
+    classes.UpdateName = #{updatename,jdbcType=VARCHAR},
+    classes.UpdateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where classes.Classes_Id = #{classesId,jdbcType=INTEGER}
+  </update>
+  <update id="deleteClasses" parameterType="com.trkj.tsm.entity.Classes">
+    update classes
+    set classes.TimeLiness = 1
+    where classes.Classes_Id = #{classesId,jdbcType=INTEGER}
+  </update>
+  <insert id="insertClasses" keyColumn="Classes_Id" keyProperty="classesId" parameterType="com.trkj.tsm.entity.Classes" useGeneratedKeys="true">
+    insert into classes (Course_Id, Teacher_Id, Emp_Id, DetailCourse_Id, Classes_Name,AddName)
+    values (#{courseId,jdbcType=INTEGER}, #{teacherId,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER},
+    #{detailcourseId,jdbcType=INTEGER}, #{classesName,jdbcType=VARCHAR},#{addname,jdbcType=VARCHAR})
+  </insert>
+  <!--  <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Classes">-->
+  <!--    update classes-->
+  <!--    set Course_Id = #{courseId,jdbcType=INTEGER},-->
+  <!--      Teacher_Id = #{teacherId,jdbcType=INTEGER},-->
+  <!--      Emp_Id = #{empId,jdbcType=INTEGER},-->
+  <!--      DetailCourse_Id = #{detailcourseId,jdbcType=INTEGER},-->
+  <!--      Classes_Name = #{classesName,jdbcType=VARCHAR},-->
+  <!--      Classes_Open = #{classesOpen,jdbcType=INTEGER},-->
+  <!--      OpenDate = #{opendate,jdbcType=TIMESTAMP},-->
+  <!--      Classes_State = #{classesState,jdbcType=INTEGER},-->
+  <!--      EndDate = #{enddate,jdbcType=TIMESTAMP},-->
+  <!--      AddName = #{addname,jdbcType=VARCHAR},-->
+  <!--      AddTIME = #{addtime,jdbcType=TIMESTAMP},-->
+  <!--      UpdateName = #{updatename,jdbcType=VARCHAR},-->
+  <!--      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},-->
+  <!--      DeleteName = #{deletename,jdbcType=VARCHAR},-->
+  <!--      DeleteTime = #{deletetime,jdbcType=TIMESTAMP},-->
+  <!--      TimeLiness = #{timeliness,jdbcType=INTEGER}-->
+  <!--    where Classes_Id = #{classesId,jdbcType=INTEGER}-->
+  <!--  </update>-->
+</mapper>

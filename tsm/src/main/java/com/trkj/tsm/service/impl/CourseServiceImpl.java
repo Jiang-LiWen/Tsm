@@ -16,9 +16,15 @@ import java.util.List;
 public class CourseServiceImpl implements CourseService {
     @Resource
     private CourseDao courseDao;
+
     @Override
-    public List<CourseVo> selectAllCourse() {
-        return courseDao.selectAllCourse();
+    public List<CourseVo> ClassesselectAllCourse() {
+        return courseDao.ClassesselectAllCourse();
+    }
+
+    @Override
+    public List<CourseVo> selectAllCourse(String likeke) {
+        return courseDao.selectAllCourse(likeke);
     }
 
     @Override

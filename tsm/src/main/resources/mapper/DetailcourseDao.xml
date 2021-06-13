@@ -44,18 +44,18 @@
   </sql>
   <select id="selectByCourseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
-    DetailCourse.DetailCourse_Id, DetailCourse.Course_Id, DetailCourse.DetailCourse_Name,
-    DetailCourse.Serial, DetailCourse.AddName, DetailCourse.ADDTIME, DetailCourse.UpdateName,
-    DetailCourse.UpdateTime, DetailCourse.StopName, DetailCourse.StopTime,
-    DetailCourse.BeginName, DetailCourse.BeginTime, DetailCourse.DeleteName,
-    DetailCourse.DeleteTime, DetailCourse.TimeLiness,
-    Course.Course_Id, Course.Commission, Course.Course_Name, Course.Course_State,
-    Course.Classhours, Course.Course_Money, Course.ClassType_Id, Course.AddName,
-    Course.ADDTIME, Course.UpdateName, Course.UpdateTime, Course.StopName, Course.StopTime,
-    Course.BeginName, Course.BeginTime, Course.DeleteName, Course.DeleteTime, Course.TimeLiness
+    detailcourse.DetailCourse_Id, detailcourse.Course_Id, detailcourse.DetailCourse_Name,
+    detailcourse.Serial, detailcourse.AddName, detailcourse.ADDTIME, detailcourse.UpdateName,
+    detailcourse.UpdateTime, detailcourse.StopName, detailcourse.StopTime,
+    detailcourse.BeginName, detailcourse.BeginTime, detailcourse.DeleteName,
+    detailcourse.DeleteTime, detailcourse.TimeLiness,
+    course.Course_Id, course.Commission, course.Course_Name, course.Course_State,
+    course.Classhours, course.Course_Money, course.ClassType_Id, course.AddName,
+    course.ADDTIME, course.UpdateName, course.UpdateTime, course.StopName, course.StopTime,
+    course.BeginName, course.BeginTime, course.DeleteName, course.DeleteTime, course.TimeLiness
     from detailcourse
-    detailcourse inner join course on DetailCourse.Course_Id=Course.Course_Id
-    where DetailCourse.TimeLiness=0 and DetailCourse.Course_Id=#{courseid}
+    detailcourse inner join course on detailcourse.Course_Id=course.Course_Id
+    where detailcourse.TimeLiness=0 and detailcourse.Course_Id=#{courseid}
     order by Serial asc
   </select>
   <update id="updDetailcourseTimeless" parameterType="com.trkj.tsm.entity.Detailcourse">

@@ -21,6 +21,20 @@ public class EmpController {
     @Autowired
     private EmpService empService;
 
+    @GetMapping("/ClassesselectEmp1")
+    public List<EmpVo> ClassesselectEmp1(){
+        log.debug("班级找班主任---------------------------------------------------");
+        List<EmpVo> entityPage =empService.ClassesselectEmp1();
+        return entityPage;
+    }
+
+    @GetMapping("/ClassesselectEmp2")
+    public List<EmpVo> selectEmp(){
+        log.debug("班级找教员---------------------------------------------------");
+        List<EmpVo> entityPage =empService.ClassesselectEmp2();
+        return entityPage;
+    }
+
     @GetMapping("/selectEmplike")
     public PageInfo<EmpVo> selectDeptlike(@RequestParam("currentPage") int currentPage,
                                           @RequestParam("pagesize") int pagesize,

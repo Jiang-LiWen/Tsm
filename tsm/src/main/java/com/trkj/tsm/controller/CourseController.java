@@ -19,12 +19,21 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
+    @GetMapping("/ClassesselectAllCourse")
+    public List<CourseVo> selectAllCourse(){
+        log.debug("班级查询所有课程信息---------------------------------------------------");
+        List<CourseVo> entityPage =courseService.ClassesselectAllCourse();
+        return entityPage;
+    }
+
     @GetMapping("/selectAllCourse")
-    public PageInfo<CourseVo> selectAllCourse(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){
-        log.debug("分页查询信息");
+    public PageInfo<CourseVo> selectAllCourse(@RequestParam("currentPage") int currentPage,
+                                              @RequestParam("pagesize") int pagesize,
+                                              @RequestParam("sech") String likeke){
+        log.debug("分页查询信息---------------------------------------------------");
+        String likekes="%"+likeke+"%";
         PageHelper.startPage(currentPage,pagesize);
-        log.debug("---------------------------------------------------");
-        List<CourseVo> entityPage =courseService.selectAllCourse();
+        List<CourseVo> entityPage =courseService.selectAllCourse(likekes);
         PageInfo<CourseVo> courseVoPageInfo = new  PageInfo<>(entityPage);
         return courseVoPageInfo;
     }
