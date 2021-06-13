@@ -35,7 +35,7 @@
   <select id="selectfindslike" resultMap="BaseResultMap" parameterType="java.lang.String">
     select <include refid="Base_Column_List"/>
     from classtype
-    where ClassType_Name like #{likeke} and timeliness = 0
+    where timeliness = 0 and ClassType_Name like #{likeke}
   </select>
 <!--  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">-->
 <!--    select -->

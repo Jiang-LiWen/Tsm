@@ -8,7 +8,9 @@ import java.util.List;
 
 @Mapper
 public interface CourseDao {
-    List<CourseVo> selectAllCourse();//页面显示加分页查询
+    List<CourseVo> ClassesselectAllCourse();//班级查询课程
+
+    List<CourseVo> selectAllCourse(String likeke);//页面显示加分页查询
 
     int updateCourseStateStop(Course record);//停报修改
 
