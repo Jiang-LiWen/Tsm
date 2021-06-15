@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.tsm.dao.SourceDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Source">
+    <id column="Source_Id" jdbcType="INTEGER" property="sourceId" />
+    <result column="Source_Name" jdbcType="VARCHAR" property="sourceName" />
+    <result column="Already" jdbcType="INTEGER" property="already" />
+    <result column="Potential" jdbcType="INTEGER" property="potential" />
+    <result column="AddChannelName" jdbcType="VARCHAR" property="addchannelname" />
+    <result column="AddChannelTime" jdbcType="TIMESTAMP" property="addchanneltime" />
+    <result column="LastUpdateName" jdbcType="VARCHAR" property="lastupdatename" />
+    <result column="LastUpdateTime" jdbcType="TIMESTAMP" property="lastupdatetime" />
+    <result column="DelChannelName" jdbcType="VARCHAR" property="delchannelname" />
+    <result column="DelChannelTime" jdbcType="TIMESTAMP" property="delchanneltime" />
+    <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Source_Id, Source_Name, Already, Potential, AddChannelName, AddChannelTime, LastUpdateName, 
+    LastUpdateTime, DelChannelName, DelChannelTime, TimeLiness
+  </sql>
+<!--  显示所有生源渠道  -->
+  <select id="selectfindSourceAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from source
+    where TimeLiness = 0
+  </select>
+<!--  添加生源渠道-->
+  <insert id="insertSource" keyColumn="Source_Id" keyProperty="sourceId" parameterType="com.trkj.tsm.vo.SourceVo" useGeneratedKeys="true">
+    insert into source (Source_Id,Source_Name, AddChannelName)
+    values (#{sourceId,jdbcType=VARCHAR},#{sourceName,jdbcType=VARCHAR}, #{addchannelname,jdbcType=VARCHAR})
+  </insert>
+<!--  修改生源渠道名称-->
+  <update id="updateSource" parameterType="com.trkj.tsm.vo.SourceVo">
+    update source
+    set Source_Name = #{sourceName,jdbcType=VARCHAR},
+      LastUpdateName = #{lastupdatename,jdbcType=VARCHAR},
+      LastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP}
+    where Source_Id = #{sourceId,jdbcType=INTEGER}
+  </update>
+<!--  删除生源渠道-->
+  <update id="updateSourceTimeLiness" parameterType="com.trkj.tsm.vo.SourceVo">
+    update source
+    <set>
+      TimeLiness = 1,
+      DelChannelName = #{delchannelname,jdbcType=VARCHAR},
+      DelChannelTime = #{delchanneltime,jdbcType=TIMESTAMP}
+    </set>
+    where Source_Id = #{sourceId,jdbcType=INTEGER}
+  </update>
+<!--  查询生源渠道-->
+  <select id="selectSourceName" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from source
+    where
+    Source_Name like #{sourceName}
+    and
+    TimeLiness = 0
+    ORDER BY
+    Source_Id
+  </select>
+</mapper>

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.tsm.dao.RegisterDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Register">
+    <id column="Register_Id" jdbcType="INTEGER" property="registerId" />
+    <result column="Source_Id" jdbcType="INTEGER" property="sourceId" />
+    <result column="Course_Id" jdbcType="INTEGER" property="courseId" />
+    <result column="DetailCourse_Id" jdbcType="INTEGER" property="detailcourseId" />
+    <result column="Emp_Id" jdbcType="INTEGER" property="empId" />
+    <result column="Phone" jdbcType="VARCHAR" property="phone" />
+    <result column="ConsultAnt" jdbcType="VARCHAR" property="consultant" />
+    <result column="Sex" jdbcType="VARCHAR" property="sex" />
+    <result column="ConsultContent" jdbcType="VARCHAR" property="consultcontent" />
+    <result column="AttentState" jdbcType="INTEGER" property="attentstate" />
+    <result column="AddName" jdbcType="VARCHAR" property="addname" />
+    <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+    <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+    <result column="LastUpdateName" jdbcType="VARCHAR" property="lastupdatename" />
+    <result column="LastUpdateTime" jdbcType="TIMESTAMP" property="lastupdatetime" />
+    <result column="PayState" jdbcType="INTEGER" property="paystate" />
+    <association javaType="com.trkj.tsm.entity.Source" property="source">
+      <id column="Source_Id" jdbcType="INTEGER" property="sourceId" />
+      <result column="Source_Name" jdbcType="VARCHAR" property="sourceName" />
+      <result column="Already" jdbcType="INTEGER" property="already" />
+      <result column="Potential" jdbcType="INTEGER" property="potential" />
+      <result column="AddChannelName" jdbcType="VARCHAR" property="addchannelname" />
+      <result column="AddChannelTime" jdbcType="TIMESTAMP" property="addchanneltime" />
+      <result column="LastUpdateName" jdbcType="VARCHAR" property="lastupdatename" />
+      <result column="LastUpdateTime" jdbcType="TIMESTAMP" property="lastupdatetime" />
+      <result column="DelChannelName" jdbcType="VARCHAR" property="delchannelname" />
+      <result column="DelChannelTime" jdbcType="TIMESTAMP" property="delchanneltime" />
+      <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    </association>
+    <association javaType="com.trkj.tsm.entity.Course" property="cource">
+      <id column="Course_Id" jdbcType="INTEGER" property="courseId" />
+      <result column="Commission" jdbcType="DECIMAL" property="commission" />
+      <result column="Course_Name" jdbcType="VARCHAR" property="courseName" />
+      <result column="Course_State" jdbcType="INTEGER" property="courseState" />
+      <result column="Classhours" jdbcType="INTEGER" property="classhours" />
+      <result column="Course_Money" jdbcType="DECIMAL" property="courseMoney" />
+      <result column="ClassType_Id" jdbcType="INTEGER" property="classtypeId" />
+      <result column="AddName" jdbcType="VARCHAR" property="addname" />
+      <result column="ADDTIME" jdbcType="TIMESTAMP" property="addtime" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="StopName" jdbcType="VARCHAR" property="stopname" />
+      <result column="StopTime" jdbcType="TIMESTAMP" property="stoptime" />
+      <result column="BeginName" jdbcType="VARCHAR" property="beginname" />
+      <result column="BeginTime" jdbcType="TIMESTAMP" property="begintime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    </association>
+    <association javaType="com.trkj.tsm.entity.Detailcourse" property="detailcourse">
+      <id column="DetailCourse_Id" jdbcType="INTEGER" property="detailcourseId" />
+      <result column="Course_Id" jdbcType="INTEGER" property="courseId" />
+      <result column="DetailCourse_Name" jdbcType="VARCHAR" property="detailcourseName" />
+      <result column="Serial" jdbcType="INTEGER" property="serial" />
+      <result column="AddName" jdbcType="VARCHAR" property="addname" />
+      <result column="ADDTIME" jdbcType="TIMESTAMP" property="addtime" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="StopName" jdbcType="VARCHAR" property="stopname" />
+      <result column="StopTime" jdbcType="TIMESTAMP" property="stoptime" />
+      <result column="BeginName" jdbcType="VARCHAR" property="beginname" />
+      <result column="BeginTime" jdbcType="TIMESTAMP" property="begintime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    </association>
+    <association javaType="com.trkj.tsm.entity.Emp" property="emp">
+      <id column="Emp_Id" jdbcType="INTEGER" property="empId" />
+      <result column="Dept_Id" jdbcType="INTEGER" property="deptId" />
+      <result column="Position_Id" jdbcType="INTEGER" property="positionId" />
+      <result column="Enterprise_Id" jdbcType="INTEGER" property="enterpriseId" />
+      <result column="JobNumber" jdbcType="VARCHAR" property="jobnumber" />
+      <result column="Emp_Name" jdbcType="VARCHAR" property="empName" />
+      <result column="Emp_Sex" jdbcType="CHAR" property="empSex" />
+      <result column="Emp_Phone" jdbcType="VARCHAR" property="empPhone" />
+      <result column="E_mail" jdbcType="VARCHAR" property="eMail" />
+      <result column="Birthday" jdbcType="TIMESTAMP" property="birthday" />
+      <result column="Remarks" jdbcType="VARCHAR" property="remarks" />
+      <result column="Address" jdbcType="VARCHAR" property="address" />
+      <result column="EmpState" jdbcType="INTEGER" property="empstate" />
+      <result column="Passwords" jdbcType="VARCHAR" property="passwords" />
+      <result column="Addname" jdbcType="VARCHAR" property="addname" />
+      <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="LoginState" jdbcType="INTEGER" property="loginstate" />
+      <result column="Education" jdbcType="VARCHAR" property="education" />
+      <result column="Graduate" jdbcType="VARCHAR" property="graduate" />
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List_reg">
+    r.Register_Id, r.Source_Id, r.Course_Id, r.DetailCourse_Id, r.Emp_Id, r.Phone, r.ConsultAnt, r.Sex,
+    r.ConsultContent, r.AttentState, r.AddName, r.AddTime, r.TimeLiness, r.DeleteName, r.DeleteTime,
+    r.LastUpdateName, r.LastUpdateTime, r.PayState
+  </sql>
+  <sql id="Base_Column_List_sou">
+    s.Source_Id, s.Source_Name, s.Already, s.Potential, s.AddChannelName, s.AddChannelTime, s.LastUpdateName,
+    s.LastUpdateTime, s.DelChannelName, s.DelChannelTime, s.TimeLiness
+  </sql>
+  <sql id="Base_Column_List_cou">
+    co.Course_Id, co.Commission, co.Course_Name, co.Course_State, co.Classhours, co.Course_Money, co.ClassType_Id,
+    co.AddName, co.ADDTIME, co.UpdateName, co.UpdateTime, co.StopName, co.StopTime, co.BeginName, co.BeginTime,
+    co.DeleteName, co.DeleteTime, co.TimeLiness
+  </sql>
+  <sql id="Base_Column_List_emp">
+    e.Emp_Id, e.Dept_Id, e.Position_Id, e.Enterprise_Id, e.JobNumber, e.Emp_Name, e.Emp_Sex, Emp_Phone,
+    e.E_mail, e.Birthday, e.Remarks, Address, e.EmpState, e.Passwords, e.Addname, e.AddTime, e.UpdateName,
+    e.UpdateTime, e.DeleteName, e.DeleteTime, e.LoginState, e.Education, e.Graduate
+  </sql>
+  <sql id="Base_Column_List_detcou">
+    d.DetailCourse_Id, d.Course_Id, d.DetailCourse_Name, d.Serial, d.AddName, d.ADDTIME, d.UpdateName,
+    d.UpdateTime, d.StopName, d.StopTime, d.BeginName, d.BeginTime, d.DeleteName, d.DeleteTime, d.TimeLiness
+  </sql>
+<!--  显示全部-->
+  <select id="selectRegisterAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List_reg" />,
+    <include refid="Base_Column_List_sou" />,
+    <include refid="Base_Column_List_cou" />,
+    <include refid="Base_Column_List_emp" />,
+    <include refid="Base_Column_List_detcou" />
+    from register r
+    inner join source s on r.Source_Id = s.Source_Id
+    inner join course co on r.Course_Id=co.Course_id
+    inner join detailcourse d on r.DetailCourse_Id = d.DetailCourse_Id
+    inner join emp e on r.Emp_Id=e.Emp_Id
+    where r.TimeLiness = 0
+  </select>
+<!--  增加-->
+  <insert id="insertRegister" keyColumn="Register_Id" keyProperty="registerId" parameterType="com.trkj.tsm.entity.Register" useGeneratedKeys="true">
+    insert into register (Source_Id, Course_Id, DetailCourse_Id,Emp_Id,
+      Phone, ConsultAnt,Sex,ConsultContent,AddName)
+    values (#{sourceId,jdbcType=INTEGER},#{courseId,jdbcType=INTEGER},
+    #{detailcourseId,jdbcType=INTEGER},#{empId,jdbcType=INTEGER},
+     #{phone,jdbcType=VARCHAR}, #{consultant,jdbcType=VARCHAR},
+      #{sex,jdbcType=VARCHAR}, #{consultcontent,jdbcType=VARCHAR},
+      #{addname,jdbcType=VARCHAR})
+  </insert>
+<!--  删除（修改时效性）-->
+  <update id="updateRegisterTimeLiness" parameterType="com.trkj.tsm.vo.RegisterVo">
+    update register
+    <set>
+      TimeLiness = 1,
+      DeleteName = #{deletename,jdbcType=VARCHAR},
+      DeleteTime = #{deletetime,jdbcType=TIMESTAMP}
+    </set>
+    where Register_Id = #{registerId,jdbcType=INTEGER}
+  </update>
+<!--  修改-->
+  <update id="updateRegister" parameterType="com.trkj.tsm.vo.RegisterVo">
+    update register
+    <set>
+      Source_Id = #{sourceId,jdbcType=INTEGER},
+      Course_Id = #{courseId,jdbcType=INTEGER},
+      DetailCourse_Id = #{detailcourseId,jdbcType=INTEGER},
+      Emp_Id = #{empId,jdbcType=INTEGER},
+      Phone = #{phone,jdbcType=VARCHAR},
+      ConsultAnt = #{consultant,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=VARCHAR},
+      AttentState=#{attentstate,jdbcType=INTEGER},
+      PayState=#{paystate,jdbcType=INTEGER},
+      ConsultContent = #{consultcontent,jdbcType=VARCHAR},
+      LastUpdateName = #{lastupdatename,jdbcType=VARCHAR},
+      LastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP}
+    </set>
+    where Register_Id = #{registerId,jdbcType=INTEGER}
+  </update>
+<!--  生源渠道条件查询-->
+  <select id="selectRegisterSource" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_reg" />,
+    <include refid="Base_Column_List_sou" />,
+    <include refid="Base_Column_List_cou" />,
+    <include refid="Base_Column_List_emp" />,
+    <include refid="Base_Column_List_detcou" />
+    from register r
+    inner join source s on r.Source_Id = s.Source_Id
+    inner join course co on r.Course_Id=co.Course_id
+    inner join detailcourse d on r.DetailCourse_Id = d.DetailCourse_Id
+    inner join emp e on r.Emp_Id=e.Emp_Id
+    where r.TimeLiness = 0 and s.Source_Name like CONCAT(CONCAT('%' ,#{sourceName , jdbcType=VARCHAR}, '%'))
+  </select>
+<!--  课程名称条件查询-->
+  <select id="selectRegisterCourse" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_reg" />,
+    <include refid="Base_Column_List_sou" />,
+    <include refid="Base_Column_List_cou" />,
+    <include refid="Base_Column_List_emp" />,
+    <include refid="Base_Column_List_detcou" />
+    from register r
+    inner join source s on r.Source_Id = s.Source_Id
+    inner join course co on r.Course_Id=co.Course_id
+    inner join detailcourse d on r.DetailCourse_Id = d.DetailCourse_Id
+    inner join emp e on r.Emp_Id=e.Emp_Id
+    where r.TimeLiness = 0 and co.Course_Name like CONCAT(CONCAT('%' ,#{courseName , jdbcType=VARCHAR}, '%'))
+  </select>
+<!--  职工姓名条件查询-->
+  <select id="selectRegisterEmp" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_reg" />,
+    <include refid="Base_Column_List_sou" />,
+    <include refid="Base_Column_List_cou" />,
+    <include refid="Base_Column_List_emp" />,
+    <include refid="Base_Column_List_detcou" />
+    from register r
+    inner join source s on r.Source_Id = s.Source_Id
+    inner join course co on r.Course_Id=co.Course_id
+    inner join detailcourse d on r.DetailCourse_Id = d.DetailCourse_Id
+    inner join emp e on r.Emp_Id=e.Emp_Id
+    where r.TimeLiness = 0 and e.Emp_Name like CONCAT(CONCAT('%' ,#{empName , jdbcType=VARCHAR}, '%'))
+  </select>
+<!--  咨询人姓名条件查询-->
+  <select id="selectRegisterConsultAnt" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_reg" />,
+    <include refid="Base_Column_List_sou" />,
+    <include refid="Base_Column_List_cou" />,
+    <include refid="Base_Column_List_emp" />,
+    <include refid="Base_Column_List_detcou" />
+    from register r
+    inner join source s on r.Source_Id = s.Source_Id
+    inner join course co on r.Course_Id=co.Course_id
+    inner join detailcourse d on r.DetailCourse_Id = d.DetailCourse_Id
+    inner join emp e on r.Emp_Id=e.Emp_Id
+    where r.TimeLiness = 0 and r.ConsultAnt like CONCAT(CONCAT('%' ,#{consultant , jdbcType=VARCHAR}, '%'))
+  </select>
+<!--  咨询人电话条件查询-->
+  <select id="selectRegisterPhone" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_reg" />,
+    <include refid="Base_Column_List_sou" />,
+    <include refid="Base_Column_List_cou" />,
+    <include refid="Base_Column_List_emp" />,
+    <include refid="Base_Column_List_detcou" />
+    from register r
+    inner join source s on r.Source_Id = s.Source_Id
+    inner join course co on r.Course_Id=co.Course_id
+    inner join detailcourse d on r.DetailCourse_Id = d.DetailCourse_Id
+    inner join emp e on r.Emp_Id=e.Emp_Id
+    where r.TimeLiness = 0 and r.Phone like CONCAT(CONCAT('%' ,#{phone , jdbcType=VARCHAR}, '%'))
+  </select>
+<!--  咨询内容条件查询-->
+  <select id="selectRegisterConsultContent" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_reg" />,
+    <include refid="Base_Column_List_sou" />,
+    <include refid="Base_Column_List_cou" />,
+    <include refid="Base_Column_List_emp" />,
+    <include refid="Base_Column_List_detcou" />
+    from register r
+    inner join source s on r.Source_Id = s.Source_Id
+    inner join course co on r.Course_Id=co.Course_id
+    inner join detailcourse d on r.DetailCourse_Id = d.DetailCourse_Id
+    inner join emp e on r.Emp_Id=e.Emp_Id
+    where r.TimeLiness = 0 and r.ConsultContent like CONCAT(CONCAT('%' ,#{consultcontent , jdbcType=VARCHAR}, '%'))
+  </select>
+</mapper>

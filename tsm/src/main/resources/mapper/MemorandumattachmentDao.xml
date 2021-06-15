@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.tsm.dao.MemorandumattachmentDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Memorandumattachment">
+    <id column="MemorandumAttachment_Id" jdbcType="INTEGER" property="memorandumattachmentId" />
+    <result column="Register_Id" jdbcType="INTEGER" property="registerId" />
+    <result column="ZSIsExamine" jdbcType="INTEGER" property="zsisexamine" />
+    <result column="ZSExamineTime" jdbcType="TIMESTAMP" property="zsexaminetime" />
+    <result column="ZSExamineName" jdbcType="VARCHAR" property="zsexaminename" />
+    <result column="ZSRevokeTime" jdbcType="TIMESTAMP" property="zsrevoketime" />
+    <result column="ZSRevokeName" jdbcType="VARCHAR" property="zsrevokename" />
+    <result column="JWIsExamine" jdbcType="INTEGER" property="jwisexamine" />
+    <result column="JWExamineTime" jdbcType="TIMESTAMP" property="jwexaminetime" />
+    <result column="JWExamineName" jdbcType="VARCHAR" property="jwexaminename" />
+    <result column="JWRevokeTime" jdbcType="TIMESTAMP" property="jwrevoketime" />
+    <result column="JWRevokeName" jdbcType="VARCHAR" property="jwrevokename" />
+    <association property="register" javaType="com.trkj.tsm.entity.Register">
+      <id column="Register_Id" jdbcType="INTEGER" property="registerId" />
+      <result column="Source_Id" jdbcType="INTEGER" property="sourceId" />
+      <result column="Course_Id" jdbcType="INTEGER" property="courseId" />
+      <result column="DetailCourse_Id" jdbcType="INTEGER" property="detailcourseId" />
+      <result column="Emp_Id" jdbcType="INTEGER" property="empId" />
+      <result column="Phone" jdbcType="VARCHAR" property="phone" />
+      <result column="ConsultAnt" jdbcType="VARCHAR" property="consultant" />
+      <result column="Sex" jdbcType="VARCHAR" property="sex" />
+      <result column="ConsultContent" jdbcType="VARCHAR" property="consultcontent" />
+      <result column="AttentState" jdbcType="INTEGER" property="attentstate" />
+      <result column="AddName" jdbcType="VARCHAR" property="addname" />
+      <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
+      <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="LastUpdateName" jdbcType="VARCHAR" property="lastupdatename" />
+      <result column="LastUpdateTime" jdbcType="TIMESTAMP" property="lastupdatetime" />
+      <result column="PayState" jdbcType="INTEGER" property="paystate" />
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List_me">
+    me.MemorandumAttachment_Id, me.Register_Id, me.ZSIsExamine, me.ZSExamineTime, me.ZSExamineName,
+    me.ZSRevokeTime, me.ZSRevokeName, me.JWIsExamine, me.JWExamineTime, me.JWExamineName, me.JWRevokeTime,
+    me.JWRevokeName
+  </sql>
+  <sql id="Base_Column_List_reg">
+    r.Register_Id, r.Source_Id, r.Course_Id, r.DetailCourse_Id, r.Emp_Id, r.Phone, r.ConsultAnt, r.Sex,
+    r.ConsultContent, r.AttentState, r.AddName, r.AddTime, r.TimeLiness, r.DeleteName, r.DeleteTime,
+    r.LastUpdateName, r.LastUpdateTime, r.PayState
+  </sql>
+<!--  招生显示未审核-->
+  <select id="selectZSIsExamine" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List_me" />,
+    <include refid="Base_Column_List_reg" />
+    from memorandumattachment me
+    inner join register r on me.Register_Id = r.Register_Id
+    where me.ZSIsExamine = 0
+    order by me.MemorandumAttachment_Id desc
+  </select>
+  <!--  招生显示已审核-->
+  <select id="selectZSIsExamineOver" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_me" />,
+    <include refid="Base_Column_List_reg" />
+    from memorandumattachment me
+    inner join register r on me.Register_Id = r.Register_Id
+    where me.ZSIsExamine = 1
+    order by me.MemorandumAttachment_Id desc
+  </select>
+  <!--  教务显示未审核-->
+  <select id="selectJWIsExamine" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_me" />,
+    <include refid="Base_Column_List_reg" />
+    from memorandumattachment me
+    inner join register r on me.Register_Id = r.Register_Id
+    where me.JWIsExamine = 0
+    order by me.MemorandumAttachment_Id desc
+  </select>
+  <!--  教务显示已审核-->
+  <select id="selectJWIsExamineOver" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_me" />,
+    <include refid="Base_Column_List_reg" />
+    from memorandumattachment me
+    inner join register r on me.Register_Id = r.Register_Id
+    where me.JWIsExamine = 1
+    order by me.MemorandumAttachment_Id desc
+  </select>
+  <!--  显示全部-->
+  <select id="selectMemorandumattachment" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_me" />,
+    <include refid="Base_Column_List_reg" />
+    from memorandumattachment me
+    inner join register r on me.Register_Id = r.Register_Id
+    where me.MemorandumAttachment_Id > 0
+    order by me.MemorandumAttachment_Id desc
+  </select>
+<!--  招生审核-->
+  <update id="updateByZSIsExamine" parameterType="com.trkj.tsm.vo.MemorandumattachmentVo">
+    update memorandumattachment
+    set
+      ZSIsExamine = 1,
+      ZSExamineTime = #{zsexaminetime,jdbcType=TIMESTAMP}
+    where MemorandumAttachment_Id = #{memorandumattachmentId,jdbcType=INTEGER}
+  </update>
+<!--  教务审核-->
+  <update id="updateByJWIsExamine" parameterType="com.trkj.tsm.vo.MemorandumattachmentVo">
+    update memorandumattachment
+    set
+      JWIsExamine = 1,
+      JWExamineTime = #{jwexaminetime,jdbcType=TIMESTAMP}
+    where MemorandumAttachment_Id = #{memorandumattachmentId,jdbcType=INTEGER}
+  </update>
+</mapper>
