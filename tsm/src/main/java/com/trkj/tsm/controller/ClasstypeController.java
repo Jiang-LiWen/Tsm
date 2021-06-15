@@ -25,11 +25,8 @@ public class ClasstypeController {
                                                  @RequestParam("sech") String likeke){
         log.debug("分页查询信息");
         String likekes="%"+likeke+"%";
-
-        log.debug("---------------------------------------------------");
-        List<ClasstypeVo> entityPage =classtypeService.selectfindslike(likekes);
         PageHelper.startPage(currentPage,pagesize);
-        log.debug(entityPage.size()+"");
+        List<ClasstypeVo> entityPage =classtypeService.selectfindslike(likekes);
         PageInfo<ClasstypeVo> classtypeVoPageInfo = new  PageInfo<>(entityPage);
         return classtypeVoPageInfo;
     }
@@ -43,15 +40,6 @@ public class ClasstypeController {
         return entityPage;
     }
 
-    @GetMapping("/selectClasstypes")
-    public PageInfo<ClasstypeVo> selectfinds(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){
-        log.debug("分页查询信息");
-        PageHelper.startPage(currentPage,pagesize);
-        log.debug("---------------------------------------------------");
-        List<ClasstypeVo> entityPage =classtypeService.selectfinds();
-        PageInfo<ClasstypeVo> classtypeVoPageInfo = new  PageInfo<>(entityPage);
-        return classtypeVoPageInfo;
-    }
 
     @PostMapping("/addclasstype")
     public AjaxResponse addClasstype(@RequestBody @Valid ClasstypeVo classtypevo){

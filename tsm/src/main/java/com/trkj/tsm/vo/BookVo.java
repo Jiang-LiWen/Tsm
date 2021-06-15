@@ -1,6 +1,10 @@
 package com.trkj.tsm.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import org.springframework.validation.annotation.Validated;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -10,6 +14,10 @@ import java.math.BigDecimal;
  * @author 
  */
 @Data
+@Validated
+@NoArgsConstructor
+@AllArgsConstructor
+@NonNull
 public class BookVo implements Serializable {
     /**
      * 教材编号

@@ -9,6 +9,10 @@ import java.util.List;
 
 @Mapper
 public interface EmpDao {
+    List<EmpVo> ClassesselectEmp1();//班级找班主任
+
+    List<EmpVo> ClassesselectEmp2();//班级找教员
+
     int deleteByPrimaryKey(Integer empId);
 
     int insert(Emp emp);

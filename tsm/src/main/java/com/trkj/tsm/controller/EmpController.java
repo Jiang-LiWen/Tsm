@@ -2,6 +2,7 @@ package com.trkj.tsm.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.trkj.tsm.entity.Emp;
 import com.trkj.tsm.service.EmpService;
 import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.DeptVo;
@@ -20,6 +21,20 @@ public class EmpController {
     @Autowired
     private EmpService empService;
 
+    @GetMapping("/ClassesselectEmp1")
+    public List<EmpVo> ClassesselectEmp1(){
+        log.debug("班级找班主任---------------------------------------------------");
+        List<EmpVo> entityPage =empService.ClassesselectEmp1();
+        return entityPage;
+    }
+
+    @GetMapping("/ClassesselectEmp2")
+    public List<EmpVo> selectEmp(){
+        log.debug("班级找教员---------------------------------------------------");
+        List<EmpVo> entityPage =empService.ClassesselectEmp2();
+        return entityPage;
+    }
+
     @GetMapping("/selectEmplike")
     public PageInfo<EmpVo> selectDeptlike(@RequestParam("currentPage") int currentPage,
                                           @RequestParam("pagesize") int pagesize,
@@ -32,6 +47,15 @@ public class EmpController {
         PageInfo<EmpVo> empVoPageInfo = new  PageInfo<>(entityPage);
         return empVoPageInfo;
     }
+
+    //教材入库
+    @GetMapping("/wjselectEmp")
+    public List<EmpVo> wj1selectAll(){
+        List<EmpVo> entityPage =empService.selectEmp();
+        return  entityPage;
+    }
+
+
     @GetMapping("/selectEmp")
     public PageInfo<EmpVo> selectEmp(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){
         log.debug("分页查询部门");

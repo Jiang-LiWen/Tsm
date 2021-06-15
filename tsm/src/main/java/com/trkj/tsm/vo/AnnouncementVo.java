@@ -67,6 +67,7 @@ public class AnnouncementVo implements Serializable {
     /**
      * 录入时间
      */
+
     private Date addtime;
 
     /**

@@ -37,17 +37,30 @@
     AddName, ADDTIME, UpdateName, UpdateTime, StopName, StopTime, BeginName, BeginTime, 
     DeleteName, DeleteTime, TimeLiness
   </sql>
+  <select id="ClassesselectAllCourse" resultMap="BaseResultMap">
+    select
+    course.Course_Id, course.Commission, course.Course_Name, course.Course_State, course.Classhours,
+    course.Course_Money, course.ClassType_Id, course.AddName, course.ADDTIME, course.UpdateName,
+    course.UpdateTime, course.StopName, course.StopTime, course.BeginName, course.BeginTime,
+    course.DeleteName, course.DeleteTime, course.TimeLiness, classtype.ClassType_Id,
+    classtype.ClassType_Name, classtype.AddName, classtype.AddTime, classtype.UpdateName,
+    classtype.UpdateTime, classtype.DeleteName, classtype.DeleteTime, classtype.TimeLiness
+    from course
+    course inner join classtype on course.ClassType_Id = classtype.ClassType_Id
+    where course.TimeLiness=0 and Course_State = 1
+  </select>
   <select id="selectAllCourse" resultMap="BaseResultMap">
     select
-    Course.Course_Id, Course.Commission, Course.Course_Name, Course.Course_State, Course.Classhours,
-    Course.Course_Money, Course.ClassType_Id, Course.AddName, Course.ADDTIME, Course.UpdateName,
-    Course.UpdateTime, Course.StopName, Course.StopTime, Course.BeginName, Course.BeginTime,
-    Course.DeleteName, Course.DeleteTime, Course.TimeLiness, ClassType.ClassType_Id,
-    ClassType.ClassType_Name, ClassType.AddName, ClassType.AddTime, ClassType.UpdateName,
-    ClassType.UpdateTime, ClassType.DeleteName, ClassType.DeleteTime, ClassType.TimeLiness
+    course.Course_Id, course.Commission, course.Course_Name, course.Course_State, course.Classhours,
+    course.Course_Money, course.ClassType_Id, course.AddName, course.ADDTIME, course.UpdateName,
+    course.UpdateTime, course.StopName, course.StopTime, course.BeginName, course.BeginTime,
+    course.DeleteName, course.DeleteTime, course.TimeLiness, classtype.ClassType_Id,
+    classtype.ClassType_Name, classtype.AddName, classtype.AddTime, classtype.UpdateName,
+    classtype.UpdateTime, classtype.DeleteName, classtype.DeleteTime, classtype.TimeLiness
     from course
-    course inner join classtype on Course.ClassType_Id = ClassType.ClassType_Id
-    where Course.TimeLiness=0
+    course inner join classtype on course.ClassType_Id = classtype.ClassType_Id
+    where course.TimeLiness=0 and
+    (course.Course_Name like #{likeke} or classtype.ClassType_Name like #{likeke})
   </select>
   <update id="updateCourseStateStop" parameterType="com.trkj.tsm.entity.Course">
     update course

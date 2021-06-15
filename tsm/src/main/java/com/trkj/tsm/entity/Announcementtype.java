@@ -30,7 +30,7 @@ public class Announcementtype implements Serializable {
     /**
      * 增加时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
     private Date addtime;
 
     /**
@@ -41,7 +41,7 @@ public class Announcementtype implements Serializable {
     /**
      * 最后修改时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
     private Date updatetime;
 
     /**
@@ -52,7 +52,7 @@ public class Announcementtype implements Serializable {
     /**
      * 删除时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
     private Date deletetime;
 
     /**

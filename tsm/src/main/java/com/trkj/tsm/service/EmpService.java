@@ -6,6 +6,10 @@ import com.trkj.tsm.vo.EmpVo;
 import java.util.List;
 
 public interface EmpService {
+    List<EmpVo> ClassesselectEmp1();//班级找班主任
+
+    List<EmpVo> ClassesselectEmp2();//班级找教员
+
     int deleteByPrimaryKey(Integer empId);
 
     EmpVo insert(EmpVo empVo);

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +23,6 @@ public class DetailcourseController {
         log.debug("查询信息");
         log.debug("---------------------------------------------------");
         List<DetailcourseVo> entityPage =detailcourseService.selectByCourseId(courseid);
-
         return entityPage;
     }
 

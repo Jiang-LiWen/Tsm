@@ -70,4 +70,9 @@ public class EnterpriseController {
         enterpriseService.updateEnterprise(enterpriseVo);
         return AjaxResponse.success(enterpriseVo);
     }
+
+    @GetMapping("/selectfindss")
+    public List<EnterpriseVo> selectfindss(){
+        return enterpriseService.selectfindss();
+    }
 }

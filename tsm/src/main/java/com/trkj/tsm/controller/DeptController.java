@@ -2,6 +2,8 @@ package com.trkj.tsm.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.trkj.tsm.entity.Book;
+import com.trkj.tsm.entity.Dept;
 import com.trkj.tsm.service.DeptService;
 import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.DeptVo;
@@ -30,6 +32,7 @@ public class DeptController {
         PageInfo<DeptVo> deptVoPageInfo = new  PageInfo<>(entityPage);
         return deptVoPageInfo;
     }
+
     @GetMapping("/selectDept")
     public PageInfo<DeptVo> selectDept(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){
         log.debug("分页查询部门");
@@ -44,6 +47,7 @@ public class DeptController {
     public AjaxResponse addDept(@RequestBody @Valid DeptVo deptVo){
 
         log.debug("新增部门信息");
+        deptVo.setAddname("wenwen");
         deptService.insert(deptVo);
         return AjaxResponse.success(deptVo);
     }
@@ -66,6 +70,7 @@ public class DeptController {
     @PutMapping("/updateDept")
     public AjaxResponse updateDept(@RequestBody @Valid DeptVo deptVo){
         log.debug("修改部门信息");
+        deptVo.setUpdatename("wewe");
         deptVo.setUpdatetime(new Date());
         deptService.updateByPrimaryKey(deptVo);
         return AjaxResponse.success(deptVo);
@@ -78,6 +83,7 @@ public class DeptController {
 
     @GetMapping("/selectDeptss")
     public List<DeptVo> selectDeptss(){
+
         return deptService.selectDeptss();
     }
 }

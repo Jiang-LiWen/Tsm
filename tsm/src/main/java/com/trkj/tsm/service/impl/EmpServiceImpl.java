@@ -17,6 +17,17 @@ import java.util.List;
 public class EmpServiceImpl implements EmpService {
     @Resource
     private EmpDao empDao;
+
+    @Override
+    public List<EmpVo> ClassesselectEmp1() {
+        return empDao.ClassesselectEmp1();//班级找班主任
+    }
+
+    @Override
+    public List<EmpVo> ClassesselectEmp2() {
+        return empDao.ClassesselectEmp2();//班级找教员
+    }
+
     @Override
     public int deleteByPrimaryKey(Integer empId) {
         return empDao.deleteByPrimaryKey(empId);
