@@ -19,6 +19,23 @@ import java.util.List;
 public class MemorandumattachmentController {
     @Autowired
     private MemorandumattachmentService memorandumattachmentService;
+
+    //    教务显示
+    @GetMapping("/jwselectMemorandumattachment")
+    public PageInfo<MemorandumattachmentVo> jwselectMemorandumattachment(@RequestParam("currentPage") int currentPage,
+                                                                         @RequestParam("pagesize") int pagesize,
+                                                                         @RequestParam("sech1") String likeke1,
+                                                                         @RequestParam("sech2") String likeke2){
+        PageHelper.startPage(currentPage,pagesize);
+        log.debug("Controller 方法调用");
+        String likekes1="%"+likeke1+"%";
+        String likekes2="%"+likeke2+"%";
+        List<MemorandumattachmentVo> MemorandumattachmentPage =
+                memorandumattachmentService.jwselectMemorandumattachment(likekes1,likekes2);
+        PageInfo<MemorandumattachmentVo> MemorandumattachmentPageInfo = new PageInfo<>(MemorandumattachmentPage);
+        return MemorandumattachmentPageInfo;
+    }
+
     //    招生未审核显示
     @GetMapping("/selectZSIsExamine")
     public PageInfo<MemorandumattachmentVo> selectZSIsExamine(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){
@@ -28,15 +45,7 @@ public class MemorandumattachmentController {
         PageInfo<MemorandumattachmentVo> MemorandumattachmentPageInfo = new PageInfo<>(MemorandumattachmentPage);
         return MemorandumattachmentPageInfo;
     }
-    //    教务未审核显示
-    @GetMapping("/selectJWIsExamine")
-    public PageInfo<MemorandumattachmentVo> selectJWIsExamine(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){
-        PageHelper.startPage(currentPage,pagesize);
-        log.debug("Controller 方法调用");
-        List<MemorandumattachmentVo> WIsExaminePage = memorandumattachmentService.selectJWIsExamine();
-        PageInfo<MemorandumattachmentVo> WIsExaminePageInfo = new PageInfo<>(WIsExaminePage);
-        return WIsExaminePageInfo;
-    }
+
     //    招生已审核审核显示
     @GetMapping("/selectZSIsExamineOver")
     public PageInfo<MemorandumattachmentVo> selectZSIsExamineOver(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){
@@ -46,15 +55,7 @@ public class MemorandumattachmentController {
         PageInfo<MemorandumattachmentVo> MemorandumattachmentPageInfo = new PageInfo<>(MemorandumattachmentPage);
         return MemorandumattachmentPageInfo;
     }
-    //    教务已审核审核显示
-    @GetMapping("/selectJWIsExamineOver")
-    public PageInfo<MemorandumattachmentVo> selectJWIsExamineOver(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){
-        PageHelper.startPage(currentPage,pagesize);
-        log.debug("Controller 方法调用");
-        List<MemorandumattachmentVo> WIsExaminePage = memorandumattachmentService.selectJWIsExamineOver();
-        PageInfo<MemorandumattachmentVo> WIsExaminePageInfo = new PageInfo<>(WIsExaminePage);
-        return WIsExaminePageInfo;
-    }
+
     //    显示
     @GetMapping("/selectMemorandumattachment")
     public PageInfo<MemorandumattachmentVo> selectMemorandumattachment(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){

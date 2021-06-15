@@ -11,16 +11,14 @@ import java.util.List;
 public interface MemorandumattachmentDao {
     //     招生未审核显示
     List<MemorandumattachmentVo> selectZSIsExamine();
-    //     教务未审核显示
-    List<MemorandumattachmentVo> selectJWIsExamine();
-//     显示
+    //     显示
     List<MemorandumattachmentVo> selectMemorandumattachment();
-//    招生未审核
+    //     教务显示
+    List<MemorandumattachmentVo> jwselectMemorandumattachment(String likelike1,String likelike2);
+    //    招生审核
     int updateByZSIsExamine(MemorandumattachmentVo memorandumattachmentVo);
-//    教务未审核
+    //    教务审核
     int updateByJWIsExamine(MemorandumattachmentVo memorandumattachmentVo);
     //     招生已审核显示
     List<MemorandumattachmentVo> selectZSIsExamineOver();
-    //     教务已审核显示
-    List<MemorandumattachmentVo> selectJWIsExamineOver();
 }

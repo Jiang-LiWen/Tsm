@@ -65,24 +65,14 @@
     where me.ZSIsExamine = 1
     order by me.MemorandumAttachment_Id desc
   </select>
-  <!--  教务显示未审核-->
-  <select id="selectJWIsExamine" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <!--  教务交接显示全部-->
+  <select id="jwselectMemorandumattachment" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List_me" />,
     <include refid="Base_Column_List_reg" />
     from memorandumattachment me
     inner join register r on me.Register_Id = r.Register_Id
-    where me.JWIsExamine = 0
-    order by me.MemorandumAttachment_Id desc
-  </select>
-  <!--  教务显示已审核-->
-  <select id="selectJWIsExamineOver" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List_me" />,
-    <include refid="Base_Column_List_reg" />
-    from memorandumattachment me
-    inner join register r on me.Register_Id = r.Register_Id
-    where me.JWIsExamine = 1
+    where (me.JWIsExamine like #{param2} and (r.ConsultAnt like #{param1})) and me.ZSIsExamine=1
     order by me.MemorandumAttachment_Id desc
   </select>
   <!--  显示全部-->
