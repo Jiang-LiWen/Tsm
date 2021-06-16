@@ -27,4 +27,9 @@ public class IdeasServiceImpl implements IdeasService {
         ideasDao.insert(ideasVo);
         return ideasVo;
     }
+
+    @Override
+    public List<IdeasVo> selectState(String value1) {
+        return ideasDao.selectState(value1);
+    }
 }

@@ -37,6 +37,26 @@
         i.Ideas_Id,i.Ideas_Title,i.Ideas_Name,i.`State`,i.Keeper,i.Reply,i.RevoveryTime,i.RevoveryName,i.TimeOfPublication,
         i.DeleteName,i.DeleteTime,i.TimeLiness,i.Suggest_Id,s.Suggest_Id
         from ideas i inner join suggest s where i.Suggest_Id=s.Suggest_Id and i.TimeLiness = 0
+
+    </select>
+<!--    查询意见表回复状态为未回复的-->
+    <select id="selectState" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+<include refid="Base_Column_List"/>
+        from ideas
+        <where>
+            <if test="value1==0">
+                state =0
+            </if>
+            <if test="value1==1">
+                state =1
+            </if>
+            <if test="value1=='全部'">
+
+            </if>
+             and TimeLiness = 0
+        </where>
+
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from ideas

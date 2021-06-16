@@ -19,4 +19,6 @@ public interface IdeasDao {
     int updateByPrimaryKeySelective(IdeasVo ideasVo);
 
     int updateByPrimaryKey(Ideas record);
+
+    List<IdeasVo> selectState(String value1);
 }
