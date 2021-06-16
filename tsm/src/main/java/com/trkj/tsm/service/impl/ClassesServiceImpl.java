@@ -2,7 +2,6 @@ package com.trkj.tsm.service.impl;
 
 import com.trkj.tsm.dao.ClassesDao;
 import com.trkj.tsm.entity.Classes;
-import com.trkj.tsm.entity.Course;
 import com.trkj.tsm.service.ClassesService;
 import com.trkj.tsm.util.BeanCopyUtil;
 import com.trkj.tsm.vo.ClassesVo;
