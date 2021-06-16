@@ -39,15 +39,15 @@
 <!--  显示全部-->
   <select id="selectAnnounceManageAll" resultMap="BaseResultMap" parameterType="java.lang.Integer">
   select
-  Announcement.Announcement_Id, Announcement.Start_Time, Announcement.End_Time, Announcement.Announcement_Theme,
-  Announcement.Announcement_Content, Announcement.Announcement_State, Announcement.AddName, Announcement.AddTime, Announcement.PublishNmae,
-  Announcement.PublishTime, Announcement.SuspendName, Announcement.SuspendTime, Announcement.UpdateName, Announcement.UpdateTime,
-  Announcement.DeleteName, Announcement.DeleteTime, Announcement.TimeLiness,AnnouncementType.AnnouncementType_Id,
-  AnnouncementType.AnnouncementType_Name, AnnouncementType.AddName, AnnouncementType.AddTime, AnnouncementType.UpdateName,
-  AnnouncementType.UpdateTime, AnnouncementType.DeleteName, AnnouncementType.DeleteTime, AnnouncementType.TimeLiness
-  from Announcement
-  Announcement inner join AnnouncementType
-  where Announcement.AnnouncementType_Id = AnnouncementType.AnnouncementType_Id and Announcement.TimeLiness=0
+  announcement.Announcement_Id, announcement.Start_Time, announcement.End_Time, announcement.Announcement_Theme,
+  announcement.Announcement_Content, announcement.Announcement_State, announcement.AddName, announcement.AddTime, announcement.PublishNmae,
+  announcement.PublishTime, announcement.SuspendName, announcement.SuspendTime, announcement.UpdateName, announcement.UpdateTime,
+  announcement.DeleteName, announcement.DeleteTime, announcement.TimeLiness,announcementtype.AnnouncementType_Id,
+  announcementtype.AnnouncementType_Name, announcementtype.AddName, announcementtype.AddTime, announcementtype.UpdateName,
+  announcementtype.UpdateTime, announcementtype.DeleteName, announcementtype.DeleteTime, announcementtype.TimeLiness
+  from announcement
+  announcement inner join announcementtype
+  where announcement.AnnouncementType_Id = announcementtype.AnnouncementType_Id and announcement.TimeLiness=0
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from announcement
@@ -269,15 +269,15 @@
 <!--  查询-->
   <select id="selectfindByAnnouncementContent" resultMap="BaseResultMap">
     select
-        Announcement.Announcement_Id, Announcement.Start_Time, Announcement.End_Time, Announcement.Announcement_Theme,
-  Announcement.Announcement_Content, Announcement.Announcement_State, Announcement.AddName, Announcement.AddTime, Announcement.PublishNmae,
-  Announcement.PublishTime, Announcement.SuspendName, Announcement.SuspendTime, Announcement.UpdateName, Announcement.UpdateTime,
-  Announcement.DeleteName, Announcement.DeleteTime, Announcement.TimeLiness,AnnouncementType.AnnouncementType_Id,
-  AnnouncementType.AnnouncementType_Name, AnnouncementType.AddName, AnnouncementType.AddTime, AnnouncementType.UpdateName,
-  AnnouncementType.UpdateTime, AnnouncementType.DeleteName, AnnouncementType.DeleteTime, AnnouncementType.TimeLiness
+        announcement.Announcement_Id, announcement.Start_Time, announcement.End_Time, announcement.Announcement_Theme,
+  announcement.Announcement_Content, announcement.Announcement_State, announcement.AddName, announcement.AddTime, announcement.PublishNmae,
+  announcement.PublishTime, announcement.SuspendName, announcement.SuspendTime, announcement.UpdateName, announcement.UpdateTime,
+  announcement.DeleteName, announcement.DeleteTime, announcement.TimeLiness,announcementtype.AnnouncementType_Id,
+  announcementtype.AnnouncementType_Name, announcementtype.AddName, announcementtype.AddTime, announcementtype.UpdateName,
+  announcementtype.UpdateTime, announcementtype.DeleteName, announcementtype.DeleteTime, announcementtype.TimeLiness
     from announcement
-    Announcement inner join AnnouncementType
-        where Announcement.AnnouncementType_Id = AnnouncementType.AnnouncementType_Id and Announcement.TimeLiness = 0 and Announcement.Announcement_Content like CONCAT(CONCAT('%' ,#{announcementContent , jdbcType=VARCHAR}, '%'))
-    ORDER BY Announcement.Announcement_Id
+    announcement inner join announcementtype
+        where announcement.AnnouncementType_Id = announcementtype.AnnouncementType_Id and announcement.TimeLiness = 0 and announcement.Announcement_Content like CONCAT(CONCAT('%' ,#{announcementContent , jdbcType=VARCHAR}, '%'))
+    ORDER BY announcement.Announcement_Id
   </select>
 </mapper>
