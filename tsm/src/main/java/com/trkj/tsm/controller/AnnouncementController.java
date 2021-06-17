@@ -5,8 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.trkj.tsm.service.AnnouncementService;
 import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.AnnouncementVo;
-import com.trkj.tsm.vo.AnnouncementtypeVo;
-import com.trkj.tsm.vo.FaqQuestionsVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +27,15 @@ public class AnnouncementController {
         List<AnnouncementVo> announManagePage = announcementService.selectAnnounceManageAll();
         PageInfo<AnnouncementVo> announManagePageInfo = new PageInfo<>(announManagePage);
         return announManagePageInfo;
+    }
+    //    显示可视公告
+    @GetMapping("/selectAnnounceAllGongGao")
+    public PageInfo<AnnouncementVo> selectAnnounceAllGongGao(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){
+        PageHelper.startPage(currentPage,pagesize);
+        log.debug("Controller 方法调用");
+        List<AnnouncementVo> GongGaoPage = announcementService.selectAnnounceAllGongGao();
+        PageInfo<AnnouncementVo> GongGaoPageInfo = new PageInfo<>(GongGaoPage);
+        return GongGaoPageInfo;
     }
 //    添加
     @PostMapping("/addAnnounceManage")

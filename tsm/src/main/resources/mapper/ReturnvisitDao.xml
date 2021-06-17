@@ -89,10 +89,10 @@
 <!--  增加回访记录-->
   <insert id="insertReturnvisit" keyColumn="ReturnVisit_Id" keyProperty="returnvisitId" parameterType="com.trkj.tsm.vo.ReturnvisitVo" useGeneratedKeys="true">
     insert into returnvisit (ReturnVisit_Id,Register_Id,Emp_Id,
-    ReturnVisitMode,ReturnVisitBack,AddName)
+    ReturnVisitMode,ReturnVisitBack,ReturnContent,AddName)
     values (#{returnvisitId,jdbcType=INTEGER},#{registerId,jdbcType=INTEGER},
     #{empId,jdbcType=INTEGER},#{returnvisitmode,jdbcType=VARCHAR},
-     #{returnvisitback,jdbcType=VARCHAR},#{addname,jdbcType=VARCHAR})
+     #{returnvisitback,jdbcType=VARCHAR},#{returncontent,jdbcType=VARCHAR},#{addname,jdbcType=VARCHAR})
   </insert>
   <!--  删除（修改时效性）-->
   <update id="updateReturnVisitTimeLiness" parameterType="com.trkj.tsm.vo.RegisterVo">
