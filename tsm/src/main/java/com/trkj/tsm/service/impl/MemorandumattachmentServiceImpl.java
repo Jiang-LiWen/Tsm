@@ -1,4 +1,4 @@
-package com.trkj.tsm.service.serviceImpI;
+package com.trkj.tsm.service.impl;
 
 import com.trkj.tsm.dao.MemorandumattachmentDao;
 import com.trkj.tsm.service.MemorandumattachmentService;
@@ -21,31 +21,28 @@ public class MemorandumattachmentServiceImpl implements MemorandumattachmentServ
         log.debug("学员交接显示招生审核状态查询============================ImpI");
         return memorandumattachmentDao.selectZSIsExamine();
     }
-//教务部未审核
-    @Override
-    public List<MemorandumattachmentVo> selectJWIsExamine() {
-        log.debug("学员交接显示教务审核状态查询============================ImpI");
-        return memorandumattachmentDao.selectJWIsExamine();
-    }
+
     //招生部已审核
     @Override
     public List<MemorandumattachmentVo> selectZSIsExamineOver() {
         log.debug("学员交接显示招生审核状态查询============================ImpI");
         return memorandumattachmentDao.selectZSIsExamineOver();
     }
-    //教务部已审核
-    @Override
-    public List<MemorandumattachmentVo> selectJWIsExamineOver() {
-        log.debug("学员交接显示教务审核状态查询============================ImpI");
-        return memorandumattachmentDao.selectJWIsExamineOver();
-    }
+
     //    显示
     @Override
     public List<MemorandumattachmentVo> selectMemorandumattachment() {
         log.debug("学员交接显示所有============================ImpI");
         return memorandumattachmentDao.selectMemorandumattachment();
     }
-//招生审核
+
+    //教务显示
+    @Override
+    public List<MemorandumattachmentVo> jwselectMemorandumattachment(String likelike1,String likelike2) {
+        return memorandumattachmentDao.jwselectMemorandumattachment(likelike1,likelike2);
+    }
+
+    //招生审核
     @Override
     public MemorandumattachmentVo updateByZSIsExamine(MemorandumattachmentVo memorandumattachmentVo) {
         log.debug("招生审核通过===============================ImpI");

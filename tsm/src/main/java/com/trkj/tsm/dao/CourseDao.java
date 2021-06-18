@@ -20,6 +20,8 @@ public interface CourseDao {
 
     int updateCourse(Course record);//修改课程
 
+    int deleteCourse(Course record);//删除课程
+
     int updateCourseclasshours(Course record);//修改课时量信息
 //    int deleteByPrimaryKey(Integer courseId);
 //

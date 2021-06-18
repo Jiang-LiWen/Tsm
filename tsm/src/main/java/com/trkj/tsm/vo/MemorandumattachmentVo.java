@@ -28,7 +28,7 @@ public class MemorandumattachmentVo implements Serializable {
     /**
      * 咨询登记编号
      */
-    private Register register;
+    private RegisterVo registerVo;
     private Integer registerId;
 
     /**

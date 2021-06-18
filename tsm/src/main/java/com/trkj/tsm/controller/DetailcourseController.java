@@ -18,6 +18,13 @@ public class DetailcourseController {
     @Autowired
     private DetailcourseService detailcourseService;
 
+    @GetMapping("/selectDetailCourseAll")
+    public List<DetailcourseVo> selectDetailCourseAll(){
+        log.debug("Controller 方法调用");
+        List<DetailcourseVo> detailcoursePage = detailcourseService.selectByPrimaryKey();
+        return detailcoursePage;
+    }
+
     @GetMapping("/selectDetailCourse/{courseid}")
     public List<DetailcourseVo> selectfind(@PathVariable("courseid") int courseid){
         log.debug("查询信息");

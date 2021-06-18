@@ -22,6 +22,12 @@ public class DetailcourseServiceImpl implements DetailcourseService {
     }
 
     @Override
+    public List<DetailcourseVo> selectByPrimaryKey() {
+        log.debug("显示课程详细");
+        return detailcourseDao.selectByPrimaryKey();
+    }
+
+    @Override
     public DetailcourseVo updDetailcourseTimeless(DetailcourseVo detailcourseVo) {
         log.debug("删除课时信息");
         DetailcourseVo d = new DetailcourseVo();
