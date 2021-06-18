@@ -1,11 +1,9 @@
 package com.trkj.tsm.service.impl;
 
 import com.trkj.tsm.dao.AnnouncementDao;
-import com.trkj.tsm.entity.Announcement;
 import com.trkj.tsm.service.AnnouncementService;
 import com.trkj.tsm.util.BeanCopyUtil;
 import com.trkj.tsm.vo.AnnouncementVo;
-import com.trkj.tsm.vo.AnnouncementtypeVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +20,12 @@ public class AnnouncementServiceImpl implements AnnouncementService
     public List<AnnouncementVo> selectAnnounceManageAll() {
         log.debug("显示所有公告");
         return announcementDao.selectAnnounceManageAll();
+    }
+
+    @Override
+    public List<AnnouncementVo> selectAnnounceAllGongGao() {
+        log.debug("显示可视公告");
+        return announcementDao.selectAnnounceAllGongGao();
     }
 
     @Override

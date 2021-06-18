@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * announcement
@@ -21,7 +22,7 @@ public class Announcement implements Serializable {
      */
     private Integer announcementId;
     /**
-     * 编号
+     * 公告类型实体类
      */
     private Announcementtype announcementtype;
     /**
@@ -32,13 +33,13 @@ public class Announcement implements Serializable {
     /**
      * 开始时间
      */
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date startTime;
 
     /**
      * 结束时间
      */
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date endTime;
 
     /**
@@ -64,7 +65,7 @@ public class Announcement implements Serializable {
     /**
      * 录入时间
      */
-
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date addtime;
 
     /**
@@ -75,7 +76,7 @@ public class Announcement implements Serializable {
     /**
      * 最后发布时间
      */
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date publishtime;
 
     /**
@@ -86,7 +87,7 @@ public class Announcement implements Serializable {
     /**
      * 最后暂停时间
      */
-
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date suspendtime;
 
     /**
@@ -97,7 +98,7 @@ public class Announcement implements Serializable {
     /**
      * 最后修改时间
      */
-
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updatetime;
 
     /**
@@ -108,7 +109,7 @@ public class Announcement implements Serializable {
     /**
      * 删除时间
      */
-
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date deletetime;
 
     /**

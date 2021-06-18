@@ -2,8 +2,6 @@ package com.trkj.tsm.dao;
 
 import com.trkj.tsm.entity.Announcement;
 import com.trkj.tsm.vo.AnnouncementVo;
-import com.trkj.tsm.vo.AnnouncementtypeVo;
-import com.trkj.tsm.vo.FaqQuestionsVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -11,14 +9,10 @@ import java.util.List;
 public interface AnnouncementDao {
 //    显示所有
     List<AnnouncementVo> selectAnnounceManageAll();
-//
-    int deleteByPrimaryKey(Integer announcementId);
-//
+    //    显示可视公告
+    List<AnnouncementVo> selectAnnounceAllGongGao();
+//  增加
     int insertAnnounceManage(AnnouncementVo record);
-//
-    int insertSelective(Announcement record);
-//
-    int updateByPrimaryKeySelective(Announcement record);
 //  发布
     int updateByAnnouncementState(AnnouncementVo announcementVo);
 //  暂停
