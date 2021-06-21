@@ -4,6 +4,9 @@
   <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Position">
     <id column="Position_Id" jdbcType="INTEGER" property="positionId" />
     <result column="Position_Name" jdbcType="VARCHAR" property="positionName" />
+    <result column="role_desc" jdbcType="VARCHAR" property="roleDesc"/>
+    <result column="role_code" jdbcType="VARCHAR" property="roleCode"/>
+    <result column="status" jdbcType="INTEGER" property="status"/>
     <result column="AddName" jdbcType="VARCHAR" property="addname" />
     <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
     <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
@@ -13,7 +16,7 @@
     <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
   </resultMap>
   <sql id="Base_Column_List">
-    Position_Id, Position_Name, AddName, AddTime, UpdateName, UpdateTime, DeleteName, 
+    Position_Id, Position_Name,role_desc, role_code, status, AddName, AddTime, UpdateName, UpdateTime, DeleteName,
     DeleteTime, TimeLiness
   </sql>
 
@@ -36,10 +39,11 @@
   </delete>
 
   <insert id="insert" keyColumn="Position_Id" keyProperty="positionId" parameterType="com.trkj.tsm.entity.Position" useGeneratedKeys="true">
-    insert into position (Position_Id, Position_Name, AddName,
+    insert into position (Position_Id, Position_Name,role_desc,role_code,status, AddName,
       UpdateName, UpdateTime, DeleteName, 
       DeleteTime)
-    values (#{positionId,jdbcType=INTEGER}, #{positionName,jdbcType=VARCHAR}, #{addname,jdbcType=VARCHAR},
+    values (#{positionId,jdbcType=INTEGER}, #{positionName,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR},
+      #{roleCode,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},#{addname,jdbcType=VARCHAR},
       #{updatename,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{deletename,jdbcType=VARCHAR}, 
       #{deletetime,jdbcType=TIMESTAMP})
   </insert>
@@ -47,6 +51,9 @@
   <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Position">
     update position
     set Position_Name = #{positionName,jdbcType=VARCHAR},
+      role_desc = #{roleDesc,jdbcType=VARCHAR},
+      role_code = #{roleCode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
       AddName = #{addname,jdbcType=VARCHAR},
       AddTime = #{addtime,jdbcType=TIMESTAMP},
       UpdateName = #{updatename,jdbcType=VARCHAR},
