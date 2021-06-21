@@ -38,7 +38,7 @@
     where AnnouncementType_Id = #{announcementtypeId,jdbcType=INTEGER}
   </update>
   <update id="updateAnnounceTypeTimeLiness" parameterType="com.trkj.tsm.entity.Announcementtype">
-    update announcementType
+    update announcementtype
     <set>
       TimeLiness = 1,
       DeleteName = #{deletename,jdbcType=VARCHAR},

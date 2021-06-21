@@ -1,6 +1,7 @@
 package com.trkj.tsm.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -107,10 +108,6 @@ public class Emp implements Serializable {
      */
     private Integer empstate;
 
-    /**
-     * 登入密码
-     */
-    private String passwords;
 
     /**
      * 增加人
@@ -157,5 +154,62 @@ public class Emp implements Serializable {
      */
     private String graduate;
 
+    /**
+     * 用户名
+     */
+    private String username;
+
+    /**
+     * 密码
+     */
+    private String password;
+
+    /**
+     * 0无效用户，1是有效用户
+     */
+    private Boolean enabled;
+
+    /**
+     * 账户是否没过期
+     */
+    private Boolean accountNonExpired;
+
+    /**
+     * 是否没被锁定
+     */
+    private Boolean accountNonLocked;
+
+    /**
+     * 密码是否没有过期
+     */
+    private Boolean credentialsNonExpired;
+
     private static final long serialVersionUID = 1L;
+
+//    Collection<? extends GrantedAuthority> authorities;  //用户的权限集合
+//
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return authorities;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return accountNonExpired;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return accountNonLocked;
+//    }
+//
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return credentialsNonExpired;
+//    }
+//
+//    @Override
+//    public boolean isEnabled() {
+//        return enabled;
+//    }
 }

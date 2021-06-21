@@ -25,6 +25,21 @@ public class PositionVo {
     private String positionName;
 
     /**
+     * 角色描述
+     */
+    private String roleDesc;
+
+    /**
+     * 角色的英文code.如：ADMIN
+     */
+    private String roleCode;
+
+    /**
+     * 0表示可用
+     */
+    private Integer status;
+
+    /**
      * 增加人
      */
     private String addname;
