@@ -7,6 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface ClassesDao {
+    Classes selectClassesBycid(int cid);//班级查询
+
     List<ClassesVo> selectAllClasses(String likeke);//页面显示加分页查询
 
     int updateClasses_Open(Classes record);//开班修改

@@ -17,6 +17,12 @@ public class ClassesServiceImpl implements ClassesService {
     private ClassesDao classesDao;
 
     @Override
+    public Classes selectClassesBycid(int cid) {
+        Classes classes=classesDao.selectClassesBycid(cid);
+        return classes;
+    }
+
+    @Override
     public List<ClassesVo> selectAllClasses(String likeke) {
         return classesDao.selectAllClasses(likeke);
     }

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.tsm.dao.StudentstatusDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Studentstatus">
+    <id column="StudentStatus_Id" jdbcType="INTEGER" property="studentstatusId" />
+    <result column="Suspende_Id" jdbcType="INTEGER" property="suspendeId" />
+    <result column="Student_Id" jdbcType="INTEGER" property="studentId" />
+    <result column="Classes_Id" jdbcType="INTEGER" property="classesId" />
+    <result column="Course_Id" jdbcType="INTEGER" property="courseId" />
+    <result column="SignUpTime" jdbcType="TIMESTAMP" property="signuptime" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+    <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+    <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    <association property="student" javaType="com.trkj.tsm.entity.Student">
+      <id column="Student_Id" jdbcType="INTEGER" property="studentId" />
+      <result column="Classes_Id" jdbcType="INTEGER" property="classesId" />
+      <result column="Source_Id" jdbcType="INTEGER" property="sourceId" />
+      <result column="Register_Id" jdbcType="INTEGER" property="registerId" />
+      <result column="Student_Number" jdbcType="VARCHAR" property="studentNumber" />
+      <result column="Student_Name" jdbcType="VARCHAR" property="studentName" />
+      <result column="StudyTime" jdbcType="TIMESTAMP" property="studytime" />
+      <result column="Entrance" jdbcType="VARCHAR" property="entrance" />
+      <result column="Sex" jdbcType="VARCHAR" property="sex" />
+      <result column="Student_Phone" jdbcType="VARCHAR" property="studentPhone" />
+      <result column="Address" jdbcType="VARCHAR" property="address" />
+      <result column="ImgAddress" jdbcType="VARCHAR" property="imgaddress" />
+      <result column="ParentName" jdbcType="VARCHAR" property="parentname" />
+      <result column="ParentPhone" jdbcType="VARCHAR" property="parentphone" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    </association>
+    <association property="classes" javaType="com.trkj.tsm.entity.Classes">
+      <id column="Classes_Id" jdbcType="INTEGER" property="classesId" />
+      <result column="Course_Id" jdbcType="INTEGER" property="courseId" />
+      <result column="Teacher_Id" jdbcType="INTEGER" property="teacherId" />
+      <result column="Emp_Id" jdbcType="INTEGER" property="empId" />
+      <result column="DetailCourse_Id" jdbcType="INTEGER" property="detailcourseId" />
+      <result column="Classes_Name" jdbcType="VARCHAR" property="classesName" />
+      <result column="Classes_Open" jdbcType="INTEGER" property="classesOpen" />
+      <result column="OpenDate" jdbcType="TIMESTAMP" property="opendate" />
+      <result column="Classes_State" jdbcType="INTEGER" property="classesState" />
+      <result column="EndDate" jdbcType="TIMESTAMP" property="enddate" />
+      <result column="AddName" jdbcType="VARCHAR" property="addname" />
+      <result column="AddTIME" jdbcType="TIMESTAMP" property="addtime" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List">
+    studentstatus.StudentStatus_Id, studentstatus.Suspende_Id, studentstatus.Student_Id,
+    studentstatus.Classes_Id, studentstatus.Course_Id, studentstatus.SignUpTime,
+    studentstatus.`STATUS`, studentstatus.DeleteName, studentstatus.DeleteTime,
+    studentstatus.TimeLiness
+  </sql>
+  <sql id="Base_Column_s">
+    s.Student_Id, s.Classes_Id, s.Source_Id, s.Register_Id, s.Student_Number, s.Student_Name, s.StudyTime,
+    s.Entrance, s.Sex, s.Student_Phone, s.Address, s.ImgAddress, s.ParentName, s.ParentPhone, s.UpdateName,
+    s.UpdateTime, s.DeleteName, s.DeleteTime, s.TimeLiness
+  </sql>
+  <sql id="Base_Column_c">
+    classes.Classes_Id, classes.Course_Id, classes.Teacher_Id, classes.Emp_Id, classes.DetailCourse_Id,
+    classes.Classes_Name, classes.Classes_Open,classes.OpenDate, classes.Classes_State,
+    classes.EndDate, classes.AddName, classes.AddTIME, classes.UpdateName, classes.UpdateTime,
+    classes.DeleteName,classes.DeleteTime, classes.TimeLiness
+  </sql>
+  <select id="selectStudentstatusLike" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />,
+    <include refid="Base_Column_s" />
+    from studentstatus
+    inner join student s on studentstatus.Student_Id=s.Student_Id
+    where studentstatus.TimeLiness=0 and ((s.Student_Name like #{param1}
+    or s.Student_Id like #{param1}) and (studentstatus.`STATUS` like #{param2}))
+  </select>
+  <select id="selectStudentstatusId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />,
+    <include refid="Base_Column_s" />,
+    <include refid="Base_Column_c" />
+    from studentstatus
+    inner join student s on studentstatus.Student_Id=s.Student_Id
+    inner join classes on studentstatus.Classes_Id=classes.Classes_Id
+    where studentStatus.TimeLiness=0 and s.Student_Id=#{Id}
+  </select>
+  <insert id="insertStudentstatus" keyColumn="StudentStatus_Id" keyProperty="studentstatusId" parameterType="com.trkj.tsm.entity.Studentstatus" useGeneratedKeys="true">
+    insert into studentstatus (Classes_Id,Student_Id, SignUpTime)
+    values (#{classesId,jdbcType=INTEGER},#{studentId,jdbcType=INTEGER}, #{signuptime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateStudentstatus" parameterType="com.trkj.tsm.entity.Studentstatus">
+    update studentstatus
+    set
+      Classes_Id = #{classesId,jdbcType=INTEGER},
+      `STATUS` = 1
+    where StudentStatus_Id = #{studentstatusId,jdbcType=INTEGER}
+  </update>
+  <update id="deleteStudentstatus" parameterType="com.trkj.tsm.entity.Studentstatus">
+    update studentstatus
+    set
+      DeleteName = #{deletename,jdbcType=VARCHAR},
+      DeleteTime = #{deletetime,jdbcType=TIMESTAMP},
+      TimeLiness = #{timeliness,jdbcType=INTEGER}
+    where StudentStatus_Id = #{studentstatusId,jdbcType=INTEGER}
+  </update>
+</mapper>

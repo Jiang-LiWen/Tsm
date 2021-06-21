@@ -1,10 +1,13 @@
 package com.trkj.tsm.service;
 
+import com.trkj.tsm.entity.Classes;
 import com.trkj.tsm.vo.ClassesVo;
 
 import java.util.List;
 
 public interface ClassesService {
+    Classes selectClassesBycid(int cid);//班级查询
+
     List<ClassesVo> selectAllClasses(String likeke);//页面显示加分页查询
 
     ClassesVo updateClasses_Open(ClassesVo classesVo);//开班修改
