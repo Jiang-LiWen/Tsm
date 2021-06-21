@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.trkj.tsm.entity.Dept;
 import com.trkj.tsm.entity.Enterprise;
 import com.trkj.tsm.entity.Position;
+import com.trkj.tsm.entity.SysMenu;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.NonNull;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -184,6 +186,10 @@ public class EmpVo {
      * 密码是否没有过期
      */
     private Boolean credentialsNonExpired;
+
+    private String token;
+    private boolean isValidate;
+    private List<SysMenu> menus;
 
     private static final long serialVersionUID = 1L;
 }
