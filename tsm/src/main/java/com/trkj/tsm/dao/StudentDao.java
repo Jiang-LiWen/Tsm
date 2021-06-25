@@ -16,15 +16,4 @@ public interface StudentDao {
 
     int deleteStudent(Student record);//删除学员
 
-//    int deleteByPrimaryKey(Integer studentId);
-//
-//    int insert(Student record);
-//
-//    int insertSelective(Student record);
-//
-//    Student selectByPrimaryKey(Integer studentId);
-//
-//    int updateByPrimaryKeySelective(Student record);
-//
-//    int updateByPrimaryKey(Student record);
 }

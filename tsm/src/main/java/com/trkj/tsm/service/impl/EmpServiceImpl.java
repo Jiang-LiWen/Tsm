@@ -6,6 +6,7 @@ import com.trkj.tsm.service.EmpService;
 import com.trkj.tsm.util.BeanCopyUtil;
 import com.trkj.tsm.vo.EmpVo;
 import lombok.extern.slf4j.Slf4j;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,8 @@ import java.util.List;
 @Service
 @Slf4j
 public class EmpServiceImpl implements EmpService {
-    @Resource
+    private static DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
+    @Autowired
     private EmpDao empDao;
 
     @Override
@@ -73,5 +75,12 @@ public class EmpServiceImpl implements EmpService {
     public List<EmpVo> selectEmpLike(String likeke) {
 
         return empDao.selectEmpLike(likeke);
+    }
+    @Override
+    public EmpVo findByUsername(String username) {
+        Emp emp = empDao.findByUsername(username);
+        EmpVo vo = new EmpVo();
+        dozerBeanMapper.map(emp, vo);
+        return vo;
     }
 }

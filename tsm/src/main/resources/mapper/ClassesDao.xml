@@ -149,6 +149,22 @@
     detailcourse.DeleteTime, detailcourse.TimeLiness
   </sql>
 
+  <select id="selectClassesBycid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />,
+    <include refid="Base_Column_Listcourse" />,
+    <include refid="Base_Column_Liste" />,
+    <include refid="Base_Column_Listt" />,
+    <include refid="Base_Column_Listdetailcourse" />
+
+    from classes
+    inner join course on classes.Course_Id=course.Course_Id
+    inner join emp e on classes.Emp_Id=e.Emp_Id
+    inner join emp t on classes.Teacher_Id=t.Emp_Id
+    inner join detailcourse on classes.DetailCourse_Id=detailcourse.DetailCourse_Id
+
+    where classes.TimeLiness=0 and classes.Classes_Id=#{cid}
+  </select>
   <select id="selectAllClasses" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />,

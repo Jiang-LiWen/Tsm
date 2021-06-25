@@ -75,6 +75,8 @@
       <result column="Dept_Id" jdbcType="INTEGER" property="deptId" />
       <result column="Position_Id" jdbcType="INTEGER" property="positionId" />
       <result column="Enterprise_Id" jdbcType="INTEGER" property="enterpriseId" />
+      <result column="UserImg" jdbcType="VARCHAR" property="userimg" />
+      <result column="IndividualImg" jdbcType="VARCHAR" property="individualimg" />
       <result column="JobNumber" jdbcType="VARCHAR" property="jobnumber" />
       <result column="Emp_Name" jdbcType="VARCHAR" property="empName" />
       <result column="Emp_Sex" jdbcType="CHAR" property="empSex" />
@@ -84,7 +86,7 @@
       <result column="Remarks" jdbcType="VARCHAR" property="remarks" />
       <result column="Address" jdbcType="VARCHAR" property="address" />
       <result column="EmpState" jdbcType="INTEGER" property="empstate" />
-      <result column="Passwords" jdbcType="VARCHAR" property="passwords" />
+      <!--    <result column="Passwords" jdbcType="VARCHAR" property="passwords" />-->
       <result column="Addname" jdbcType="VARCHAR" property="addname" />
       <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
       <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
@@ -94,6 +96,14 @@
       <result column="LoginState" jdbcType="INTEGER" property="loginstate" />
       <result column="Education" jdbcType="VARCHAR" property="education" />
       <result column="Graduate" jdbcType="VARCHAR" property="graduate" />
+
+      <result column="username" jdbcType="VARCHAR" property="username"/>
+      <result column="password" jdbcType="VARCHAR" property="password"/>
+      <result column="enabled" jdbcType="INTEGER" property="enabled"/>
+      <result column="account_non_expired" jdbcType="BIT" property="accountNonExpired"/>
+      <result column="account_non_locked" jdbcType="BIT" property="accountNonLocked"/>
+      <result column="credentials_non_expired" jdbcType="BIT" property="credentialsNonExpired"/>
+
     </association>
   </resultMap>
   <sql id="Base_Column_List_reg">
@@ -111,9 +121,10 @@
     co.DeleteName, co.DeleteTime, co.TimeLiness
   </sql>
   <sql id="Base_Column_List_emp">
-    e.Emp_Id, e.Dept_Id, e.Position_Id, e.Enterprise_Id, e.JobNumber, e.Emp_Name, e.Emp_Sex, Emp_Phone,
-    e.E_mail, e.Birthday, e.Remarks, Address, e.EmpState, e.Passwords, e.Addname, e.AddTime, e.UpdateName,
-    e.UpdateTime, e.DeleteName, e.DeleteTime, e.LoginState, e.Education, e.Graduate
+    e.Emp_Id, e.Dept_Id, e.Position_Id, e.Enterprise_Id, e.UserImg, e.IndividualImg, e.JobNumber, e.Emp_Name,
+    e.Emp_Sex, e.Emp_Phone, e.E_mail, e.Birthday, e.Remarks, e.Address, e.EmpState, e.Addname,
+    e.AddTime, e.UpdateName, e.UpdateTime, e.DeleteName, e.DeleteTime, e.LoginState, e.Education, e.Graduate,
+    e.username,e.Password , e.enabled,e.account_non_expired,e.account_non_locked,e.credentials_non_expired
   </sql>
   <sql id="Base_Column_List_detcou">
     d.DetailCourse_Id, d.Course_Id, d.DetailCourse_Name, d.Serial, d.AddName, d.ADDTIME, d.UpdateName,
@@ -187,6 +198,7 @@
     inner join detailcourse d on r.DetailCourse_Id = d.DetailCourse_Id
     inner join emp e on r.Emp_Id=e.Emp_Id
     where r.TimeLiness = 0 and s.Source_Name like CONCAT(CONCAT('%' ,#{sourceName , jdbcType=VARCHAR}, '%'))
+    order by r.Register_Id
   </select>
 <!--  课程名称条件查询-->
   <select id="selectRegisterCourse" resultMap="BaseResultMap">
@@ -202,6 +214,7 @@
     inner join detailcourse d on r.DetailCourse_Id = d.DetailCourse_Id
     inner join emp e on r.Emp_Id=e.Emp_Id
     where r.TimeLiness = 0 and co.Course_Name like CONCAT(CONCAT('%' ,#{courseName , jdbcType=VARCHAR}, '%'))
+    order by r.Register_Id
   </select>
 <!--  职工姓名条件查询-->
   <select id="selectRegisterEmp" resultMap="BaseResultMap">
@@ -217,6 +230,7 @@
     inner join detailcourse d on r.DetailCourse_Id = d.DetailCourse_Id
     inner join emp e on r.Emp_Id=e.Emp_Id
     where r.TimeLiness = 0 and e.Emp_Name like CONCAT(CONCAT('%' ,#{empName , jdbcType=VARCHAR}, '%'))
+    order by r.Register_Id
   </select>
 <!--  咨询人姓名条件查询-->
   <select id="selectRegisterConsultAnt" resultMap="BaseResultMap">
@@ -232,6 +246,7 @@
     inner join detailcourse d on r.DetailCourse_Id = d.DetailCourse_Id
     inner join emp e on r.Emp_Id=e.Emp_Id
     where r.TimeLiness = 0 and r.ConsultAnt like CONCAT(CONCAT('%' ,#{consultant , jdbcType=VARCHAR}, '%'))
+    order by r.Register_Id
   </select>
 <!--  咨询人电话条件查询-->
   <select id="selectRegisterPhone" resultMap="BaseResultMap">
@@ -247,6 +262,7 @@
     inner join detailcourse d on r.DetailCourse_Id = d.DetailCourse_Id
     inner join emp e on r.Emp_Id=e.Emp_Id
     where r.TimeLiness = 0 and r.Phone like CONCAT(CONCAT('%' ,#{phone , jdbcType=VARCHAR}, '%'))
+    order by r.Register_Id
   </select>
 <!--  咨询内容条件查询-->
   <select id="selectRegisterConsultContent" resultMap="BaseResultMap">
@@ -262,5 +278,6 @@
     inner join detailcourse d on r.DetailCourse_Id = d.DetailCourse_Id
     inner join emp e on r.Emp_Id=e.Emp_Id
     where r.TimeLiness = 0 and r.ConsultContent like CONCAT(CONCAT('%' ,#{consultcontent , jdbcType=VARCHAR}, '%'))
+    order by r.Register_Id
   </select>
 </mapper>

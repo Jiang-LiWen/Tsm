@@ -2,6 +2,7 @@ package com.trkj.tsm.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.trkj.tsm.entity.Classes;
 import com.trkj.tsm.service.ClassesService;
 import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.ClassesVo;
@@ -17,6 +18,13 @@ import java.util.List;
 public class ClassesController {
     @Autowired
     private ClassesService classesService;
+
+    @GetMapping("/selectClassesBycid/{cid}")
+    public Classes selectClassesBycid(@PathVariable("cid") int cid){
+        log.debug("查询班级信息---------------------------------------------------");
+        Classes entityPage =classesService.selectClassesBycid(cid);
+        return entityPage;
+    }
 
     @GetMapping("/selectAllClasses")
     public PageInfo<ClassesVo> selectAllClasses(@RequestParam("currentPage") int currentPage,

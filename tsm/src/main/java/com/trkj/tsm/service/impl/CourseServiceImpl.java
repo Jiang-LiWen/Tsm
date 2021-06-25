@@ -18,6 +18,11 @@ public class CourseServiceImpl implements CourseService {
     private CourseDao courseDao;
 
     @Override
+    public List<CourseVo> selectAllCourse11() {
+        return courseDao.selectAllCourse11();
+    }
+
+    @Override
     public List<CourseVo> ClassesselectAllCourse() {
         return courseDao.ClassesselectAllCourse();
     }
