@@ -50,4 +50,15 @@ public class BookController {
         return BookPageInfo;
     }
 
+    @GetMapping("selectByPrimaryKey/{bookId}")
+    private BookVo selectByPrimaryKey(@PathVariable("bookId") Integer bookId){
+        log.debug("Controller方法调用");
+        return bookService.selectByPrimaryKey(bookId);
+    }
+
+    @GetMapping("selectByPrimaryKeyyyyy")
+    private List<BookVo> selectByPrimaryKeyyyyy(BookVo bookVo){
+        log.debug("Controller方法调用");
+        return bookService.selectByPrimaryKeyyyyy(bookVo);
+    }
 }

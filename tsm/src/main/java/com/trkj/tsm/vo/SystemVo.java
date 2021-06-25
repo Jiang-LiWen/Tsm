@@ -51,8 +51,7 @@ public class SystemVo {
     /**
      * 录入时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date addtime;
+     private Date addtime;
 
     /**
      * 最后发布人
