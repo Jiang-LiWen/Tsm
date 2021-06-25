@@ -15,6 +15,10 @@
         from sys_role_menu
         where id = #{id,jdbcType=INTEGER}
     </select>
+    <select id="findMenu" resultMap="BaseResultMap">
+        select  <include refid="Base_Column_List"/> from sys_role_menu
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from sys_role_menu
         where id = #{id,jdbcType=INTEGER}

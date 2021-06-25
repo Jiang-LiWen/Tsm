@@ -5,10 +5,7 @@ import com.trkj.tsm.entity.Dept;
 import com.trkj.tsm.entity.Enterprise;
 import com.trkj.tsm.entity.Position;
 import com.trkj.tsm.entity.SysMenu;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.Date;
@@ -170,6 +167,7 @@ public class EmpVo {
     /**
      * 0无效用户，1是有效用户
      */
+//    @Getter(value = AccessLevel.NONE)
     private Boolean enabled;
 
     /**
