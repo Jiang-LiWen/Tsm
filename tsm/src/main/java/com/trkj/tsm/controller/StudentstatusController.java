@@ -2,7 +2,9 @@ package com.trkj.tsm.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.trkj.tsm.entity.Classes;
 import com.trkj.tsm.entity.Studentstatus;
+import com.trkj.tsm.service.ClassesService;
 import com.trkj.tsm.service.StudentstatusService;
 import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.StudentstatusVo;
@@ -19,6 +21,8 @@ import java.util.List;
 public class StudentstatusController {
     @Autowired
     private StudentstatusService studentstatusService;
+    @Autowired
+    private ClassesService classesService;
 
     @GetMapping("/selectStudentstatusLike")
     public PageInfo<StudentstatusVo> selectStudentstatusLike(@RequestParam("currentPage") int currentPage,
@@ -42,9 +46,15 @@ public class StudentstatusController {
 
     @PutMapping("/updateStudentstatus")
     public AjaxResponse updateStudentstatus(@RequestBody @Valid StudentstatusVo studentstatusVo){
-
         log.debug("修改学员---------------------------------------------------");
         studentstatusService.updateStudentstatus(studentstatusVo);
+
+        Classes classes1=classesService.selectClassesBycid(studentstatusVo.getClassesId());
+        Classes classes2=new Classes();
+        classes2.setClassesRCount(classes1.getClassesRCount()+1);
+        classes2.setClassesId(studentstatusVo.getClassesId());
+        classesService.updateClassesRCount(classes2);
+
         return AjaxResponse.success(studentstatusVo);
     }
 

@@ -1,5 +1,6 @@
 package com.trkj.tsm.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.trkj.tsm.entity.Course;
 import com.trkj.tsm.entity.Detailcourse;
 import com.trkj.tsm.entity.Emp;
@@ -58,7 +59,14 @@ public class ClassesVo {
      * 班级名称
      */
     private String classesName;
-
+    /**
+     * 人数限制
+     */
+    private int classesCount;
+    /**
+     * 实际人数
+     */
+    private int classesRCount;
     /**
      * 开班状态
      */
@@ -67,6 +75,7 @@ public class ClassesVo {
     /**
      * 开班时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date opendate;
 
     /**
@@ -77,6 +86,7 @@ public class ClassesVo {
     /**
      * 毕业时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date enddate;
 
     /**

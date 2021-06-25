@@ -93,8 +93,10 @@
 
   <select id="ClassesselectEmp1" resultMap="BaseResultMap">
     select e.Emp_Id, e.Dept_Id, e.Position_Id, e.Enterprise_Id, e.UserImg, e.IndividualImg, e.JobNumber, e.Emp_Name,
-    e.Emp_Sex, e.Emp_Phone, e.E_mail, e.Birthday, e.Remarks, e.Address, e.EmpState, e.Passwords, e.Addname,
-    e.AddTime, e.UpdateName, e.UpdateTime, e.DeleteName, e.DeleteTime, e.LoginState, e.Education, e.Graduate ,d.Dept_Id,d.Dept_Name,
+    e.Emp_Sex, e.Emp_Phone, e.E_mail, e.Birthday, e.Remarks, e.Address, e.EmpState, e.Password, e.Addname,
+    e.AddTime, e.UpdateName, e.UpdateTime, e.DeleteName, e.DeleteTime, e.LoginState, e.Education, e.Graduate ,
+    e.username, e.enabled, e.account_non_expired, e.account_non_locked, e.credentials_non_expired,
+    d.Dept_Id,d.Dept_Name,
     p.Position_Id,p.Position_Name,et.Enterprise_Id,et.Enterprise_Name
     from emp e
     inner join dept d on e.Dept_Id=d.Dept_Id
@@ -105,8 +107,10 @@
 
   <select id="ClassesselectEmp2" resultMap="BaseResultMap">
     select e.Emp_Id, e.Dept_Id, e.Position_Id, e.Enterprise_Id, e.UserImg, e.IndividualImg, e.JobNumber, e.Emp_Name,
-    e.Emp_Sex, e.Emp_Phone, e.E_mail, e.Birthday, e.Remarks, e.Address, e.EmpState, e.Passwords, e.Addname,
-    e.AddTime, e.UpdateName, e.UpdateTime, e.DeleteName, e.DeleteTime, e.LoginState, e.Education, e.Graduate ,d.Dept_Id,d.Dept_Name,
+    e.Emp_Sex, e.Emp_Phone, e.E_mail, e.Birthday, e.Remarks, e.Address, e.EmpState, e.Password, e.Addname,
+    e.AddTime, e.UpdateName, e.UpdateTime, e.DeleteName, e.DeleteTime, e.LoginState, e.Education, e.Graduate ,
+    e.username, e.enabled, e.account_non_expired, e.account_non_locked, e.credentials_non_expired,
+    d.Dept_Id,d.Dept_Name,
     p.Position_Id,p.Position_Name,et.Enterprise_Id,et.Enterprise_Name
     from emp e
     inner join dept d on e.Dept_Id=d.Dept_Id

@@ -3,6 +3,7 @@ package com.trkj.tsm.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -61,7 +62,14 @@ public class Classes implements Serializable {
      * 班级名称
      */
     private String classesName;
-
+    /**
+     * 人数限制
+     */
+    private int classesCount;
+    /**
+     * 实际人数
+     */
+    private int classesRCount;
     /**
      * 开班状态
      */
@@ -70,6 +78,7 @@ public class Classes implements Serializable {
     /**
      * 开班时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date opendate;
 
     /**
@@ -80,6 +89,7 @@ public class Classes implements Serializable {
     /**
      * 毕业时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date enddate;
 
     /**

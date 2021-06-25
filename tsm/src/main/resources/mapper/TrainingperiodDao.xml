@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.tsm.dao.TrainingperiodDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Trainingperiod">
+    <id column="Period_Id" jdbcType="INTEGER" property="periodId" />
+    <result column="PeriodTime" jdbcType="VARCHAR" property="periodtime" />
+    <result column="Period" jdbcType="VARCHAR" property="period" />
+    <result column="AddName" jdbcType="VARCHAR" property="addname" />
+    <result column="ADDTIME" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+    <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+    <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Period_Id, PeriodTime, Period, AddName, ADDTIME, UpdateName, UpdateTime, DeleteName, 
+    DeleteTime, TimeLiness
+  </sql>
+  <select id="selectTrainingperiodLike" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from trainingperiod
+    where trainingperiod.TimeLiness=0
+    and trainingperiod.Period like #{param1}
+    order by trainingperiod.Period_Id desc
+  </select>
+  <select id="selectTrainingperiod" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from trainingperiod
+    where trainingperiod.TimeLiness=0
+  </select>
+  <insert id="insertTrainingperiod" keyColumn="Period_Id" keyProperty="periodId" parameterType="com.trkj.tsm.entity.Trainingperiod" useGeneratedKeys="true">
+    insert into trainingperiod (PeriodTime, Period, AddName)
+    values (#{periodtime,jdbcType=VARCHAR}, #{period,jdbcType=VARCHAR},
+     #{addname,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateTrainingperiod" parameterType="com.trkj.tsm.entity.Trainingperiod">
+    update trainingperiod
+    set PeriodTime = #{periodtime,jdbcType=VARCHAR},
+      Period = #{period,jdbcType=VARCHAR},
+      UpdateName = #{updatename,jdbcType=VARCHAR},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where Period_Id = #{periodId,jdbcType=INTEGER}
+  </update>
+  <update id="deleteTrainingperiod" parameterType="com.trkj.tsm.entity.Trainingperiod">
+    update trainingperiod
+    set
+      DeleteName = #{deletename,jdbcType=VARCHAR},
+      DeleteTime = #{deletetime,jdbcType=TIMESTAMP},
+      TimeLiness = #{timeliness,jdbcType=INTEGER}
+    where Period_Id = #{periodId,jdbcType=INTEGER}
+  </update>
+</mapper>
