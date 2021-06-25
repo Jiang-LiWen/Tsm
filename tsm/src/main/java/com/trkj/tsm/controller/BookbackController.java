@@ -24,8 +24,8 @@ public class BookbackController {
         return classtypePageInfo;
     }
 
-    @DeleteMapping("/delBookback/{bookbackId}")
-    public String delBookback(@PathVariable("bookbackId") int bookbackId){
+    @DeleteMapping("/delBookback")
+    public String delBookback(@RequestParam("bookbackId") int bookbackId){
         log.debug("开始删除");
         bookbackService.deleteByPrimaryKey(bookbackId);
         return "delOk";
@@ -37,8 +37,8 @@ public class BookbackController {
         return bookback;
     }
 
-    @GetMapping("/selectBookback/{value}/{input}")
-    public List<Bookback> selectBookback(@PathVariable("value") String value, @PathVariable("input") String input){
+    @GetMapping("/selectBookback")
+    public List<Bookback> selectBookback(@RequestParam("value") String value, @RequestParam("input") String input){
         return bookbackService.selectBookBack(value, input);
     }
 }
