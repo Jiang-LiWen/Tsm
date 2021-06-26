@@ -19,7 +19,6 @@ public class SystSeviceImpl implements SystSevice {
 
     @Override
     public List<SystemVo> selectAllSystem() {
-
         return systemDao.selectAllSystem();
     }
 

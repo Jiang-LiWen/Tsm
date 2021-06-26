@@ -75,9 +75,10 @@ public class EmpController {
         return AjaxResponse.success(empVo);
     }
     //删除操作
-    @DeleteMapping("/deleteEmp/{empId}")
-    public String deleteEmp(@PathVariable("empId") int empId){
-        log.debug("根据id删除职位信息");
+    @DeleteMapping("/deleteEmp")
+    public String deleteEmp(@RequestParam("empId") int empId){
+
+        log.debug("根据id删除职位信息");w
         empService.deleteByPrimaryKey(empId);
         return "删除成功";
     }

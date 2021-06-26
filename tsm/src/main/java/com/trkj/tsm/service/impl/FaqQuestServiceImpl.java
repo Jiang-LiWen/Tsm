@@ -46,6 +46,7 @@ public class FaqQuestServiceImpl implements FaqQuestService {
     @Override
     public FaqQuestions insertSelective(FaqQuestions faqQuestions) {
         log.debug("添加成功");
+        faqQuestions.setAddname("kkk");
         faqQuestionsDao.insert(faqQuestions);
         return faqQuestions;
     }
@@ -53,6 +54,8 @@ public class FaqQuestServiceImpl implements FaqQuestService {
     @Override
     public FaqQuestions updateFaq(FaqQuestions faqQuestions) {
         log.debug("修改成功");
+        faqQuestions.setUpdatetime(new Date());
+        faqQuestions.setUpdatename("kkk");
         faqQuestionsDao.updateByPrimaryKey(faqQuestions);
         return faqQuestions;
     }

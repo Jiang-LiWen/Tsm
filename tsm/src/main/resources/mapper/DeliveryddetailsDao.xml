@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.tsm.dao.DeliveryddetailsDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.vo.DeliveryddetailsVo">
+    <id column="DeliveryDdetails_Id" jdbcType="INTEGER" property="deliveryddetailsId" />
+    <result column="BookDelivery_Name" jdbcType="VARCHAR" property="bookdeliveryName" />
+    <result column="BookDelivery_Remarks" jdbcType="VARCHAR" property="bookdeliveryRemarks" />
+    <result column="Emp_Id" jdbcType="INTEGER" property="empId" />
+    <result column="BookDelivery_Id" jdbcType="INTEGER" property="bookdeliveryId" />
+    <result column="Book_Id" jdbcType="INTEGER" property="bookId" />
+    <result column="DeliveryCount" jdbcType="INTEGER" property="deliverycount" />
+    <result column="ReceivableMoney" jdbcType="DECIMAL" property="receivablemoney" />
+    <result column="PayMoney" jdbcType="DECIMAL" property="paymoney" />
+    <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+
+    <association property="book" javaType="com.trkj.tsm.entity.Book">
+      <id column="Book_Id" jdbcType="INTEGER" property="bookId" />
+      <result column="BookName" jdbcType="VARCHAR" property="bookname" />
+      <result column="DeliveryCount" jdbcType="INTEGER" property="deliverycount" />
+      <result column="BookSprice" jdbcType="DECIMAL" property="booksprice" />
+      <result column="BookJprice" jdbcType="DECIMAL" property="bookjprice" />
+      <result column="SafeStock" jdbcType="INTEGER" property="safestock" />
+      <result column="Press" jdbcType="VARCHAR" property="press" />
+      <result column="State" jdbcType="INTEGER" property="state" />
+    </association>
+
+    <association property="bookdelivery" javaType="com.trkj.tsm.entity.Bookdelivery">
+    <id column="BookDelivery_Id" jdbcType="INTEGER" property="bookdeliveryId" />
+    <result column="BookDelivery_Name" jdbcType="VARCHAR" property="bookdeliveryName" />
+    <result column="BookDelivery_Remarks" jdbcType="VARCHAR" property="bookdeliveryRemarks" />
+    <result column="Emp_Id" jdbcType="INTEGER" property="empId" />
+    <result column="SaleNumber" jdbcType="VARCHAR" property="salenumber" />
+    <result column="DeliveryTime" jdbcType="TIMESTAMP" property="deliverytime" />
+    <result column="Tota" jdbcType="DECIMAL" property="tota" />
+    <result column="PayMoney" jdbcType="DECIMAL" property="paymoney" />
+    <result column="Approval" jdbcType="INTEGER" property="approval" />
+    <result column="AppName" jdbcType="VARCHAR" property="appname" />
+    <result column="AppTime" jdbcType="TIMESTAMP" property="apptime" />
+    <result column="Revoke_AppName" jdbcType="VARCHAR" property="revokeAppname" />
+    <result column="Revoke_AppTime" jdbcType="TIMESTAMP" property="revokeApptime" />
+    <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+    <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+    <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    </association>
+
+    <collection property="emp" ofType="com.trkj.tsm.entity.Emp">
+      <id column="Emp_Id" jdbcType="INTEGER" property="empId" />
+      <result column="Dept_Id" jdbcType="INTEGER" property="deptId" />
+      <result column="Position_Id" jdbcType="INTEGER" property="positionId" />
+      <result column="Enterprise_Id" jdbcType="INTEGER" property="enterpriseId" />
+      <result column="UserImg" jdbcType="VARCHAR" property="userimg" />
+      <result column="IndividualImg" jdbcType="VARCHAR" property="individualimg" />
+      <result column="JobNumber" jdbcType="VARCHAR" property="jobnumber" />
+      <result column="Emp_Name" jdbcType="VARCHAR" property="empName" />
+      <result column="Emp_Sex" jdbcType="CHAR" property="empSex" />
+      <result column="Emp_Phone" jdbcType="VARCHAR" property="empPhone" />
+      <result column="E_mail" jdbcType="VARCHAR" property="eMail" />
+      <result column="Birthday" jdbcType="TIMESTAMP" property="birthday" />
+      <result column="Remarks" jdbcType="VARCHAR" property="remarks" />
+      <result column="Address" jdbcType="VARCHAR" property="address" />
+      <result column="EmpState" jdbcType="INTEGER" property="empstate" />
+      <result column="Password" jdbcType="VARCHAR" property="password" />
+      <result column="Addname" jdbcType="VARCHAR" property="addname" />
+      <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="LoginState" jdbcType="INTEGER" property="loginstate" />
+      <result column="Education" jdbcType="VARCHAR" property="education" />
+      <result column="Graduate" jdbcType="VARCHAR" property="graduate" />
+      <result column="username" jdbcType="VARCHAR" property="username"/>
+      <result column="password" jdbcType="VARCHAR" property="password"/>
+      <result column="enabled" jdbcType="INTEGER" property="enabled"/>
+      <result column="account_non_expired" jdbcType="BIT" property="accountNonExpired"/>
+      <result column="account_non_locked" jdbcType="BIT" property="accountNonLocked"/>
+      <result column="credentials_non_expired" jdbcType="BIT" property="credentialsNonExpired"/>
+    </collection>
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    d.DeliveryDdetails_Id, d.BookDelivery_Name, d.BookDelivery_Remarks, d.Emp_Id, d.BookDelivery_Id,
+    d.Book_Id, d.DeliveryCount, d.ReceivableMoney, d.TimeLiness
+  </sql>
+
+  <sql id="emp">
+    em.Emp_Id, em.Dept_Id, em.Position_Id, em.Enterprise_Id, em.UserImg, em.IndividualImg, em.JobNumber, em.Emp_Name,
+    em.Emp_Sex, em.Emp_Phone, em.E_mail, em.Birthday, Remarks, em.Address, em.EmpState, em.Addname,
+    em.AddTime, em.UpdateName, em.UpdateTime, em.DeleteName, em.DeleteTime, em.LoginState, em.Education, em.Graduate,
+    em.username,em.Password , em.enabled,em.account_non_expired,em.account_non_locked,em.credentials_non_expired
+  </sql>
+
+  <sql id="book">
+    bo.Book_Id, bo.BookName, bo.DeliveryCount, bo.BookSprice, bo.BookJprice, bo.SafeStock, bo.Press, bo.`State`,
+    bo.Storagee
+  </sql>
+
+  <sql id="bookdelivery">
+    e.BookDelivery_Id, e.BookDelivery_Name, e.BookDelivery_Remarks, e.Emp_Id, e.SaleNumber, e.DeliveryTime,
+    e.Tota, e.PayMoney, e.Approval, e.AppName, e.AppTime, e.Revoke_AppName, e.Revoke_AppTime, e.UpdateName,
+    e.UpdateTime, e.DeleteName, e.DeleteTime, e.TimeLiness
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from deliveryddetails
+    where DeliveryDdetails_Id = #{deliveryddetailsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from deliveryddetails
+    where DeliveryDdetails_Id = #{deliveryddetailsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelectivehhp" keyColumn="DeliveryDdetails_Id" keyProperty="deliveryddetailsId" parameterType="com.trkj.tsm.entity.Deliveryddetails" useGeneratedKeys="true">
+    insert into deliveryddetails (BookDelivery_Name, BookDelivery_Remarks, 
+      Emp_Id, BookDelivery_Id, Book_Id,
+      DeliveryCount, ReceivableMoney, PayMoney)
+    values (#{bookdeliveryName,jdbcType=VARCHAR}, #{bookdeliveryRemarks,jdbcType=VARCHAR}, 
+      #{empId,jdbcType=INTEGER}, #{bookdeliveryId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER}, 
+      #{deliverycount,jdbcType=INTEGER}, #{receivablemoney,jdbcType=DECIMAL}, #{paymoney,jdbcType=DECIMAL})
+  </insert>
+
+
+
+  <insert id="insertSelecti" keyColumn="DeliveryDdetails_Id" keyProperty="deliveryddetailsId" parameterType="com.trkj.tsm.vo.DeliveryddetailsVo" useGeneratedKeys="true">
+    insert into deliveryddetails
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bookdeliveryName != null">
+        BookDelivery_Name,
+      </if>
+      <if test="bookdeliveryRemarks != null">
+        BookDelivery_Remarks,
+      </if>
+      <if test="empId != null">
+        Emp_Id,
+      </if>
+      <if test="bookdeliveryId != null">
+        BookDelivery_Id,
+      </if>
+      <if test="bookId != null">
+        Book_Id,
+      </if>
+      <if test="deliverycount != null">
+        DeliveryCount,
+      </if>
+      <if test="receivablemoney != null">
+        ReceivableMoney,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bookdeliveryName != null">
+        #{bookdeliveryName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookdeliveryRemarks != null">
+        #{bookdeliveryRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="empId != null">
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="bookdeliveryId != null">
+        #{bookdeliveryId,jdbcType=INTEGER},
+      </if>
+      <if test="bookId != null">
+        #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="deliverycount != null">
+        #{deliverycount,jdbcType=INTEGER},
+      </if>
+      <if test="receivablemoney != null">
+        #{receivablemoney,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.trkj.tsm.vo.DeliveryddetailsVo">
+    update deliveryddetails
+    <set>
+      <if test="bookdeliveryName != null">
+        BookDelivery_Name = #{bookdeliveryName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookdeliveryRemarks != null">
+        BookDelivery_Remarks = #{bookdeliveryRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="empId != null">
+        Emp_Id = #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="bookdeliveryId != null">
+        BookDelivery_Id = #{bookdeliveryId,jdbcType=INTEGER},
+      </if>
+      <if test="bookId != null">
+        Book_Id = #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="deliverycount != null">
+        DeliveryCount = #{deliverycount,jdbcType=INTEGER},
+      </if>
+      <if test="receivablemoney != null">
+        ReceivableMoney = #{receivablemoney,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where DeliveryDdetails_Id = #{deliveryddetailsId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKeymmc" parameterType="com.trkj.tsm.entity.Deliveryddetails">
+    update deliveryddetails
+    set TimeLiness = 1
+    where DeliveryDdetails_Id = #{deliveryddetailsId,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectAllssss" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />,
+    <include refid="book" />,
+    <include refid="bookdelivery"/>,
+    <include refid="emp"/>
+    from deliveryddetails d
+    inner join book bo on d.Book_Id=bo.Book_Id
+    inner join bookdelivery e on d.BookDelivery_Id=e.BookDelivery_Id
+    inner join emp em on d.Emp_Id=em.Emp_Id
+    where d.TimeLiness=0
+    <if test="bookname!=null">
+      AND bo.BookName like CONCAT ('%',#{flag,jdbcType=VARCHAR},'%')
+    </if>
+  </select>
+</mapper>

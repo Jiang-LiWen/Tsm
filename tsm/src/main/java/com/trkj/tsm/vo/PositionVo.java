@@ -7,6 +7,7 @@ import lombok.NonNull;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Validated
@@ -73,6 +74,8 @@ public class PositionVo {
      * 时效性 0：未过期；1：已过期
      */
     private Integer timeliness;
+
+    private List<MenuVo> menus;
 
     private static final long serialVersionUID = 1L;
 }

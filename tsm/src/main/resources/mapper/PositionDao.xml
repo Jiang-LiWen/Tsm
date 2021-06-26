@@ -20,6 +20,12 @@
     DeleteTime, TimeLiness
   </sql>
 
+  <select id="findRoleByUserName" resultType="java.lang.String" parameterType="string">
+        SELECT r.role_code FROM position r LEFT JOIN sys_user_role ur ON r.Position_Id = ur.role_id
+        LEFT JOIN emp u ON u.Emp_Id = ur.user_id
+        WHERE u.username = #{username}
+    </select>
+
   <select id="selectPosition" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/> from position where TimeLiness=0
   </select>
@@ -39,11 +45,11 @@
   </delete>
 
   <insert id="insert" keyColumn="Position_Id" keyProperty="positionId" parameterType="com.trkj.tsm.entity.Position" useGeneratedKeys="true">
-    insert into position (Position_Id, Position_Name,role_desc,role_code,status, AddName,
+    insert into position (Position_Id, Position_Name,role_desc,role_code, AddName,
       UpdateName, UpdateTime, DeleteName, 
       DeleteTime)
     values (#{positionId,jdbcType=INTEGER}, #{positionName,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR},
-      #{roleCode,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},#{addname,jdbcType=VARCHAR},
+      #{roleCode,jdbcType=VARCHAR},#{addname,jdbcType=VARCHAR},
       #{updatename,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{deletename,jdbcType=VARCHAR}, 
       #{deletetime,jdbcType=TIMESTAMP})
   </insert>

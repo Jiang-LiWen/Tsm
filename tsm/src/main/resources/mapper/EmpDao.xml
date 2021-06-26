@@ -91,6 +91,13 @@
     username,Password , enabled,account_non_expired,account_non_locked,credentials_non_expired
   </sql>
 
+  <select id="findByUsername" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from emp
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+
   <select id="ClassesselectEmp1" resultMap="BaseResultMap">
     select e.Emp_Id, e.Dept_Id, e.Position_Id, e.Enterprise_Id, e.UserImg, e.IndividualImg, e.JobNumber, e.Emp_Name,
     e.Emp_Sex, e.Emp_Phone, e.E_mail, e.Birthday, e.Remarks, e.Address, e.EmpState, e.Password, e.Addname,
