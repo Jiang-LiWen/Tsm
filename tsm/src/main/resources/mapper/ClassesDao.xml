@@ -8,6 +8,8 @@
     <result column="Emp_Id" jdbcType="INTEGER" property="empId" />
     <result column="DetailCourse_Id" jdbcType="INTEGER" property="detailcourseId" />
     <result column="Classes_Name" jdbcType="VARCHAR" property="classesName" />
+    <result column="Classes_Count" jdbcType="INTEGER" property="classesCount" />
+    <result column="Classes_RCount" jdbcType="INTEGER" property="classesRCount" />
     <result column="Classes_Open" jdbcType="INTEGER" property="classesOpen" />
     <result column="OpenDate" jdbcType="TIMESTAMP" property="opendate" />
     <result column="Classes_State" jdbcType="INTEGER" property="classesState" />
@@ -55,7 +57,7 @@
       <result column="Remarks" jdbcType="VARCHAR" property="remarks" />
       <result column="Address" jdbcType="VARCHAR" property="address" />
       <result column="EmpState" jdbcType="INTEGER" property="empstate" />
-      <result column="Passwords" jdbcType="VARCHAR" property="passwords" />
+      <!--    <result column="Passwords" jdbcType="VARCHAR" property="passwords" />-->
       <result column="Addname" jdbcType="VARCHAR" property="addname" />
       <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
       <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
@@ -65,6 +67,12 @@
       <result column="LoginState" jdbcType="INTEGER" property="loginstate" />
       <result column="Education" jdbcType="VARCHAR" property="education" />
       <result column="Graduate" jdbcType="VARCHAR" property="graduate" />
+      <result column="username" jdbcType="VARCHAR" property="username"/>
+      <result column="password" jdbcType="VARCHAR" property="password"/>
+      <result column="enabled" jdbcType="INTEGER" property="enabled"/>
+      <result column="account_non_expired" jdbcType="BIT" property="accountNonExpired"/>
+      <result column="account_non_locked" jdbcType="BIT" property="accountNonLocked"/>
+      <result column="credentials_non_expired" jdbcType="BIT" property="credentialsNonExpired"/>
     </association>
     <association property="tteacher" javaType="com.trkj.tsm.entity.Emp">
       <id column="Teachers_Emp_Id" jdbcType="INTEGER" property="empId" />
@@ -82,7 +90,7 @@
       <result column="Teachers_Remarks" jdbcType="VARCHAR" property="remarks" />
       <result column="Teachers_Address" jdbcType="VARCHAR" property="address" />
       <result column="Teachers_EmpState" jdbcType="INTEGER" property="empstate" />
-      <result column="Teachers_Passwords" jdbcType="VARCHAR" property="passwords" />
+      <result column="Teachers_Passwords" jdbcType="VARCHAR" property="password" />
       <result column="Teachers_Addname" jdbcType="VARCHAR" property="addname" />
       <result column="Teachers_AddTime" jdbcType="TIMESTAMP" property="addtime" />
       <result column="Teachers_UpdateName" jdbcType="VARCHAR" property="updatename" />
@@ -92,6 +100,13 @@
       <result column="Teachers_LoginState" jdbcType="INTEGER" property="loginstate" />
       <result column="Teachers_Education" jdbcType="VARCHAR" property="education" />
       <result column="Teachers_Graduate" jdbcType="VARCHAR" property="graduate" />
+
+      <result column="username" jdbcType="VARCHAR" property="username"/>
+<!--      <result column="password" jdbcType="VARCHAR" property="password"/>-->
+      <result column="enabled" jdbcType="INTEGER" property="enabled"/>
+      <result column="account_non_expired" jdbcType="BIT" property="accountNonExpired"/>
+      <result column="account_non_locked" jdbcType="BIT" property="accountNonLocked"/>
+      <result column="credentials_non_expired" jdbcType="BIT" property="credentialsNonExpired"/>
     </association>
     <association property="detailcourse" javaType="com.trkj.tsm.entity.Detailcourse">
       <id column="DetailCourse_Id" jdbcType="INTEGER" property="detailcourseId" />
@@ -111,9 +126,11 @@
       <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
     </association>
   </resultMap>
+
   <sql id="Base_Column_List">
     classes.Classes_Id, classes.Course_Id, classes.Teacher_Id, classes.Emp_Id, classes.DetailCourse_Id,
-    classes.Classes_Name, classes.Classes_Open,classes.OpenDate, classes.Classes_State,
+    classes.Classes_Name,classes.Classes_Count,classes.Classes_RCount,
+     classes.Classes_Open,classes.OpenDate, classes.Classes_State,
     classes.EndDate, classes.AddName, classes.AddTIME, classes.UpdateName, classes.UpdateTime,
     classes.DeleteName,classes.DeleteTime, classes.TimeLiness
   </sql>
@@ -126,7 +143,7 @@
   <sql id="Base_Column_Liste">
     e.Emp_Id, e.Dept_Id, e.Position_Id, e.Enterprise_Id, e.UserImg, e.IndividualImg, e.JobNumber,
     e.Emp_Name, e.Emp_Sex, e.Emp_Phone, e.E_mail, e.Birthday, e.Remarks, e.Address, e.EmpState,
-    e.Passwords, e.Addname, e.AddTime, e.UpdateName, e.UpdateTime, e.DeleteName, e.DeleteTime,
+    e.password, e.Addname, e.AddTime, e.UpdateName, e.UpdateTime, e.DeleteName, e.DeleteTime,
     e.LoginState, e.Education, e.Graduate
   </sql>
   <sql id="Base_Column_Listt">
@@ -135,7 +152,7 @@
     t.IndividualImg Teachers_IndividualImg, t.JobNumber Teachers_JobNumber,
     t.Emp_Name Teachers_Name, t.Emp_Sex Teachers_Emp_Sex, t.Emp_Phone Teachers_Emp_Phone,
     t.E_mail Teachers_E_mail, t.Birthday Teachers_Birthday, t.Remarks Teachers_Remarks,
-    t.Address Teachers_Address, t.EmpState Teachers_EmpState,t.Passwords Teachers_Passwords,
+    t.Address Teachers_Address, t.EmpState Teachers_EmpState,t.Password Teachers_Passwords,
     t.Addname Teachers_Addname, t.AddTime Teachers_AddTime, t.UpdateName Teachers_UpdateName,
     t.UpdateTime Teachers_UpdateTime, t.DeleteName Teachers_DeleteName,
     t.DeleteTime Teachers_DeleteTime,t.LoginState Teachers_LoginState,
@@ -149,6 +166,38 @@
     detailcourse.DeleteTime, detailcourse.TimeLiness
   </sql>
 
+  <select id="selectClassesOpen1" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />,
+    <include refid="Base_Column_Listcourse" />,
+    <include refid="Base_Column_Liste" />,
+    <include refid="Base_Column_Listt" />,
+    <include refid="Base_Column_Listdetailcourse" />
+
+    from classes
+    inner join course on classes.Course_Id=course.Course_Id
+    inner join emp e on classes.Emp_Id=e.Emp_Id
+    inner join emp t on classes.Teacher_Id=t.Emp_Id
+    inner join detailcourse on classes.DetailCourse_Id=detailcourse.DetailCourse_Id
+
+    where classes.TimeLiness=0 and classes.Classes_State = 1
+  </select>
+  <select id="selectClassesOpen" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />,
+    <include refid="Base_Column_Listcourse" />,
+    <include refid="Base_Column_Liste" />,
+    <include refid="Base_Column_Listt" />,
+    <include refid="Base_Column_Listdetailcourse" />
+
+    from classes
+    inner join course on classes.Course_Id=course.Course_Id
+    inner join emp e on classes.Emp_Id=e.Emp_Id
+    inner join emp t on classes.Teacher_Id=t.Emp_Id
+    inner join detailcourse on classes.DetailCourse_Id=detailcourse.DetailCourse_Id
+
+    where classes.TimeLiness=0 and classes.Classes_State = 0
+  </select>
   <select id="selectClassesBycid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />,
@@ -218,28 +267,14 @@
     where classes.Classes_Id = #{classesId,jdbcType=INTEGER}
   </update>
   <insert id="insertClasses" keyColumn="Classes_Id" keyProperty="classesId" parameterType="com.trkj.tsm.entity.Classes" useGeneratedKeys="true">
-    insert into classes (Course_Id, Teacher_Id, Emp_Id, DetailCourse_Id, Classes_Name,AddName)
+    insert into classes (Course_Id, Teacher_Id, Emp_Id, DetailCourse_Id, Classes_Name,Classes_Count,AddName)
     values (#{courseId,jdbcType=INTEGER}, #{teacherId,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER},
-    #{detailcourseId,jdbcType=INTEGER}, #{classesName,jdbcType=VARCHAR},#{addname,jdbcType=VARCHAR})
+    #{detailcourseId,jdbcType=INTEGER}, #{classesName,jdbcType=VARCHAR}, #{classesCount,jdbcType=INTEGER},#{addname,jdbcType=VARCHAR})
   </insert>
-  <!--  <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Classes">-->
-  <!--    update classes-->
-  <!--    set Course_Id = #{courseId,jdbcType=INTEGER},-->
-  <!--      Teacher_Id = #{teacherId,jdbcType=INTEGER},-->
-  <!--      Emp_Id = #{empId,jdbcType=INTEGER},-->
-  <!--      DetailCourse_Id = #{detailcourseId,jdbcType=INTEGER},-->
-  <!--      Classes_Name = #{classesName,jdbcType=VARCHAR},-->
-  <!--      Classes_Open = #{classesOpen,jdbcType=INTEGER},-->
-  <!--      OpenDate = #{opendate,jdbcType=TIMESTAMP},-->
-  <!--      Classes_State = #{classesState,jdbcType=INTEGER},-->
-  <!--      EndDate = #{enddate,jdbcType=TIMESTAMP},-->
-  <!--      AddName = #{addname,jdbcType=VARCHAR},-->
-  <!--      AddTIME = #{addtime,jdbcType=TIMESTAMP},-->
-  <!--      UpdateName = #{updatename,jdbcType=VARCHAR},-->
-  <!--      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},-->
-  <!--      DeleteName = #{deletename,jdbcType=VARCHAR},-->
-  <!--      DeleteTime = #{deletetime,jdbcType=TIMESTAMP},-->
-  <!--      TimeLiness = #{timeliness,jdbcType=INTEGER}-->
-  <!--    where Classes_Id = #{classesId,jdbcType=INTEGER}-->
-  <!--  </update>-->
+  <update id="updateClassesRCount" parameterType="com.trkj.tsm.entity.Classes">
+    update classes
+    set classes.Classes_RCount = #{classesRCount,jdbcType=INTEGER}
+    where classes.Classes_Id = #{classesId,jdbcType=INTEGER}
+  </update>
+
 </mapper>

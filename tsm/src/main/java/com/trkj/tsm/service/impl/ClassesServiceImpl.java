@@ -17,6 +17,16 @@ public class ClassesServiceImpl implements ClassesService {
     private ClassesDao classesDao;
 
     @Override
+    public List<Classes> selectClassesOpen1() {
+        return classesDao.selectClassesOpen1();
+    }
+
+    @Override
+    public List<Classes> selectClassesOpen() {
+        return classesDao.selectClassesOpen();
+    }
+
+    @Override
     public Classes selectClassesBycid(int cid) {
         Classes classes=classesDao.selectClassesBycid(cid);
         return classes;
@@ -70,5 +80,12 @@ public class ClassesServiceImpl implements ClassesService {
         BeanCopyUtil.copyProperties(classesVo,d);
         classesDao.insertClasses(d);
         return classesVo;
+    }
+
+    @Override
+    public Classes updateClassesRCount(Classes classes) {
+        log.debug("修改班级实际人数");
+        classesDao.updateClassesRCount(classes);
+        return classes;
     }
 }

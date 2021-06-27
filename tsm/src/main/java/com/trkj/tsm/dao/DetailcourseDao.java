@@ -16,6 +16,10 @@ public interface DetailcourseDao {
 
     int insertDetailcourse(DetailcourseVo record);//添加课时
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 5ed5b765b3eb5ebac4d958cc2879b483f017e4d0
     List<DetailcourseVo> selectByPrimaryKey();
 //    int deleteByPrimaryKey(Integer detailcourseId);
 //
@@ -28,4 +32,8 @@ public interface DetailcourseDao {
 //    int updateByPrimaryKeySelective(Detailcourse record);
 //
 //    int updateByPrimaryKey(Detailcourse record);
+<<<<<<< HEAD
+
+=======
+>>>>>>> 5ed5b765b3eb5ebac4d958cc2879b483f017e4d0
 }

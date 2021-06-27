@@ -23,4 +23,6 @@ public interface ClassroomDao {
 
     List<Classroom> selectAlls(String flag);
 
+    List<Classroom> selectAllsClassRoom();//查找所有未过期的教室信息
+
 }

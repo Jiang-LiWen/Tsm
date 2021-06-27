@@ -19,6 +19,7 @@ public class ClassesController {
     @Autowired
     private ClassesService classesService;
 
+
     @GetMapping("/selectClassesBycid")
     public Classes selectClassesBycid(@RequestParam("cid") int cid){
         log.debug("查询班级信息---------------------------------------------------");
@@ -26,6 +27,20 @@ public class ClassesController {
         return entityPage;
     }
 
+    @GetMapping("/selectClassesOpen1")
+    public List<Classes> selectClassesOpen1(){
+        log.debug("查询班级信息---------------------------------------------------");
+        List<Classes> entityPage =classesService.selectClassesOpen1();
+        return entityPage;
+    }
+
+    @GetMapping("/selectClassesOpen")
+    public List<Classes> selectClassesOpen(){
+        log.debug("查询班级信息---------------------------------------------------");
+        List<Classes> entityPage =classesService.selectClassesOpen();
+        return entityPage;
+    }
+    
     @GetMapping("/selectAllClasses")
     public PageInfo<ClassesVo> selectAllClasses(@RequestParam("currentPage") int currentPage,
                                                 @RequestParam("pagesize") int pagesize,
@@ -41,6 +56,7 @@ public class ClassesController {
     @PutMapping("/updateClasses_Open")
     public AjaxResponse updateClasses_Open(@RequestBody @Valid ClassesVo classesVo){
         log.debug("开班修改---------------------------------------------------");
+        classesVo.setOpendate(new Date());
         classesService.updateClasses_Open(classesVo);
         return AjaxResponse.success(classesVo);
     }
@@ -48,6 +64,7 @@ public class ClassesController {
     @PutMapping("/updateClasses_State")
     public AjaxResponse updateClasses_State(@RequestBody @Valid ClassesVo classesVo){
         log.debug("毕业修改---------------------------------------------------");
+        classesVo.setEnddate(new Date());
         classesService.updateClasses_State(classesVo);
         return AjaxResponse.success(classesVo);
     }

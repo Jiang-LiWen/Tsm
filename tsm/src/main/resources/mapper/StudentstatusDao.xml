@@ -40,6 +40,8 @@
       <result column="Emp_Id" jdbcType="INTEGER" property="empId" />
       <result column="DetailCourse_Id" jdbcType="INTEGER" property="detailcourseId" />
       <result column="Classes_Name" jdbcType="VARCHAR" property="classesName" />
+      <result column="Classes_Count" jdbcType="INTEGER" property="classesCount" />
+      <result column="Classes_RCount" jdbcType="INTEGER" property="classesRCount" />
       <result column="Classes_Open" jdbcType="INTEGER" property="classesOpen" />
       <result column="OpenDate" jdbcType="TIMESTAMP" property="opendate" />
       <result column="Classes_State" jdbcType="INTEGER" property="classesState" />
@@ -66,16 +68,19 @@
   </sql>
   <sql id="Base_Column_c">
     classes.Classes_Id, classes.Course_Id, classes.Teacher_Id, classes.Emp_Id, classes.DetailCourse_Id,
-    classes.Classes_Name, classes.Classes_Open,classes.OpenDate, classes.Classes_State,
+    classes.Classes_Name,classes.Classes_Count,classes.Classes_RCount,
+     classes.Classes_Open,classes.OpenDate, classes.Classes_State,
     classes.EndDate, classes.AddName, classes.AddTIME, classes.UpdateName, classes.UpdateTime,
     classes.DeleteName,classes.DeleteTime, classes.TimeLiness
   </sql>
   <select id="selectStudentstatusLike" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />,
-    <include refid="Base_Column_s" />
+    <include refid="Base_Column_s" />,
+    <include refid="Base_Column_c" />
     from studentstatus
     inner join student s on studentstatus.Student_Id=s.Student_Id
+    inner join classes on studentstatus.Classes_Id=classes.Classes_Id
     where studentstatus.TimeLiness=0 and ((s.Student_Name like #{param1}
     or s.Student_Id like #{param1}) and (studentstatus.`STATUS` like #{param2}))
   </select>
@@ -91,7 +96,7 @@
   </select>
   <insert id="insertStudentstatus" keyColumn="StudentStatus_Id" keyProperty="studentstatusId" parameterType="com.trkj.tsm.entity.Studentstatus" useGeneratedKeys="true">
     insert into studentstatus (Classes_Id,Student_Id, SignUpTime)
-    values (#{classesId,jdbcType=INTEGER},#{studentId,jdbcType=INTEGER}, #{signuptime,jdbcType=TIMESTAMP})
+    values ('0',#{studentId,jdbcType=INTEGER}, #{signuptime,jdbcType=TIMESTAMP})
   </insert>
   <update id="updateStudentstatus" parameterType="com.trkj.tsm.entity.Studentstatus">
     update studentstatus
