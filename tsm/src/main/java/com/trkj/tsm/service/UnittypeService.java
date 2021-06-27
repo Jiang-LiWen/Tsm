@@ -1,5 +1,6 @@
 package com.trkj.tsm.service;
 
+import com.trkj.tsm.vo.PositionVo;
 import com.trkj.tsm.vo.UnittypeVo;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface UnittypeService {
     List<UnittypeVo> selectUnittype();
 
     List<UnittypeVo> selectUnittypes();
+
+    List<UnittypeVo> selectPositionlike(String likeke);//页面显示加分页模糊查询
 }

@@ -19,8 +19,8 @@ public class ClassesController {
     @Autowired
     private ClassesService classesService;
 
-    @GetMapping("/selectClassesBycid/{cid}")
-    public Classes selectClassesBycid(@PathVariable("cid") int cid){
+    @GetMapping("/selectClassesBycid")
+    public Classes selectClassesBycid(@RequestParam("cid") int cid){
         log.debug("查询班级信息---------------------------------------------------");
         Classes entityPage =classesService.selectClassesBycid(cid);
         return entityPage;

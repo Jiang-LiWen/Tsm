@@ -25,6 +25,12 @@
     select <include refid="Base_Column_List"/> from unittype where TimeLiness = 0
   </select>
 
+  <select id="selectfindslike" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from unittype where UnitType_Name like #{likeke} and TimeLiness = 0
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
