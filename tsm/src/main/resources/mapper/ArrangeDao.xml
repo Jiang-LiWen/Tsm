@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.tsm.dao.ArrangeDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Arrange">
+    <id column="Arrange_Id" jdbcType="INTEGER" property="arrangeId" />
+    <result column="Period_Id" jdbcType="INTEGER" property="periodId" />
+    <result column="Classes_Id" jdbcType="INTEGER" property="classesId" />
+    <result column="ClassRoom_Id" jdbcType="INTEGER" property="classroomId" />
+    <result column="Teacher_Id" jdbcType="INTEGER" property="teacherId" />
+    <result column="DetailCourse_Id" jdbcType="INTEGER" property="detailcourseId" />
+    <result column="ArrangeDate" jdbcType="VARCHAR" property="arrangedate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Arrange_Id, Period_Id, Classes_Id, ClassRoom_Id, Teacher_Id, DetailCourse_Id, ArrangeDate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from arrange
+    where Arrange_Id = #{arrangeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from arrange
+    where Arrange_Id = #{arrangeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="Arrange_Id" keyProperty="arrangeId" parameterType="com.trkj.tsm.entity.Arrange" useGeneratedKeys="true">
+    insert into arrange (Period_Id, Classes_Id, ClassRoom_Id, 
+      Teacher_Id, DetailCourse_Id, ArrangeDate
+      )
+    values (#{periodId,jdbcType=INTEGER}, #{classesId,jdbcType=INTEGER}, #{classroomId,jdbcType=INTEGER}, 
+      #{teacherId,jdbcType=INTEGER}, #{detailcourseId,jdbcType=INTEGER}, #{arrangedate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="Arrange_Id" keyProperty="arrangeId" parameterType="com.trkj.tsm.entity.Arrange" useGeneratedKeys="true">
+    insert into arrange
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="periodId != null">
+        Period_Id,
+      </if>
+      <if test="classesId != null">
+        Classes_Id,
+      </if>
+      <if test="classroomId != null">
+        ClassRoom_Id,
+      </if>
+      <if test="teacherId != null">
+        Teacher_Id,
+      </if>
+      <if test="detailcourseId != null">
+        DetailCourse_Id,
+      </if>
+      <if test="arrangedate != null">
+        ArrangeDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="periodId != null">
+        #{periodId,jdbcType=INTEGER},
+      </if>
+      <if test="classesId != null">
+        #{classesId,jdbcType=INTEGER},
+      </if>
+      <if test="classroomId != null">
+        #{classroomId,jdbcType=INTEGER},
+      </if>
+      <if test="teacherId != null">
+        #{teacherId,jdbcType=INTEGER},
+      </if>
+      <if test="detailcourseId != null">
+        #{detailcourseId,jdbcType=INTEGER},
+      </if>
+      <if test="arrangedate != null">
+        #{arrangedate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.trkj.tsm.entity.Arrange">
+    update arrange
+    <set>
+      <if test="periodId != null">
+        Period_Id = #{periodId,jdbcType=INTEGER},
+      </if>
+      <if test="classesId != null">
+        Classes_Id = #{classesId,jdbcType=INTEGER},
+      </if>
+      <if test="classroomId != null">
+        ClassRoom_Id = #{classroomId,jdbcType=INTEGER},
+      </if>
+      <if test="teacherId != null">
+        Teacher_Id = #{teacherId,jdbcType=INTEGER},
+      </if>
+      <if test="detailcourseId != null">
+        DetailCourse_Id = #{detailcourseId,jdbcType=INTEGER},
+      </if>
+      <if test="arrangedate != null">
+        ArrangeDate = #{arrangedate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Arrange_Id = #{arrangeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Arrange">
+    update arrange
+    set Period_Id = #{periodId,jdbcType=INTEGER},
+      Classes_Id = #{classesId,jdbcType=INTEGER},
+      ClassRoom_Id = #{classroomId,jdbcType=INTEGER},
+      Teacher_Id = #{teacherId,jdbcType=INTEGER},
+      DetailCourse_Id = #{detailcourseId,jdbcType=INTEGER},
+      ArrangeDate = #{arrangedate,jdbcType=VARCHAR}
+    where Arrange_Id = #{arrangeId,jdbcType=INTEGER}
+  </update>
+</mapper>

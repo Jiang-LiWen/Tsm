@@ -78,7 +78,7 @@ public class EmpController {
     @DeleteMapping("/deleteEmp")
     public String deleteEmp(@RequestParam("empId") int empId){
 
-        log.debug("根据id删除职位信息");w
+        log.debug("根据id删除职位信息");
         empService.deleteByPrimaryKey(empId);
         return "删除成功";
     }
