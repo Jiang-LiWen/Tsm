@@ -41,7 +41,7 @@
       <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
       <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
     </association>
-    <association property="cteacher" javaType="com.trkj.tsm.entity.Emp">
+    <association property="cteacher" javaType="com.trkj.tsm.vo.EmpVo">
       <id column="Emp_Id" jdbcType="INTEGER" property="empId" />
       <result column="Dept_Id" jdbcType="INTEGER" property="deptId" />
       <result column="Position_Id" jdbcType="INTEGER" property="positionId" />
@@ -74,7 +74,7 @@
       <result column="account_non_locked" jdbcType="BIT" property="accountNonLocked"/>
       <result column="credentials_non_expired" jdbcType="BIT" property="credentialsNonExpired"/>
     </association>
-    <association property="tteacher" javaType="com.trkj.tsm.entity.Emp">
+    <association property="tteacher" javaType="com.trkj.tsm.vo.EmpVo">
       <id column="Teachers_Emp_Id" jdbcType="INTEGER" property="empId" />
       <result column="Teachers_Dept_Id" jdbcType="INTEGER" property="deptId" />
       <result column="Teachers_Position_Id" jdbcType="INTEGER" property="positionId" />

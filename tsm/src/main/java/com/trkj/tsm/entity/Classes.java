@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.trkj.tsm.vo.EmpVo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,7 +42,7 @@ public class Classes implements Serializable {
     /**
      * 教员
      */
-    private Emp tteacher;
+    private EmpVo tteacher;
     /**
      * 班主任编号
      */
@@ -49,7 +50,7 @@ public class Classes implements Serializable {
     /**
      * 班主任
      */
-    private Emp cteacher;
+    private EmpVo cteacher;
     /**
      * 课程详细编号
      */
