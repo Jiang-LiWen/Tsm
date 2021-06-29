@@ -5,7 +5,6 @@ import com.trkj.tsm.vo.CourseVo;
 import java.util.List;
 
 public interface CourseService {
-    List<CourseVo> selectAllCourse11();
 
     List<CourseVo> ClassesselectAllCourse();//班级查询课程
 

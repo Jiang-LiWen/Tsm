@@ -8,7 +8,6 @@ import java.util.List;
 
 @Mapper
 public interface CourseDao {
-    List<CourseVo> selectAllCourse11();
 
     List<CourseVo> ClassesselectAllCourse();//班级查询课程
 

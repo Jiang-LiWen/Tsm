@@ -32,10 +32,6 @@ public class CourseServiceImpl implements CourseService {
         return courseDao.selectAllCourse(likeke);
     }
 
-    @Override
-    public List<CourseVo> selectAllCourse11() {
-        return courseDao.selectAllCourse11();
-    }
 
     @Override
     public CourseVo updateCourseStateStop(CourseVo courseVo) {
