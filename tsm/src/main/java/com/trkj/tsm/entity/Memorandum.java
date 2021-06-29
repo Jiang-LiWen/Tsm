@@ -7,7 +7,8 @@ import java.util.Date;
 
 /**
  * memorandum
- * @author 
+ *
+ * @author
  */
 @Data
 public class Memorandum implements Serializable {

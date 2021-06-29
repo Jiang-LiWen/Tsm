@@ -7,7 +7,8 @@ import java.util.Date;
 
 /**
  * daillogreply
- * @author 
+ *
+ * @author
  */
 @Data
 public class Daillogreply implements Serializable {

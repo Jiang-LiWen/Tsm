@@ -1,6 +1,8 @@
 package com.trkj.tsm.service;
 
+import com.trkj.tsm.entity.Book;
 import com.trkj.tsm.entity.Student;
+import com.trkj.tsm.vo.BookVo;
 import com.trkj.tsm.vo.StudentVo;
 
 import java.util.List;
@@ -13,4 +15,8 @@ public interface StudentService {
     StudentVo updateStudent(StudentVo studentVo);//修改学员
 
     StudentVo deleteStudent(StudentVo studentVo);//删除学员
+
+    List<Student> wjselectAllsStudet();
+
+    Student wjselectByPrimaryKeystudent(Integer studentId);
 }

@@ -3,6 +3,7 @@ package com.trkj.tsm.dao;
 import com.trkj.tsm.entity.Daillog;
 import com.trkj.tsm.vo.DaillogVo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface DaillogDao {
     int updateByPrimaryKeySelective(Daillog record);
 
     int updateByPrimaryKey(Daillog record);
+
+    List<DaillogVo> selectDaillog(@Param("value11")String value11,@Param("value1")String value1);
 }

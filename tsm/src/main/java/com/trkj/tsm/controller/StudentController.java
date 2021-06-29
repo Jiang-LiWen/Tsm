@@ -71,4 +71,18 @@ public class StudentController {
 
         return AjaxResponse.success(student);
     }
+
+
+
+    @GetMapping("/wjselectAllsStudet")
+    public List<Student> wj1selectAll(){
+        List<Student> svvv =studentService.wjselectAllsStudet();
+        return  svvv;
+    }
+
+    @GetMapping("/wjselectByPrimaryKeystuden")
+    private Student selectByPrimaryKey(@RequestParam("studentId") Integer studentId){
+        log.debug("Controller方法调用");
+        return studentService.wjselectByPrimaryKeystudent(studentId);
+    }
 }

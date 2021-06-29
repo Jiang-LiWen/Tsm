@@ -7,7 +7,8 @@ import java.util.Date;
 
 /**
  * daillog
- * @author 
+ *
+ * @author
  */
 @Data
 public class Daillog implements Serializable {

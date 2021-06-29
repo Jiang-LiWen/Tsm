@@ -17,20 +17,21 @@ public class DailLogReplyController {
     private DailLogReplyService dailLogReplyService;
 
     @GetMapping("/selectDaillogReply")
-    public List<DailLogReplyVo> selectByPrimaryKey(){
+    public List<DailLogReplyVo> selectByPrimaryKey() {
         log.debug("查看工作日志回复表");
         return dailLogReplyService.selectByPrimaryKey();
     }
 
     @PostMapping("/addReply")
-    public DailLogReplyVo addReply(@RequestBody @Valid DailLogReplyVo dailLogReplyVo){
+    public DailLogReplyVo addReply(@RequestBody @Valid DailLogReplyVo dailLogReplyVo) {
         log.debug("添加成功");
         log.debug(dailLogReplyVo.toString());
         dailLogReplyService.insert(dailLogReplyVo);
         return dailLogReplyVo;
     }
+
     @PutMapping("/update")
-    public DailLogReplyVo update(@RequestBody DailLogReplyVo dailLogReplyVo){
+    public DailLogReplyVo update(@RequestBody DailLogReplyVo dailLogReplyVo) {
         log.debug("修改工作回复表");
         dailLogReplyVo.setRepliertime(new Date());
         dailLogReplyService.updateDaillogreply(dailLogReplyVo);
