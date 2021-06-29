@@ -9,6 +9,8 @@ import java.util.List;
 
 
 public interface ClassroomService {
+    List<Classroom> selectAllsClassRoom();//查找所有未过期的教室信息
+
     List<Classroom> selectAlls(String flag);
 
     ClassroomVo addClassroom(ClassroomVo classroomVo);

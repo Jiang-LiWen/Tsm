@@ -13,5 +13,9 @@ public interface BookService {
 
     List<Book> selectBook(String bookname);
 
+    BookVo selectByPrimaryKey(Integer bookId);
+
+    List<BookVo> selectByPrimaryKeyyyyy(BookVo bookVo);
+
     List<Book> selsebook();
 }

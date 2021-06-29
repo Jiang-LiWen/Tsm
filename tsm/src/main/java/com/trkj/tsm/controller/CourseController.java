@@ -19,10 +19,18 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
+    @GetMapping("/selectAllCourse11")
+    public List<CourseVo> selectAllCourse11(){
+        List<CourseVo> entityPage =courseService.selectAllCourse11();
+        log.debug(entityPage+"查询信息---------------------------------------------------");
+        return entityPage;
+    }
+
     @GetMapping("/ClassesselectAllCourse")
     public List<CourseVo> selectAllCourse(){
         log.debug("班级查询所有课程信息---------------------------------------------------");
         List<CourseVo> entityPage =courseService.ClassesselectAllCourse();
+        log.debug(entityPage.toString());
         return entityPage;
     }
 

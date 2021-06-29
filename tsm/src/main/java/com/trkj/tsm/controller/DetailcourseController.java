@@ -25,8 +25,8 @@ public class DetailcourseController {
         return detailcoursePage;
     }
 
-    @GetMapping("/selectDetailCourse/{courseid}")
-    public List<DetailcourseVo> selectfind(@PathVariable("courseid") int courseid){
+    @GetMapping("/selectDetailCourse")
+    public List<DetailcourseVo> selectfind(@RequestParam("courseid") int courseid){
         log.debug("查询信息");
         log.debug("---------------------------------------------------");
         List<DetailcourseVo> entityPage =detailcourseService.selectByCourseId(courseid);

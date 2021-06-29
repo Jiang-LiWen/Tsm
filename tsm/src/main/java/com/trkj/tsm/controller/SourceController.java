@@ -41,6 +41,7 @@ public class SourceController {
     public SourceVo insertSource(@RequestBody @Valid SourceVo sourceVo){
         log.debug("添加成功");
         log.debug(sourceVo.toString());
+        sourceVo.setAddchannelname("ssb");
         sourceService.insertSource(sourceVo);
         return sourceVo;
     }

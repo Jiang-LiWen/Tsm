@@ -35,7 +35,7 @@
       <result column="LastUpdateTime" jdbcType="TIMESTAMP" property="lastupdatetime" />
       <result column="PayState" jdbcType="INTEGER" property="paystate" />
     </association>
-    <association property="emp" javaType="com.trkj.tsm.entity.Emp">
+    <association javaType="com.trkj.tsm.entity.Emp" property="emp">
       <id column="Emp_Id" jdbcType="INTEGER" property="empId" />
       <result column="Dept_Id" jdbcType="INTEGER" property="deptId" />
       <result column="Position_Id" jdbcType="INTEGER" property="positionId" />
@@ -68,7 +68,6 @@
       <result column="account_non_expired" jdbcType="BIT" property="accountNonExpired"/>
       <result column="account_non_locked" jdbcType="BIT" property="accountNonLocked"/>
       <result column="credentials_non_expired" jdbcType="BIT" property="credentialsNonExpired"/>
-
     </association>
   </resultMap>
   <sql id="Base_Column_List_returnvisit">

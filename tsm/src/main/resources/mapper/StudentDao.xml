@@ -21,6 +21,7 @@
     <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
     <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
     <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+
     <association property="register" javaType="com.trkj.tsm.entity.Register">
       <id column="Register_Id" jdbcType="INTEGER" property="registerId" />
       <result column="Source_Id" jdbcType="INTEGER" property="sourceId" />
@@ -43,9 +44,11 @@
     </association>
   </resultMap>
   <sql id="Base_Column_List">
-    Student_Id, Classes_Id, Source_Id, Register_Id, Student_Number, Student_Name, StudyTime, 
-    Entrance, Sex, Student_Phone, Address, ImgAddress, ParentName, ParentPhone, UpdateName, 
-    UpdateTime, DeleteName, DeleteTime, TimeLiness
+    student.Student_Id, student.Classes_Id, student.Source_Id, student.Register_Id,
+    student.Student_Number, student.Student_Name, student.StudyTime, student.Entrance, student.Sex,
+    student.Student_Phone, student.Address, student.ImgAddress, student.ParentName,
+    student.ParentPhone, student.UpdateName, student.UpdateTime, student.DeleteName,
+    student.DeleteTime, student.TimeLiness
   </sql>
   <sql id="Base_Column_List_reg">
     r.Register_Id, r.Source_Id, r.Course_Id, r.DetailCourse_Id, r.Emp_Id, r.Phone, r.ConsultAnt, r.Sex,
@@ -57,7 +60,7 @@
     values (#{registerId,jdbcType=INTEGER}, #{studentName,jdbcType=VARCHAR},
     #{studytime,jdbcType=TIMESTAMP}, #{sex,jdbcType=VARCHAR})
   </insert>
-  <select id="selectStudentLike" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectStudentLike" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />,
     <include refid="Base_Column_List_reg" />
@@ -91,5 +94,18 @@
     TimeLiness = 1
     where Student_Id = #{studentId,jdbcType=INTEGER}
   </update>
+
+  <select id="wjselectAllsStudet" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from student
+  </select>
+
+  <select id="wjselectByPrimaryKeystudent"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from student
+    where Student_Id = #{studentId,jdbcType=INTEGER}
+  </select>
 
 </mapper>

@@ -2,6 +2,7 @@ package com.trkj.tsm.dao;
 
 
 import com.trkj.tsm.entity.Student;
+import com.trkj.tsm.vo.BookVo;
 import com.trkj.tsm.vo.StudentVo;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
@@ -16,15 +17,8 @@ public interface StudentDao {
 
     int deleteStudent(Student record);//删除学员
 
-//    int deleteByPrimaryKey(Integer studentId);
-//
-//    int insert(Student record);
-//
-//    int insertSelective(Student record);
-//
-//    Student selectByPrimaryKey(Integer studentId);
-//
-//    int updateByPrimaryKeySelective(Student record);
-//
-//    int updateByPrimaryKey(Student record);
+    List<Student> wjselectAllsStudet();//外键
+
+    Student wjselectByPrimaryKeystudent(Integer studentId);//id查询
+
 }

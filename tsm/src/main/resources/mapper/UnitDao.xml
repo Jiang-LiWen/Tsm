@@ -44,6 +44,12 @@
     where Unit_Id = #{unitId,jdbcType=INTEGER}
   </select>
 
+  <select id="selectfindslike" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from unit where Unit_Name like #{likeke} and timeliness = 0
+  </select>
+
   <select id="selectUnit" resultMap="BaseResultMap">
 <!--    select <include refid="Base_Column_List"/> from unit-->
     select u.Unit_Id,u.Unit_Name,u.UnitType_Id,u.Unit_Level,u.Director,u.Unit_Address,u.MailCode,u.Unit_Phone,

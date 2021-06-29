@@ -13,8 +13,7 @@
     <result column="Storagee" jdbcType="INTEGER" property="storagee" />
   </resultMap>
   <sql id="Base_Column_List">
-    Book_Id, BookName, DeliveryCount, BookSprice, BookJprice, SafeStock, Press, `State`, 
-    Storagee
+    Book_Id, BookName, DeliveryCount, BookSprice, BookJprice, SafeStock, Press, `State`, Storagee
   </sql>
     <select id="selectAlls1" resultMap="BaseResultMap">
       select
@@ -30,10 +29,29 @@
     where Book_Id = #{bookId,jdbcType=INTEGER}
   </select>
 
+  <select id="selectByPrimaryKeyyyyy"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from book
+  </select>
+
+
+  <select id="selectByPrimaryKey1" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from book
+    <where>
+      <if test="BookName !=null">
+        BookName like concat(concat('%',#{bookname,jdbcType=INTEGER},'%'))
+      </if>
+    </where>
+    order by Book_Id
+  </select>
+
+
   <insert id="insert" keyColumn="Book_Id" keyProperty="bookId" parameterType="com.trkj.tsm.vo.BookVo" useGeneratedKeys="true">
     insert into book (BookName, DeliveryCount, BookSprice, 
-      BookJprice, SafeStock, Press
-      , Storagee)
+      BookJprice, SafeStock, Press, Storagee)
     values (#{bookname,jdbcType=VARCHAR}, #{deliverycount,jdbcType=INTEGER}, #{booksprice,jdbcType=DECIMAL}, 
       #{bookjprice,jdbcType=DECIMAL}, #{safestock,jdbcType=INTEGER}, #{press,jdbcType=VARCHAR}, 
       #{storagee,jdbcType=INTEGER})

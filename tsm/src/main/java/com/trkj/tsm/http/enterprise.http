@@ -8,7 +8,7 @@ Content-Type: application/json
 ###
 
 ###
-GET http://localhost:8089/tsm/selectAllsdd
+GET http://localhost:8089/tsm/selectAlls
 Accept: application/json
 
 ###
@@ -36,7 +36,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8089/tsm/selectfinds/1/2
+GET http://localhost:8089/tsm/selectAlls/1/2
 Accept: application/json
 
 ###

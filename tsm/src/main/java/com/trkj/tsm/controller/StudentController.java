@@ -4,7 +4,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.trkj.tsm.entity.Memorandumattachment;
 import com.trkj.tsm.entity.Student;
+import com.trkj.tsm.entity.Studentstatus;
 import com.trkj.tsm.service.StudentService;
+import com.trkj.tsm.service.StudentstatusService;
 import com.trkj.tsm.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ import java.util.List;
 public class StudentController {
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private StudentstatusService studentstatusService;
 
     @GetMapping("/selectStudentLike")
     public PageInfo<StudentVo> selectStudentLike(@RequestParam("currentPage") int currentPage,
@@ -57,7 +61,28 @@ public class StudentController {
         student.setStudytime(new Date());
         log.debug("新增学员");
         studentService.insertStudent(student);
-        log.debug(student.getStudentId()+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+        Studentstatus studentstatus=new Studentstatus();
+        studentstatus.setStudentId(student.getStudentId());
+        studentstatus.setSignuptime(new Date());
+        log.debug(studentstatus+"------------------------------------------------------------------------------------");
+        Studentstatus studentstatus1=studentstatusService.insertStudentstatus(studentstatus);
+        log.debug(studentstatus1+"------------------------------------------------------------------------------------");
+
         return AjaxResponse.success(student);
+    }
+
+
+
+    @GetMapping("/wjselectAllsStudet")
+    public List<Student> wj1selectAll(){
+        List<Student> svvv =studentService.wjselectAllsStudet();
+        return  svvv;
+    }
+
+    @GetMapping("/wjselectByPrimaryKeystuden")
+    private Student selectByPrimaryKey(@RequestParam("studentId") Integer studentId){
+        log.debug("Controller方法调用");
+        return studentService.wjselectByPrimaryKeystudent(studentId);
     }
 }

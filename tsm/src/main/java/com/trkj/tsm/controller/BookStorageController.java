@@ -2,11 +2,9 @@ package com.trkj.tsm.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.trkj.tsm.entity.Bookstorage;
 import com.trkj.tsm.service.BookStorageService;
 import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.BookstorageVo;
-import com.trkj.tsm.vo.ClasstypeVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +18,6 @@ import java.util.List;
 public class BookStorageController {
     @Resource
     private BookStorageService bookStorageService;
-
     @GetMapping("/selectAllsdd")
     public PageInfo<BookstorageVo> selectAllsdd(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize , @RequestParam("flag") String flag){
         PageHelper.startPage(currentPage,pagesize);
@@ -29,6 +26,7 @@ public class BookStorageController {
         PageInfo<BookstorageVo> bookstoragePageInfo=new PageInfo<>(entityPage);
         return  bookstoragePageInfo;
     }
+
 
 
     //增加

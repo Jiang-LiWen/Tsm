@@ -46,7 +46,7 @@
       <result column="Remarks" jdbcType="VARCHAR" property="remarks" />
       <result column="Address" jdbcType="VARCHAR" property="address" />
       <result column="EmpState" jdbcType="INTEGER" property="empstate" />
-      <result column="Passwords" jdbcType="VARCHAR" property="passwords" />
+      <result column="Password" jdbcType="VARCHAR" property="password" />
       <result column="Addname" jdbcType="VARCHAR" property="addname" />
       <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
       <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
@@ -56,6 +56,12 @@
       <result column="LoginState" jdbcType="INTEGER" property="loginstate" />
       <result column="Education" jdbcType="VARCHAR" property="education" />
       <result column="Graduate" jdbcType="VARCHAR" property="graduate" />
+      <result column="username" jdbcType="VARCHAR" property="username"/>
+      <result column="password" jdbcType="VARCHAR" property="password"/>
+      <result column="enabled" jdbcType="INTEGER" property="enabled"/>
+      <result column="account_non_expired" jdbcType="BIT" property="accountNonExpired"/>
+      <result column="account_non_locked" jdbcType="BIT" property="accountNonLocked"/>
+      <result column="credentials_non_expired" jdbcType="BIT" property="credentialsNonExpired"/>
     </collection>
 
   </resultMap>
@@ -65,10 +71,12 @@
     st.AppName, st.AppTime, st.Revoke_AppName, st.Revoke_AppTime, st.UpdateName, st.UpdateTime, st.DeleteName,
     st.DeleteTime, st.TimeLiness
   </sql>
+
   <sql id="emp">
     em.Emp_Id, em.Dept_Id, em.Position_Id, em.Enterprise_Id, em.UserImg, em.IndividualImg, em.JobNumber, em.Emp_Name,
-    em.Emp_Sex, em.Emp_Phone, em.E_mail, em.Birthday, em.Remarks, em.Address, em.EmpState, em.Passwords, em.Addname,
-    em.AddTime, em.UpdateName, em.UpdateTime, em.DeleteName, em.DeleteTime, em.LoginState, em.Education, em.Graduate
+    em.Emp_Sex, em.Emp_Phone, em.E_mail, em.Birthday, Remarks, em.Address, em.EmpState, em.Addname,
+    em.AddTime, em.UpdateName, em.UpdateTime, em.DeleteName, em.DeleteTime, em.LoginState, em.Education, em.Graduate,
+    em.username,em.Password , em.enabled,em.account_non_expired,em.account_non_locked,em.credentials_non_expired
   </sql>
   <sql id="book">
     bo.Book_Id, bo.BookName, bo.DeliveryCount, bo.BookSprice, bo.BookJprice, bo.SafeStock, bo.Press, bo.`State`,
@@ -80,6 +88,7 @@
     from bookstorage
     where MBookStorage_Id = #{mbookstorageId,jdbcType=INTEGER}
   </select>
+
   <select id="selectAllsdd" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />,
