@@ -28,6 +28,11 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public List<CourseVo> selectAllCourse11() {
+        return courseDao.selectAllCourse11();
+    }
+
+    @Override
     public CourseVo updateCourseStateStop(CourseVo courseVo) {
         log.debug("修改课程类别信息");
         Course d = new Course();

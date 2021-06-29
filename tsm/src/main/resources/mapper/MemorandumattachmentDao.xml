@@ -52,7 +52,7 @@
     <include refid="Base_Column_List_reg" />
     from memorandumattachment me
     inner join register r on me.Register_Id = r.Register_Id
-    where me.ZSIsExamine = 0
+    where me.ZSIsExamine = 0 and r.PayState = 2
     order by me.MemorandumAttachment_Id desc
   </select>
   <!--  招生显示已审核-->
@@ -62,7 +62,7 @@
     <include refid="Base_Column_List_reg" />
     from memorandumattachment me
     inner join register r on me.Register_Id = r.Register_Id
-    where me.ZSIsExamine = 1
+    where me.ZSIsExamine = 1 and r.PayState = 2
     order by me.MemorandumAttachment_Id desc
   </select>
   <!--  教务交接显示全部-->
@@ -82,7 +82,7 @@
     <include refid="Base_Column_List_reg" />
     from memorandumattachment me
     inner join register r on me.Register_Id = r.Register_Id
-    where me.MemorandumAttachment_Id > 0
+    where me.MemorandumAttachment_Id > 0 and r.PayState = 2
     order by me.MemorandumAttachment_Id desc
   </select>
 <!--  招生审核-->

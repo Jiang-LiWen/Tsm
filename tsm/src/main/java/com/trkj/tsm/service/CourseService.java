@@ -9,6 +9,8 @@ public interface CourseService {
 
     List<CourseVo> selectAllCourse(String likeke);//页面显示加分页查询
 
+    List<CourseVo> selectAllCourse11();//页面显示加查询
+
     CourseVo updateCourseStateStop(CourseVo courseVo);//停报修改
 
     CourseVo updateCourseStateBegin(CourseVo courseVo);//开报修改

@@ -37,6 +37,12 @@ public class CourseController {
         PageInfo<CourseVo> courseVoPageInfo = new  PageInfo<>(entityPage);
         return courseVoPageInfo;
     }
+    @GetMapping("/selectAllCourse11")
+    public List<CourseVo> selectAllCourse11(){
+        List<CourseVo> entityPage =courseService.selectAllCourse11();
+        log.debug(entityPage+"查询信息---------------------------------------------------");
+        return entityPage;
+    }
 
     @PutMapping("/updateCourseStateStop")
     public AjaxResponse updateCourseStateStop(@RequestBody @Valid CourseVo courseVo){
