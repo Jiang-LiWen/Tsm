@@ -7,13 +7,13 @@ import org.apache.ibatis.annotations.Mapper;
 public interface SysUserRoleDao {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(SysUserRole record);
+    int insert(SysUserRole sysUserRole);
 
-    int insertSelective(SysUserRole sysUserRole);
+    SysUserRole insertSelective(SysUserRole sysUserRole);
 
     SysUserRole selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(SysUserRole record);
 
-    int updateByPrimaryKey(SysUserRole record);
+    int updateByPrimaryKey(SysUserRole sysUserRole);
 }

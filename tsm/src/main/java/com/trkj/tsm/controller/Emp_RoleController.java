@@ -6,6 +6,7 @@ import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.EmpVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,13 @@ public class Emp_RoleController {
 
     @PostMapping("/insertuserrole")
     public AjaxResponse insertEmp(@RequestBody @Valid SysUserRole sysUserRole) {
-        sysUserRoleDao.insertSelective(sysUserRole);
+        sysUserRoleDao.insert(sysUserRole);
+        return AjaxResponse.success("成功");
+    }
+
+    @PutMapping("/updateuserrole")
+    public AjaxResponse updateuserrole(@RequestBody @Valid SysUserRole sysUserRole) {
+        sysUserRoleDao.updateByPrimaryKey(sysUserRole);
         return AjaxResponse.success("成功");
     }
 }
