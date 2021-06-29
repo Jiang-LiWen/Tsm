@@ -21,6 +21,12 @@ public class ClassroomServiceImpl implements ClassroomService {
     private ClassroomDao classroomDao;
 
     @Override
+    public List<Classroom> selectAllsClassRoom() {
+        log.debug("ClassroomService:查找所有未过期的教室信息-----------------------------------------");
+        return classroomDao.selectAllsClassRoom();
+    }
+
+    @Override
     public List<Classroom> selectAlls(String flag) {
         log.debug("controller查询全部信息");
         return classroomDao.selectAlls(flag);

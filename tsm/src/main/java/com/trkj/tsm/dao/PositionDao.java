@@ -23,4 +23,6 @@ public interface PositionDao {
     List<PositionVo> selectPositions();
 
     List<PositionVo> selectPositionlike(String likeke);//页面显示加分页模糊查询
+
+    List<String> findRoleByUserName(String username);
 }

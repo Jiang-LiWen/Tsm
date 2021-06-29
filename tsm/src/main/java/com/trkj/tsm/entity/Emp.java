@@ -1,12 +1,14 @@
 package com.trkj.tsm.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * emp
@@ -15,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Emp implements Serializable {
+public class Emp implements UserDetails {
     /**
      * 职工编号
      */
@@ -89,7 +91,7 @@ public class Emp implements Serializable {
     /**
      * 生日
      */
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
     /**
@@ -107,10 +109,6 @@ public class Emp implements Serializable {
      */
     private Integer empstate;
 
-    /**
-     * 登入密码
-     */
-    private String passwords;
 
     /**
      * 增加人
@@ -157,5 +155,66 @@ public class Emp implements Serializable {
      */
     private String graduate;
 
+    /**
+     * 用户名
+     */
+    private String username;
+
+    /**
+     * 密码
+     */
+    private String password;
+
+    /**
+     * 0无效用户，1是有效用户
+     */
+    @Getter(value = AccessLevel.NONE)
+    private Boolean enabled;
+
+    /**
+     * 账户是否没过期
+     */
+    @Getter(value = AccessLevel.NONE)
+    private Boolean accountNonExpired;
+
+    /**
+     * 是否没被锁定
+     */
+    @Getter(value = AccessLevel.NONE)
+    private Boolean accountNonLocked;
+
+    /**
+     * 密码是否没有过期
+     */
+    @Getter(value = AccessLevel.NONE)
+    private Boolean credentialsNonExpired;
+
     private static final long serialVersionUID = 1L;
+
+    Collection<? extends GrantedAuthority> authorities;  //用户的权限集合
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
 }

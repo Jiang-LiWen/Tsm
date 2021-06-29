@@ -2,7 +2,6 @@ package com.trkj.tsm.service.impl;
 
 import com.trkj.tsm.dao.ClassesDao;
 import com.trkj.tsm.entity.Classes;
-import com.trkj.tsm.entity.Course;
 import com.trkj.tsm.service.ClassesService;
 import com.trkj.tsm.util.BeanCopyUtil;
 import com.trkj.tsm.vo.ClassesVo;
@@ -16,6 +15,22 @@ import java.util.List;
 public class ClassesServiceImpl implements ClassesService {
     @Resource
     private ClassesDao classesDao;
+
+    @Override
+    public List<Classes> selectClassesOpen1() {
+        return classesDao.selectClassesOpen1();
+    }
+
+    @Override
+    public List<Classes> selectClassesOpen() {
+        return classesDao.selectClassesOpen();
+    }
+
+    @Override
+    public Classes selectClassesBycid(int cid) {
+        Classes classes=classesDao.selectClassesBycid(cid);
+        return classes;
+    }
 
     @Override
     public List<ClassesVo> selectAllClasses(String likeke) {
@@ -65,5 +80,12 @@ public class ClassesServiceImpl implements ClassesService {
         BeanCopyUtil.copyProperties(classesVo,d);
         classesDao.insertClasses(d);
         return classesVo;
+    }
+
+    @Override
+    public Classes updateClassesRCount(Classes classes) {
+        log.debug("修改班级实际人数");
+        classesDao.updateClassesRCount(classes);
+        return classes;
     }
 }

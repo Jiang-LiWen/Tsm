@@ -19,8 +19,8 @@ public class ReturnvisitController {
     @Autowired
     private ReturnvisitService returnvisitService;
 //    显示
-    @GetMapping("/selectReturnRegisterID/{registerId}")
-    public List<ReturnvisitVo> selectReturnRegisterID(@PathVariable("registerId") Integer registerId){
+    @GetMapping("/selectReturnRegisterID")
+    public List<ReturnvisitVo> selectReturnRegisterID(@RequestParam("registerId") Integer registerId){
         log.debug("根据生源渠道id显示数据(Controller)");
         List<ReturnvisitVo> findReturnRegister = returnvisitService.selectReturnVisit(registerId);
         return findReturnRegister;

@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.trkj.tsm.service.SemesterService;
 import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.SemesterVo;
+import com.trkj.tsm.vo.SessionVo;
 import com.trkj.tsm.vo.UnittypeVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +41,8 @@ public class SemesterController {
         return AjaxResponse.success(semesterVo);
     }
     //删除操作
-    @DeleteMapping("/deleteSemester/{semesterId}")
-    public String deleteSemester(@PathVariable("semesterId") int semesterId){
+    @DeleteMapping("/deleteSemester")
+    public String deleteSemester(@RequestParam("semesterId") int semesterId){
         log.debug("根据id删除单位类型信息");
         semesterService.deleteByPrimaryKey(semesterId);
         return "删除成功";
@@ -61,5 +62,18 @@ public class SemesterController {
         log.debug("根据id查询单位类型信息");
         semesterService.selectByPrimaryKey(semesterId);
         return "查询成功";
+    }
+    @GetMapping("/selectSemesterlike")
+    public PageInfo<SemesterVo> selectfindslike(@RequestParam("currentPage") int currentPage,
+                                               @RequestParam("pagesize") int pagesize,
+                                               @RequestParam("sech") String likeke){
+        log.debug("分页查询信息");
+        String likekes="%"+likeke+"%";
+        log.debug("---------------------------------------------------");
+        List<SemesterVo> entityPage =semesterService.selectfindslike(likekes);
+        PageHelper.startPage(currentPage,pagesize);
+        log.debug(entityPage.size()+"");
+        PageInfo<SemesterVo> semesterVoPageInfo = new  PageInfo<>(entityPage);
+        return semesterVoPageInfo;
     }
 }

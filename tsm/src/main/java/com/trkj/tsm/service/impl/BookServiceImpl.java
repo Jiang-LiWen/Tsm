@@ -20,7 +20,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> selectAlls1() {
-        log.debug("分页查询所有");
+        log.debug("查询所有");
         return bookDao.selectAlls1();
     }
 
@@ -40,7 +40,22 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> selectBook(String bookname) {
         log.debug("查询");
-        return bookDao.selectByPrimaryKey(bookname);
+        return bookDao.selectByPrimaryKey1(bookname);
+    }
+
+    @Override
+    public BookVo selectByPrimaryKey(Integer bookId) {
+        log.debug("id查询");
+        return bookDao.selectByPrimaryKey(bookId);
+    }
+
+    @Override
+    public List<BookVo> selectByPrimaryKeyyyyy(BookVo bookVo) {
+        BookVo d = new BookVo();
+        BeanCopyUtil.copyProperties(bookVo,d);
+        d.setBookId(bookVo.getBookId());
+        log.debug("id查询");
+        return bookDao.selectByPrimaryKeyyyyy(bookVo);
     }
 
 }

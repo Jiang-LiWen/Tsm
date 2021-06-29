@@ -52,8 +52,8 @@ public class SessionController {
         return AjaxResponse.success(sessionVo);
     }
     //删除操作
-    @DeleteMapping("/deleteSession/{sessionId}")
-    public String deleteSession(@PathVariable("sessionId") int sessionId){
+    @DeleteMapping("/deleteSession")
+    public String deleteSession(@RequestParam("sessionId") int sessionId){
         log.debug("根据id删除年届信息");
         sessionService.deleteByPrimaryKey(sessionId);
         return "删除成功";

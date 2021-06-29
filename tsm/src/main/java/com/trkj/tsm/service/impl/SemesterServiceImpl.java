@@ -5,6 +5,7 @@ import com.trkj.tsm.entity.Semester;
 import com.trkj.tsm.service.SemesterService;
 import com.trkj.tsm.util.BeanCopyUtil;
 import com.trkj.tsm.vo.SemesterVo;
+import com.trkj.tsm.vo.SessionVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,5 +49,9 @@ public class SemesterServiceImpl implements SemesterService {
     public List<SemesterVo> selectSemester() {
 
         return semesterDao.selectSemester();
+    }
+    @Override
+    public List<SemesterVo> selectfindslike(String likeke) {
+        return semesterDao.selectfindslike(likeke);
     }
 }

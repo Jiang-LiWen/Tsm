@@ -12,4 +12,6 @@ public interface DetailcourseService {
     DetailcourseVo updDetailcourse(DetailcourseVo detailcourseVo);//课时修改
 
     DetailcourseVo insertDetailcourse(DetailcourseVo detailcourseVo);//添加课时
+
+    List<DetailcourseVo> selectByPrimaryKey();
 }

@@ -1,14 +1,14 @@
 package com.trkj.tsm.service;
 
 import com.trkj.tsm.vo.AnnouncementVo;
-import com.trkj.tsm.vo.AnnouncementtypeVo;
-import com.trkj.tsm.vo.FaqQuestionsVo;
 
 import java.util.List;
 
 public interface AnnouncementService {
 //    显示所有
     List<AnnouncementVo> selectAnnounceManageAll();
+    //    显示所有
+    List<AnnouncementVo> selectAnnounceAllGongGao();
 //    添加
     AnnouncementVo addAnnounceMenage(AnnouncementVo announcementVo);
 //    发布

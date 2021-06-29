@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.trkj.tsm.service.UnitService;
 import com.trkj.tsm.vo.AjaxResponse;
+import com.trkj.tsm.vo.SessionVo;
 import com.trkj.tsm.vo.UnitVo;
 import com.trkj.tsm.vo.UnittypeVo;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,20 @@ import java.util.List;
 public class UnitController {
     @Autowired
     private UnitService unitService;
+
+    @GetMapping("/selectUnitlike")
+    public PageInfo<UnitVo> selectUnitlike(@RequestParam("currentPage") int currentPage,
+                                               @RequestParam("pagesize") int pagesize,
+                                               @RequestParam("sech") String likeke){
+        log.debug("分页查询信息");
+        String likekes="%"+likeke+"%";
+        log.debug("---------------------------------------------------");
+        List<UnitVo> entityPage =unitService.selectPositionlike(likekes);
+        PageHelper.startPage(currentPage,pagesize);
+        log.debug(entityPage.size()+"");
+        PageInfo<UnitVo> unitVoPageInfo = new  PageInfo<>(entityPage);
+        return unitVoPageInfo;
+    }
     //分页查询
     @GetMapping("/selectUnit")
     public PageInfo<UnitVo> selectUnit(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){
@@ -37,8 +52,8 @@ public class UnitController {
         return AjaxResponse.success(unitVo);
     }
     //删除操作
-    @DeleteMapping("/deleteUnit/{unitId}")
-    public String deleteUnit(@PathVariable("unitId") int unitId){
+    @DeleteMapping("/deleteUnit")
+    public String deleteUnit(@RequestParam("unitId") int unitId){
         log.debug("根据id删除单位类型信息");
         unitService.deleteByPrimaryKey(unitId);
         return "删除成功";

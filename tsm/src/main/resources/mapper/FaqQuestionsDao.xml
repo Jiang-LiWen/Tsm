@@ -28,6 +28,7 @@
       <if test="Problem != null">
         Problem like CONCAT(CONCAT('%' ,#{problem , jdbcType=VARCHAR}, '%'))
       </if>
+      and TimeLiness=0
     </where>
     ORDER BY FAQ_Id
 </select>

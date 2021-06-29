@@ -17,7 +17,7 @@
     <result column="Remarks" jdbcType="VARCHAR" property="remarks" />
     <result column="Address" jdbcType="VARCHAR" property="address" />
     <result column="EmpState" jdbcType="INTEGER" property="empstate" />
-    <result column="Passwords" jdbcType="VARCHAR" property="passwords" />
+<!--    <result column="Passwords" jdbcType="VARCHAR" property="passwords" />-->
     <result column="Addname" jdbcType="VARCHAR" property="addname" />
     <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
     <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
@@ -27,6 +27,14 @@
     <result column="LoginState" jdbcType="INTEGER" property="loginstate" />
     <result column="Education" jdbcType="VARCHAR" property="education" />
     <result column="Graduate" jdbcType="VARCHAR" property="graduate" />
+
+    <result column="username" jdbcType="VARCHAR" property="username"/>
+    <result column="password" jdbcType="VARCHAR" property="password"/>
+    <result column="enabled" jdbcType="INTEGER" property="enabled"/>
+    <result column="account_non_expired" jdbcType="BIT" property="accountNonExpired"/>
+    <result column="account_non_locked" jdbcType="BIT" property="accountNonLocked"/>
+    <result column="credentials_non_expired" jdbcType="BIT" property="credentialsNonExpired"/>
+
       <association property="dept" javaType="com.trkj.tsm.entity.Dept">
         <id column="Dept_Id" jdbcType="INTEGER" property="deptId" />
         <result column="Dept_Name" jdbcType="VARCHAR" property="deptName" />
@@ -78,14 +86,24 @@
   </resultMap>
   <sql id="Base_Column_List">
     Emp_Id, Dept_Id, Position_Id, Enterprise_Id, UserImg, IndividualImg, JobNumber, Emp_Name, 
-    Emp_Sex, Emp_Phone, E_mail, Birthday, Remarks, Address, EmpState, Passwords, Addname, 
-    AddTime, UpdateName, UpdateTime, DeleteName, DeleteTime, LoginState, Education, Graduate
+    Emp_Sex, Emp_Phone, E_mail, Birthday, Remarks, Address, EmpState, Addname,
+    AddTime, UpdateName, UpdateTime, DeleteName, DeleteTime, LoginState, Education, Graduate,
+    username,Password , enabled,account_non_expired,account_non_locked,credentials_non_expired
   </sql>
+
+  <select id="findByUsername" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from emp
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
 
   <select id="ClassesselectEmp1" resultMap="BaseResultMap">
     select e.Emp_Id, e.Dept_Id, e.Position_Id, e.Enterprise_Id, e.UserImg, e.IndividualImg, e.JobNumber, e.Emp_Name,
-    e.Emp_Sex, e.Emp_Phone, e.E_mail, e.Birthday, e.Remarks, e.Address, e.EmpState, e.Passwords, e.Addname,
-    e.AddTime, e.UpdateName, e.UpdateTime, e.DeleteName, e.DeleteTime, e.LoginState, e.Education, e.Graduate ,d.Dept_Id,d.Dept_Name,
+    e.Emp_Sex, e.Emp_Phone, e.E_mail, e.Birthday, e.Remarks, e.Address, e.EmpState, e.Password, e.Addname,
+    e.AddTime, e.UpdateName, e.UpdateTime, e.DeleteName, e.DeleteTime, e.LoginState, e.Education, e.Graduate ,
+    e.username, e.enabled, e.account_non_expired, e.account_non_locked, e.credentials_non_expired,
+    d.Dept_Id,d.Dept_Name,
     p.Position_Id,p.Position_Name,et.Enterprise_Id,et.Enterprise_Name
     from emp e
     inner join dept d on e.Dept_Id=d.Dept_Id
@@ -96,8 +114,10 @@
 
   <select id="ClassesselectEmp2" resultMap="BaseResultMap">
     select e.Emp_Id, e.Dept_Id, e.Position_Id, e.Enterprise_Id, e.UserImg, e.IndividualImg, e.JobNumber, e.Emp_Name,
-    e.Emp_Sex, e.Emp_Phone, e.E_mail, e.Birthday, e.Remarks, e.Address, e.EmpState, e.Passwords, e.Addname,
-    e.AddTime, e.UpdateName, e.UpdateTime, e.DeleteName, e.DeleteTime, e.LoginState, e.Education, e.Graduate ,d.Dept_Id,d.Dept_Name,
+    e.Emp_Sex, e.Emp_Phone, e.E_mail, e.Birthday, e.Remarks, e.Address, e.EmpState, e.Password, e.Addname,
+    e.AddTime, e.UpdateName, e.UpdateTime, e.DeleteName, e.DeleteTime, e.LoginState, e.Education, e.Graduate ,
+    e.username, e.enabled, e.account_non_expired, e.account_non_locked, e.credentials_non_expired,
+    d.Dept_Id,d.Dept_Name,
     p.Position_Id,p.Position_Name,et.Enterprise_Id,et.Enterprise_Name
     from emp e
     inner join dept d on e.Dept_Id=d.Dept_Id
@@ -108,8 +128,10 @@
 
   <select id="selectEmp" resultMap="BaseResultMap">
     select e.Emp_Id, e.Dept_Id, e.Position_Id, e.Enterprise_Id, e.UserImg, e.IndividualImg, e.JobNumber, e.Emp_Name,
-    e.Emp_Sex, e.Emp_Phone, e.E_mail, e.Birthday, e.Remarks, e.Address, e.EmpState, e.Passwords, e.Addname,
-    e.AddTime, e.UpdateName, e.UpdateTime, e.DeleteName, e.DeleteTime, e.LoginState, e.Education, e.Graduate ,d.Dept_Id,d.Dept_Name,
+    e.Emp_Sex, e.Emp_Phone, e.E_mail, e.Birthday, e.Remarks, e.Address, e.EmpState, e.Password, e.Addname,
+    e.AddTime, e.UpdateName, e.UpdateTime, e.DeleteName, e.DeleteTime, e.LoginState, e.Education, e.Graduate ,
+     e.username, e.enabled, e.account_non_expired, e.account_non_locked, e.credentials_non_expired,
+    d.Dept_Id,d.Dept_Name,
     p.Position_Id,p.Position_Name,et.Enterprise_Id,et.Enterprise_Name
     from emp e inner join dept d inner join position p inner join enterprise et
     where e.Dept_Id=d.Dept_Id and e.Position_Id=p.Position_Id and e.Enterprise_Id = et.Enterprise_Id
@@ -117,8 +139,10 @@
 
   <select id="selectEmpLike" parameterType="java.lang.String" resultMap="BaseResultMap">
    select e.Emp_Id, e.Dept_Id, e.Position_Id, e.Enterprise_Id, e.UserImg, e.IndividualImg, e.JobNumber, e.Emp_Name,
-    e.Emp_Sex, e.Emp_Phone, e.E_mail, e.Birthday, e.Remarks, e.Address, e.EmpState, e.Passwords, e.Addname,
-    e.AddTime, e.UpdateName, e.UpdateTime, e.DeleteName, e.DeleteTime, e.LoginState, e.Education, e.Graduate ,d.Dept_Id,d.Dept_Name,
+    e.Emp_Sex, e.Emp_Phone, e.E_mail, e.Birthday, e.Remarks, e.Address, e.EmpState, e.Password, e.Addname,
+    e.AddTime, e.UpdateName, e.UpdateTime, e.DeleteName, e.DeleteTime, e.LoginState, e.Education, e.Graduate ,
+    e.username, e.enabled, e.account_non_expired, e.account_non_locked, e.credentials_non_expired,
+    d.Dept_Id,d.Dept_Name,
     p.Position_Id,p.Position_Name,et.Enterprise_Id,et.Enterprise_Name
     from emp e inner join dept d inner join position p inner join enterprise et
     where e.Dept_Id=d.Dept_Id and e.Position_Id=p.Position_Id and e.Enterprise_Id = et.Enterprise_Id and
@@ -126,7 +150,7 @@
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    update emp set EmpState = 1,LoginState =1
+    update emp set EmpState = 1,LoginState =1,enabled =0
     where Emp_Id = #{empId,jdbcType=INTEGER} and EmpState = 0
 
   </delete>
@@ -139,7 +163,7 @@
       Address,
       Addname,  UpdateName,
       UpdateTime, DeleteName, DeleteTime, 
-      Education, Graduate
+      Education, Graduate,username
       )
     values (#{empId,jdbcType=INTEGER}, #{deptId,jdbcType=INTEGER}, #{positionId,jdbcType=INTEGER}, #{enterpriseId,jdbcType=INTEGER},
       #{userimg,jdbcType=VARCHAR}, #{individualimg,jdbcType=VARCHAR}, #{jobnumber,jdbcType=VARCHAR}, 
@@ -148,7 +172,9 @@
       #{address,jdbcType=VARCHAR},
       #{addname,jdbcType=VARCHAR}, #{updatename,jdbcType=VARCHAR},
       #{updatetime,jdbcType=TIMESTAMP}, #{deletename,jdbcType=VARCHAR}, #{deletetime,jdbcType=TIMESTAMP}, 
-       #{education,jdbcType=VARCHAR}, #{graduate,jdbcType=VARCHAR}
+       #{education,jdbcType=VARCHAR}, #{graduate,jdbcType=VARCHAR},
+       #{username,jdbcType=VARCHAR}
+
       )
   </insert>
 
@@ -168,7 +194,6 @@
       Remarks = #{remarks,jdbcType=VARCHAR},
       Address = #{address,jdbcType=VARCHAR},
       EmpState = #{empstate,jdbcType=INTEGER},
-      Passwords = #{passwords,jdbcType=VARCHAR},
 
       UpdateName = #{updatename,jdbcType=VARCHAR},
       UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
@@ -176,12 +201,18 @@
       DeleteTime = #{deletetime,jdbcType=TIMESTAMP},
       LoginState = #{loginstate,jdbcType=INTEGER},
       Education = #{education,jdbcType=VARCHAR},
-      Graduate = #{graduate,jdbcType=VARCHAR}
+      Graduate = #{graduate,jdbcType=VARCHAR},
+      username =  #{username,jdbcType=VARCHAR},
+       Password =  #{password,jdbcType=VARCHAR},
+     enabled =  #{enabled,jdbcType=INTEGER},
+       account_non_expired = #{accountNonExpired,jdbcType=BIT},
+       account_non_locked = #{accountNonLocked,jdbcType=BIT},
+      credentials_non_expired = #{credentialsNonExpired,jdbcType=BIT}
     where Emp_Id = #{empId,jdbcType=INTEGER}
   </update>
 
   <update id="updateEmpTimeliness" parameterType="com.trkj.tsm.entity.Emp">
-    update emp set EmpState = 1, LoginState =1, DeleteName = #{deletename,jdbcType=VARCHAR},DeleteTime = #{deletetime,jdbcType=TIMESTAMP}
+    update emp set EmpState = 1, LoginState =1, enabled =0,  DeleteName = #{deletename,jdbcType=VARCHAR},DeleteTime = #{deletetime,jdbcType=TIMESTAMP}
     where Emp_Id = #{empId,jdbcType=INTEGER} and EmpState = 0
   </update>
 </mapper>

@@ -8,6 +8,8 @@ import java.util.List;
 
 @Mapper
 public interface CourseDao {
+    List<CourseVo> selectAllCourse11();
+
     List<CourseVo> ClassesselectAllCourse();//班级查询课程
 
     List<CourseVo> selectAllCourse(String likeke);//页面显示加分页查询
@@ -19,6 +21,8 @@ public interface CourseDao {
     int insertCourse(Course record);//添加课程
 
     int updateCourse(Course record);//修改课程
+
+    int deleteCourse(Course record);//删除课程
 
     int updateCourseclasshours(Course record);//修改课时量信息
 //    int deleteByPrimaryKey(Integer courseId);

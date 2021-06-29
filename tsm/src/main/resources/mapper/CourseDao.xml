@@ -37,6 +37,17 @@
     AddName, ADDTIME, UpdateName, UpdateTime, StopName, StopTime, BeginName, BeginTime, 
     DeleteName, DeleteTime, TimeLiness
   </sql>
+  <select id="selectAllCourse11" resultMap="BaseResultMap">
+  select
+  course.Course_Id, course.Commission, course.Course_Name, course.Course_State, course.Classhours,
+  course.Course_Money, course.ClassType_Id, course.AddName, course.ADDTIME, course.UpdateName,
+  course.UpdateTime, course.StopName, course.StopTime, course.BeginName, course.BeginTime,
+  course.DeleteName, course.DeleteTime, course.TimeLiness, classtype.ClassType_Id,
+  classtype.ClassType_Name, classtype.AddName, classtype.AddTime, classtype.UpdateName,
+  classtype.UpdateTime, classtype.DeleteName, classtype.DeleteTime, classtype.TimeLiness
+  from course
+  course inner join classtype on course.ClassType_Id = classtype.ClassType_Id
+  </select>
   <select id="ClassesselectAllCourse" resultMap="BaseResultMap">
     select
     course.Course_Id, course.Commission, course.Course_Name, course.Course_State, course.Classhours,
@@ -94,6 +105,14 @@
         ClassType_Id = #{classtypeId,jdbcType=INTEGER},
         UpdateName = #{updatename,jdbcType=VARCHAR},
         UpdateTime = #{updatetime,jdbcType=TIMESTAMP}
+      where Course_Id = #{courseId,jdbcType=INTEGER}
+    </update>
+    <update id="deleteCourse" parameterType="com.trkj.tsm.entity.Course">
+      update course
+      set
+        DeleteName = #{deletename,jdbcType=VARCHAR},
+        DeleteTime = #{deletetime,jdbcType=TIMESTAMP},
+        TimeLiness = 1
       where Course_Id = #{courseId,jdbcType=INTEGER}
     </update>
 <!--  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">-->

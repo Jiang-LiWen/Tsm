@@ -35,7 +35,13 @@ public class ClassRoomController {
         return  ClassrommVoPageInfo;
     }
 
-
+    //显示教室表的全部内容
+    @GetMapping("/selectAllsClassRoom")
+    public List<Classroom> selectAllsClassRoom(){
+        log.debug("ClassroomController:查找所有未过期的教室信息-----------------------------------------");
+        List<Classroom> entityPage=classroomService.selectAllsClassRoom();
+        return  entityPage;
+    }
 
     @PostMapping("/addClassroom")
     public AjaxResponse addClassroom(@RequestBody @Valid ClassroomVo classroomVo) {

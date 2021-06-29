@@ -4,6 +4,9 @@
   <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Position">
     <id column="Position_Id" jdbcType="INTEGER" property="positionId" />
     <result column="Position_Name" jdbcType="VARCHAR" property="positionName" />
+    <result column="role_desc" jdbcType="VARCHAR" property="roleDesc"/>
+    <result column="role_code" jdbcType="VARCHAR" property="roleCode"/>
+    <result column="status" jdbcType="INTEGER" property="status"/>
     <result column="AddName" jdbcType="VARCHAR" property="addname" />
     <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
     <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
@@ -13,9 +16,15 @@
     <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
   </resultMap>
   <sql id="Base_Column_List">
-    Position_Id, Position_Name, AddName, AddTime, UpdateName, UpdateTime, DeleteName, 
+    Position_Id, Position_Name,role_desc, role_code, status, AddName, AddTime, UpdateName, UpdateTime, DeleteName,
     DeleteTime, TimeLiness
   </sql>
+
+  <select id="findRoleByUserName" resultType="java.lang.String" parameterType="string">
+        SELECT r.role_code FROM position r LEFT JOIN sys_user_role ur ON r.Position_Id = ur.role_id
+        LEFT JOIN emp u ON u.Emp_Id = ur.user_id
+        WHERE u.username = #{username}
+    </select>
 
   <select id="selectPosition" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/> from position where TimeLiness=0
@@ -36,10 +45,11 @@
   </delete>
 
   <insert id="insert" keyColumn="Position_Id" keyProperty="positionId" parameterType="com.trkj.tsm.entity.Position" useGeneratedKeys="true">
-    insert into position (Position_Id, Position_Name, AddName,
+    insert into position (Position_Id, Position_Name,role_desc,role_code, AddName,
       UpdateName, UpdateTime, DeleteName, 
       DeleteTime)
-    values (#{positionId,jdbcType=INTEGER}, #{positionName,jdbcType=VARCHAR}, #{addname,jdbcType=VARCHAR},
+    values (#{positionId,jdbcType=INTEGER}, #{positionName,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR},
+      #{roleCode,jdbcType=VARCHAR},#{addname,jdbcType=VARCHAR},
       #{updatename,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{deletename,jdbcType=VARCHAR}, 
       #{deletetime,jdbcType=TIMESTAMP})
   </insert>
@@ -47,6 +57,9 @@
   <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Position">
     update position
     set Position_Name = #{positionName,jdbcType=VARCHAR},
+      role_desc = #{roleDesc,jdbcType=VARCHAR},
+      role_code = #{roleCode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
       AddName = #{addname,jdbcType=VARCHAR},
       AddTime = #{addtime,jdbcType=TIMESTAMP},
       UpdateName = #{updatename,jdbcType=VARCHAR},
