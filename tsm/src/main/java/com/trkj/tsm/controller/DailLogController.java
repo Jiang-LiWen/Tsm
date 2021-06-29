@@ -16,7 +16,7 @@ public class DailLogController {
     @Autowired
     private DaillogService daillogService;
 
-    @GetMapping("/selectByPrimaryKey2")
+    @GetMapping("/selectDaillog2")
     public List<DaillogVo> selectByPrimaryKey() {
         log.debug("查看工作日志表");
         return daillogService.selectByPrimaryKey();
@@ -33,8 +33,16 @@ public class DailLogController {
     public AjaxResponse addMemorandum(@RequestBody @Valid DaillogVo daillogVo) {
         log.debug(daillogVo.toString() + "=================");
         log.debug("新增备忘录");
+        daillogVo.setAddname("TSM管理员");
         daillogService.addDaillog(daillogVo);
         return AjaxResponse.success(daillogVo);
+    }
+
+    @GetMapping("/selectDaillog{value11}/{value1}")
+    public List<DaillogVo> selectDaillog(@PathVariable("value11")String value11,@PathVariable("value1")String value1){
+        log.debug("模糊查询工作日志表");
+        List<DaillogVo> daillogVoList=daillogService.selectDaillog(value11, value1);
+        return daillogVoList;
     }
 
 }

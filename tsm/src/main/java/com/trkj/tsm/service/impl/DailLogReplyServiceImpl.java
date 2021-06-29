@@ -16,6 +16,7 @@ import java.util.List;
 public class DailLogReplyServiceImpl implements DailLogReplyService {
     @Autowired
     private DaillogreplyDao daillogreplyDao;
+
     @Override
     public List<DailLogReplyVo> selectByPrimaryKey() {
 
@@ -33,8 +34,8 @@ public class DailLogReplyServiceImpl implements DailLogReplyService {
     @Override
     public DailLogReplyVo updateDaillogreply(DailLogReplyVo dailLogReplyVo) {
         log.debug("修改回复表信息");
-        Daillogreply d=new Daillogreply();
-        BeanCopyUtil.copyProperties(dailLogReplyVo,d);
+        Daillogreply d = new Daillogreply();
+        BeanCopyUtil.copyProperties(dailLogReplyVo, d);
         daillogreplyDao.updateByPrimaryKey(d);
         return dailLogReplyVo;
     }

@@ -83,6 +83,10 @@ public class IdeasVo {
      * 意见箱编号
      */
     private Suggest suggest;
+    /**
+     * 类型
+     */
+    private Integer type;
 
     private static final long serialVersionUID = 1L;
 

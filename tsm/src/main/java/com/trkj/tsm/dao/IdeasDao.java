@@ -16,9 +16,13 @@ public interface IdeasDao {
 
     List<IdeasVo> selectByPrimaryKey();
 
-    int updateByPrimaryKeySelective(IdeasVo ideasVo);
+    int updateIdeas(IdeasVo ideasVo);
 
     int updateByPrimaryKey(Ideas record);
 
     List<IdeasVo> selectState(String value1);
+
+    List<IdeasVo> selectIdeas(String value2);
+
+    List<IdeasVo> selectByPrimaryKey2();
 }
