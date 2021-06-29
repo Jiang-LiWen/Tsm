@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -31,6 +33,13 @@ public class BookbackServiceImpl implements BookbackService {
     public Bookback insert(Bookback bookback) {
         bookback.setEmpId(1);
         bookback.setStoragetime(new Date());
+        //单号
+        //Bookback bo=new Bookback();
+        String num="SF";//定义一个固定值
+        DateFormat dateFormat=new SimpleDateFormat("yyyyMMdd");//时间的精确值
+        String feesname=num+dateFormat.format(new Date())+bookback.toString().length();
+        bookback.setReturnnumber(feesname);
+        log.debug(feesname+toString()+"uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
         bookbackDao.insert(bookback);
         return bookback;
     }

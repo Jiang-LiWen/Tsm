@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -43,10 +45,10 @@ public class BookDeliveryServiceImpl implements BookDeliveryService {
     public Bookdelivery insertSelectivessb(Bookdelivery bookdelivery) {
         log.debug("新增信息");
         bookdelivery.setEmpId(1);
-        Date date = new Date();
-        // 返回自 1970 年 1 月 1 日 00:00:00 GMT 以来此 Date 对象表示的毫秒数。
-        long time = date.getTime();
-        bookdelivery.setSalenumber("SF123467");
+        String num="SF";//定义一个固定值
+        DateFormat dateFormat=new SimpleDateFormat("yyyyMMdd");//时间的精确值
+        String feesname=num+dateFormat.format(new Date())+bookdelivery.toString().length();
+        bookdelivery.setSalenumber(feesname);
         bookdeliveryDao.insertSelectivessb(bookdelivery);
         return bookdelivery;
     }
