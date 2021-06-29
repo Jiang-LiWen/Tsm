@@ -16,6 +16,7 @@ import java.util.List;
 public class DaillogServiceImpl implements DaillogService {
     @Autowired
     private DaillogDao daillogDao;
+
     @Override
     public List<DaillogVo> selectByPrimaryKey() {
 
@@ -32,9 +33,14 @@ public class DaillogServiceImpl implements DaillogService {
 
     public DaillogVo addDaillog(DaillogVo daillogVo) {
         log.debug("新增工作表");
-        Daillog d=new Daillog();
-        BeanCopyUtil.copyProperties(daillogVo,d);
+        Daillog d = new Daillog();
+        BeanCopyUtil.copyProperties(daillogVo, d);
         daillogDao.insertSelective(d);
         return daillogVo;
+    }
+
+    @Override
+    public List<DaillogVo> selectDaillog(String value11, String value1) {
+        return daillogDao.selectDaillog(value11, value1);
     }
 }
