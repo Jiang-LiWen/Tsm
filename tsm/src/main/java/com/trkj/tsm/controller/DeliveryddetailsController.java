@@ -40,8 +40,9 @@ public class DeliveryddetailsController {
     @PostMapping("/insertSelectivehhp")
     public AjaxResponse insertSelectivehhp(@RequestBody @Valid Deliveryddetails deliveryddetails) {
         deliveryddetailsServce.insertSelectivehhp(deliveryddetails);
+
         log.debug("--------------------大大新增");
-        return AjaxResponse.success("销售成功");
+        return AjaxResponse.success(deliveryddetails);
     }
 
     @PutMapping("/updateByPrimaryKeymmc")
