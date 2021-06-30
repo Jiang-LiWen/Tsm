@@ -8,11 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 @Service
 @Slf4j
 public class SuspendeServiceImpl implements SuspendeService {
-    @Autowired
+    @Resource
     private SuspendeDao suspendeDao;
 
     @Override
@@ -38,10 +39,7 @@ public class SuspendeServiceImpl implements SuspendeService {
     @Override
     public SuspendeVo insertSuspende(SuspendeVo suspendeVo) {
         log.debug("增加退学信息---------------------ImpI");
-        suspendeVo.setStudentId(suspendeVo.getStudent().getStudentId());
         suspendeVo.setCourseId(suspendeVo.getCourse().getCourseId());
-        suspendeVo.setDetailcourseId(suspendeVo.getDetailcourse().getDetailcourseId());
-        suspendeVo.setClassesId(suspendeVo.getClasses().getClassesId());
         suspendeDao.insertSuspende(suspendeVo);
         return suspendeVo;
     }

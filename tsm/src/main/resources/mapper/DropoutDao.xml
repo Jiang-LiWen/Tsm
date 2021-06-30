@@ -145,11 +145,10 @@
   <!--  增加退学方法-->
   <insert id="insertDropOut" keyColumn="Drop_Id" keyProperty="dropId" parameterType="com.trkj.tsm.vo.DropoutVo" useGeneratedKeys="true">
     insert into dropout (Drop_Id, Student_Id, Classes_Id,Course_Id,
-      DetailCourse_Id, Drop_Reason,Drop_Handler,JW_AppName)
+      DetailCourse_Id, Drop_Reason)
     values (#{dropId,jdbcType=INTEGER},#{studentId,jdbcType=INTEGER},
     #{classesId,jdbcType=INTEGER},#{courseId,jdbcType=INTEGER},
-    #{detailcourseId,jdbcType=INTEGER},#{dropReason,jdbcType=VARCHAR},
-    #{dropHandler,jdbcType=VARCHAR},#{jwAppname,jdbcType=VARCHAR}
+    #{detailcourseId,jdbcType=INTEGER},#{dropReason,jdbcType=VARCHAR})
   </insert>
   <!--  删除（修改时效性）-->
   <update id="updateDropOutTimeLiness" parameterType="com.trkj.tsm.vo.DropoutVo">

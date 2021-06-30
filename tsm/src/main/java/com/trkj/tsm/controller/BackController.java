@@ -52,8 +52,8 @@ public class BackController {
         return backService.updateBackApproval(backVo);
     }
 //    取消复课
-    @DeleteMapping("/delRowFrom/{backId}")
-    public int delRowFrom(@PathVariable("backId") Integer backId){
+    @DeleteMapping("/delRowFrom")
+    public int delRowFrom(@RequestParam("backId") Integer backId){
         log.debug("取消退学-------------------------Controllrt");
         return backService.delRowFrom(backId);
     }

@@ -36,10 +36,6 @@ public class DropOutServiceImpl implements DropOutService {
     @Override
     public DropoutVo insertDropOut(DropoutVo dropoutVo) {
         log.debug("增加退学信息---------------------ImpI");
-        dropoutVo.setStudentId(dropoutVo.getStudent().getStudentId());
-        dropoutVo.setCourseId(dropoutVo.getCourse().getCourseId());
-        dropoutVo.setDetailcourseId(dropoutVo.getDetailcourse().getDetailcourseId());
-        dropoutVo.setClassesId(dropoutVo.getClasses().getClassesId());
         dropoutDao.insertDropOut(dropoutVo);
         return dropoutVo;
     }

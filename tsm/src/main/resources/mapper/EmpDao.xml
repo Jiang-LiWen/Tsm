@@ -215,4 +215,10 @@
     update emp set EmpState = 1, LoginState =1, enabled =0,  DeleteName = #{deletename,jdbcType=VARCHAR},DeleteTime = #{deletetime,jdbcType=TIMESTAMP}
     where Emp_Id = #{empId,jdbcType=INTEGER} and EmpState = 0
   </update>
+
+  <select id="selectEmp1" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from emp
+  </select>
 </mapper>

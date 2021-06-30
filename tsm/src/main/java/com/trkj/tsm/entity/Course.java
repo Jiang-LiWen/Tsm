@@ -12,7 +12,7 @@ import java.util.Date;
 
 /**
  * course
- * @author 
+ * @author
  */
 @Validated
 @Data

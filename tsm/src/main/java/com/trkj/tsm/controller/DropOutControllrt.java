@@ -58,7 +58,7 @@ public class DropOutControllrt {
         return dropOutService.updateDropOutDropoutStatus(dropoutVo);
     }
 //    取消退学（删除数据库表数据）
-    @DeleteMapping("/delDropOutFrom/{dropId}")
+    @DeleteMapping("/delDropOutFrom")
     public int delDropOutFrom(@PathVariable("dropId") Integer dropId){
         log.debug("取消退学-------------------------Controllrt");
         return dropOutService.delRowFrom(dropId);

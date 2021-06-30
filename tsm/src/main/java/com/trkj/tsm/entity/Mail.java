@@ -1,5 +1,6 @@
 package com.trkj.tsm.entity;
 
+import com.trkj.tsm.vo.EmpVo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -68,7 +69,7 @@ public class Mail implements Serializable {
     /**
      * 发件人编号
      */
-    private Emp emp;
+    private EmpVo emp;
 
     /**
      * 是否草稿 0:正常邮件；1：草稿邮件

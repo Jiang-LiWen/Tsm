@@ -15,7 +15,7 @@
         <result column="SendDate" jdbcType="TIMESTAMP" property="senddate"/>
         <result column="ReceiveDate" jdbcType="TIMESTAMP" property="receivedate"/>
         <result column="Type" jdbcType="INTEGER" property="type"/>
-        <association property="emp" javaType="com.trkj.tsm.entity.Emp">
+        <association property="emp" javaType="com.trkj.tsm.vo.EmpVo">
             <id column="Emp_Id" jdbcType="INTEGER" property="empId" />
             <result column="Dept_Id" jdbcType="INTEGER" property="deptId" />
             <result column="Position_Id" jdbcType="INTEGER" property="positionId" />

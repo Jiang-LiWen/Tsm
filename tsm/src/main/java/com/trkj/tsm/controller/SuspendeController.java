@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 
@@ -49,9 +50,16 @@ public class SuspendeController {
         return suspendeService.updateSuspenStatus(suspendeVo);
     }
     //    取消退学（删除数据库表数据）
-    @DeleteMapping("/delSuspendeFrom/{suspendeId}")
-    public int delSuspendeFrom(@PathVariable("suspendeId") Integer suspendeId){
+    @DeleteMapping("/delSuspendeFrom")
+    public int delSuspendeFrom(@RequestParam("suspendeId") Integer suspendeId){
         log.debug("取消退学-------------------------Controllrt");
         return suspendeService.delRowFrom(suspendeId);
+    }
+    //    添加停课记录
+    @PostMapping("/insertSusoende")
+    public SuspendeVo insertSusoende(@RequestBody @Valid SuspendeVo suspendeVo){
+        log.debug("添加--------------------Controllrt");
+        suspendeService.insertSuspende(suspendeVo);
+        return suspendeVo;
     }
 }

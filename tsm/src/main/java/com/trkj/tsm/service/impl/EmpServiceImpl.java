@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 public class EmpServiceImpl implements EmpService {
     private static DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
-    @Autowired
+    @Resource
     private EmpDao empDao;
 
     @Override
@@ -42,6 +42,7 @@ public class EmpServiceImpl implements EmpService {
         e.setDeptId(empVo.getDept().getDeptId());
         e.setPositionId(empVo.getPosition().getPositionId());
         e.setEnterpriseId(empVo.getEnterprise().getEnterpriseId());
+        e.setPassword("$2a$10$xPNoI0sBxOY6Y5Nj1bF6iO6OePqJ8tAJUsD5x5wh6G1BPphhSLcae");
         empDao.insert(e);
         return empVo;
     }
@@ -82,5 +83,10 @@ public class EmpServiceImpl implements EmpService {
         EmpVo vo = new EmpVo();
         dozerBeanMapper.map(emp, vo);
         return vo;
+    }
+
+    @Override
+    public List<EmpVo> selectEmp1() {
+        return empDao.selectEmp();
     }
 }

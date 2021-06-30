@@ -82,7 +82,9 @@ public class EmpController {
         empService.deleteByPrimaryKey(empId);
         return "删除成功";
     }
-    //批量删除
+
+
+       //批量删除
     @PutMapping("/updateEmpTimeliness")
     public AjaxResponse updateEmpTimeliness(@RequestBody @Valid EmpVo empVo){
         log.debug("批量删除职位信息");
@@ -97,5 +99,10 @@ public class EmpController {
         empVo.setUpdatetime(new Date());
         empService.updateByPrimaryKey(empVo);
         return AjaxResponse.success(empVo);
+    }
+    @GetMapping("/selectEmp1")
+    public List<EmpVo> selectEmp1(){
+        log.debug("查看emp表");
+        return empService.selectEmp1();
     }
 }

@@ -26,6 +26,7 @@ public class MainController {
     @GetMapping("/selectOutbox")
     public List<MainVo> selectOutbox(){
         log.debug("查询发件表信息");
+        log.debug(mainService.selectOutbox().toString()+"=======================");
         return mainService.selectOutbox();
     }
 

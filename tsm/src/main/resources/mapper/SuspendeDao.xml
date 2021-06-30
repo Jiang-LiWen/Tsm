@@ -148,7 +148,7 @@
     values (#{suspendeId,jdbcType=INTEGER},#{studentId,jdbcType=INTEGER},
     #{classesId,jdbcType=INTEGER},#{courseId,jdbcType=INTEGER},
     #{detailcourseId,jdbcType=INTEGER},#{suspendeReason,jdbcType=VARCHAR},
-    #{suspendeHandler,jdbcType=VARCHAR}
+    #{suspendeHandler,jdbcType=VARCHAR})
   </insert>
   <!--  删除（修改时效性）-->
   <update id="updateSuspendeTimeLiness" parameterType="com.trkj.tsm.vo.SuspendeVo">
