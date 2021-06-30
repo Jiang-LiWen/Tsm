@@ -19,9 +19,9 @@ public class AttendanceServiceImpl implements AttendanceService {
     private AttendanceDao attendanceDao;
 
     @Override
-    public List<AttendanceVo> selectAllsAttend() {
+    public List<AttendanceVo> selectAllsAttend(String flag) {
         log.debug("分页查询所有");
-        return attendanceDao.selectAllsAttend();
+        return attendanceDao.selectAllsAttend(flag);
     }
 
     @Override
@@ -52,6 +52,14 @@ public class AttendanceServiceImpl implements AttendanceService {
         BeanCopyUtil.copyProperties(attendanceVo, d);
         attendanceDao.updateByPrimaryKeySelectivegwesd(d);
         return attendanceVo;
+    }
+
+    /**
+     高级查询
+     */
+    @Override
+    public List<AttendanceVo> cdcsdvdtfdfeg(String Starttime, String Endtime) {
+        return attendanceDao.cdcsdvdtfdfeg(Starttime,Endtime);
     }
 
 

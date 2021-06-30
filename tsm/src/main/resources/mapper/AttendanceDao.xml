@@ -99,6 +99,8 @@
     from attendance
     where Attendance_Id = #{attendanceId,jdbcType=INTEGER}
   </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from attendance
     where Attendance_Id = #{attendanceId,jdbcType=INTEGER}
@@ -258,6 +260,9 @@
     inner join emp em on a.Emp_Id=em.Emp_Id
     inner join student student on a.Student_Id=student.Student_Id
     where a.TimeLiness=0
+    <if test="studentNumber!=null">
+      AND student.Student_Number like CONCAT ('%',#{flag,jdbcType=VARCHAR},'%')
+    </if>
   </select>
 
 
@@ -268,5 +273,19 @@
         a.DeleteTime = #{deletetime,jdbcType=TIMESTAMP}
     where Attendance_Id = #{attendanceId,jdbcType=INTEGER}
   </update>
+
+
+  <!--高级查询-->
+  <select id="cdcsdvdtfdfeg" resultMap="BaseResultMap">
+    select * from attendance a
+    inner join emp em on a.Emp_Id=em.Emp_Id
+    inner join student student on a.Student_Id=student.Student_Id
+    <where>
+      <if test="Starttime!=null and Endtime!=null">
+        and a.Attendance_Time between #{Starttime} and #{Endtime}
+      </if>
+    </where>
+    and a.TimeLiness = 0
+  </select>
 
 </mapper>

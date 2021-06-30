@@ -6,12 +6,14 @@ import com.trkj.tsm.entity.Book;
 import com.trkj.tsm.service.BookService;
 import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.BookVo;
+import com.trkj.tsm.vo.BookdeliveryVo;
 import com.trkj.tsm.vo.EmpVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 
@@ -60,5 +62,12 @@ public class BookController {
     private List<BookVo> selectByPrimaryKeyyyyy(BookVo bookVo){
         log.debug("Controller方法调用");
         return bookService.selectByPrimaryKeyyyyy(bookVo);
+    }
+
+    @PutMapping("/updateBook")
+    public Book updateBook(@RequestBody  Book book){
+        log.debug("修改");
+        bookService.updateBook(book);
+        return book;
     }
 }

@@ -22,7 +22,7 @@ public interface BookDao {
 
     int updateByPrimaryKeySelective(Book record);
 
-    int updateByPrimaryKey(BookVo record);
+    int updateBook(Book record);
 
     List<Book> selectAlls1();
 }

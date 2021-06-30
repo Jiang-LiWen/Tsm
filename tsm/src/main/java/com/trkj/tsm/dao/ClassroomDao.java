@@ -16,6 +16,8 @@ public interface ClassroomDao {
     int insertSelective(Classroom record);
 
 
+   int updateClassroom(ClassroomVo record);
+
     int updateByPrimaryKeySelective(ClassroomVo record);
 
     //批量删除

@@ -45,8 +45,6 @@ public class DeliveryddetailsServceImpl implements DeliveryddetailsServce {
     public Deliveryddetails insertSelectivehhp(Deliveryddetails deliveryddetails) {
         log.debug("新增信息");
         deliveryddetails.setEmpId(1);
- /*       Deliveryddetails d = new Deliveryddetails();
-        BeanCopyUtil.copyProperties(deliveryddetails, d);*/
         deliveryddetailsDao.insertSelectivehhp(deliveryddetails);
         return deliveryddetails;
     }

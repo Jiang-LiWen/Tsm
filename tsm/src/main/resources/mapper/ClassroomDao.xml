@@ -113,6 +113,49 @@
       </if>
     </trim>
   </insert>
+
+
+  <update id="updateClassroom" parameterType="com.trkj.tsm.vo.ClassroomVo">
+    update classroom
+    <set>
+      <if test="classroomName != null">
+        ClassRoom_Name = #{classroomName,jdbcType=VARCHAR},
+      </if>
+      <if test="catacity != null">
+        Catacity = #{catacity,jdbcType=INTEGER},
+      </if>
+      <if test="place != null">
+        Place = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="addname != null">
+        AddName = #{addname,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        AddTime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatename != null">
+        UpdateName = #{updatename,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletename != null">
+        DeleteName = #{deletename,jdbcType=VARCHAR},
+      </if>
+      <if test="deletetime != null">
+        DeleteTime = #{deletetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeliness != null">
+        TimeLiness = #{timeliness,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ClassRoom_Id = #{classroomId,jdbcType=INTEGER}
+  </update>
+
+
+
+
+
   <update id="updateByPrimaryKeySelective" parameterType="com.trkj.tsm.entity.Classroom">
     update classroom
     <set>
@@ -149,6 +192,12 @@
     </set>
     where ClassRoom_Id = #{classroomId,jdbcType=INTEGER}
   </update>
+
+
+
+
+
+
   <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Classroom">
     update classroom
     set TimeLiness = 1,

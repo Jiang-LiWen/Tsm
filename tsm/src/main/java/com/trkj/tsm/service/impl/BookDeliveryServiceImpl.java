@@ -44,6 +44,7 @@ public class BookDeliveryServiceImpl implements BookDeliveryService {
     @Override
     public Bookdelivery insertSelectivessb(Bookdelivery bookdelivery) {
         log.debug("新增信息");
+
         bookdelivery.setEmpId(1);
         String num="SF";//定义一个固定值
         DateFormat dateFormat=new SimpleDateFormat("yyyyMMdd");//时间的精确值

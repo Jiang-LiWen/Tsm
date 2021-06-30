@@ -38,6 +38,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public Book updateBook(Book book) {
+        bookDao.updateBook(book);
+        return book;
+    }
+
+    @Override
     public List<Book> selectBook(String bookname) {
         log.debug("查询");
         return bookDao.selectByPrimaryKey1(bookname);

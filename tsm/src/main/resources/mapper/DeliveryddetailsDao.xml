@@ -113,12 +113,12 @@
     delete from deliveryddetails
     where DeliveryDdetails_Id = #{deliveryddetailsId,jdbcType=INTEGER}
   </delete>
+
   <insert id="insertSelectivehhp" keyColumn="DeliveryDdetails_Id" keyProperty="deliveryddetailsId" parameterType="com.trkj.tsm.entity.Deliveryddetails" useGeneratedKeys="true">
-    insert into deliveryddetails (BookDelivery_Name, BookDelivery_Remarks, 
-      Emp_Id, BookDelivery_Id, Book_Id,
-      DeliveryCount, ReceivableMoney, PayMoney)
-    values (#{bookdeliveryName,jdbcType=VARCHAR}, #{bookdeliveryRemarks,jdbcType=VARCHAR}, 
-      #{empId,jdbcType=INTEGER}, #{bookdeliveryId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER}, 
+    insert into deliveryddetails (BookDelivery_Name, BookDelivery_Remarks,
+      Emp_Id, BookDelivery_Id, Book_Id,DeliveryCount, ReceivableMoney, PayMoney)
+    values (#{bookdeliveryName,jdbcType=VARCHAR}, #{bookdeliveryRemarks,jdbcType=VARCHAR},
+      #{empId,jdbcType=INTEGER}, #{bookdeliveryId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER},
       #{deliverycount,jdbcType=INTEGER}, #{receivablemoney,jdbcType=DECIMAL}, #{paymoney,jdbcType=DECIMAL})
   </insert>
 

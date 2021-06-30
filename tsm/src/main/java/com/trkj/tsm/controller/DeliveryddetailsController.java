@@ -40,7 +40,6 @@ public class DeliveryddetailsController {
     @PostMapping("/insertSelectivehhp")
     public AjaxResponse insertSelectivehhp(@RequestBody @Valid Deliveryddetails deliveryddetails) {
         deliveryddetailsServce.insertSelectivehhp(deliveryddetails);
-        log.debug(deliveryddetails.toString()+"vvvvvvvvvvvvvvvvvvvvvvvvv");
         log.debug("--------------------大大新增");
         return AjaxResponse.success(deliveryddetails);
     }

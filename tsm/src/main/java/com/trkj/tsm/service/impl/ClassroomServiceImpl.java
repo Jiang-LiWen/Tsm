@@ -39,7 +39,7 @@ public class ClassroomServiceImpl implements ClassroomService {
     public ClassroomVo addClassroom(ClassroomVo classroomVo) {
         log.debug("新增企业档案信息");
         Classroom d = new Classroom();
-        /*classroomVo.setAddname("Admin");*/
+        classroomVo.setAddname("Admin");
         BeanCopyUtil.copyProperties(classroomVo, d);
         classroomDao.insert(d);
         return classroomVo;
@@ -52,7 +52,7 @@ public class ClassroomServiceImpl implements ClassroomService {
         log.debug(classroomVo.toString());
         ClassroomVo d = new ClassroomVo();
         BeanCopyUtil.copyProperties(classroomVo, d);
-        classroomDao.updateByPrimaryKey(d);
+        classroomDao.updateClassroom(d);
         return classroomVo;
     }
 
