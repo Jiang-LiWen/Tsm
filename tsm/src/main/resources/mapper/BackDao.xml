@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.tsm.dao.BackDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Back">
+    <id column="Back_Id" jdbcType="INTEGER" property="backId" />
+    <result column="Suspende_Id" jdbcType="INTEGER" property="suspendeId" />
+    <result column="Student_Id" jdbcType="INTEGER" property="studentId" />
+    <result column="Classes_Id" jdbcType="INTEGER" property="classesId" />
+    <result column="Course_Id" jdbcType="INTEGER" property="courseId" />
+    <result column="DetailCourse_Id" jdbcType="INTEGER" property="detailcourseId" />
+    <result column="ClassAlreadyOn" jdbcType="VARCHAR" property="classalreadyon" />
+    <result column="Absent" jdbcType="VARCHAR" property="absent" />
+    <result column="isPay" jdbcType="INTEGER" property="ispay" />
+    <result column="Intention" jdbcType="VARCHAR" property="intention" />
+    <result column="Back_Time" jdbcType="TIMESTAMP" property="backTime" />
+    <result column="Suspende_Handler" jdbcType="VARCHAR" property="suspendeHandler" />
+    <result column="Back_Approval" jdbcType="INTEGER" property="backApproval" />
+    <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+    <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+    <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    <association property="suspende" javaType="com.trkj.tsm.entity.Suspende">
+      <id column="Suspende_Id" jdbcType="INTEGER" property="suspendeId" />
+      <result column="Student_Id" jdbcType="INTEGER" property="studentId" />
+      <result column="Classes_Id" jdbcType="INTEGER" property="classesId" />
+      <result column="Course_Id" jdbcType="INTEGER" property="courseId" />
+      <result column="DetailCourse_Id" jdbcType="INTEGER" property="detailcourseId" />
+      <result column="AlreadyOn" jdbcType="VARCHAR" property="alreadyon" />
+      <result column="Suspende_Time" jdbcType="TIMESTAMP" property="suspendeTime" />
+      <result column="Suspende_Reason" jdbcType="VARCHAR" property="suspendeReason" />
+      <result column="Suspende_Handler" jdbcType="VARCHAR" property="suspendeHandler" />
+      <result column="Suspensionstatus" jdbcType="INTEGER" property="suspensionstatus" />
+      <result column="Suspende_SAppName" jdbcType="VARCHAR" property="suspendeSappname" />
+      <result column="Suspende_SAppTime" jdbcType="TIMESTAMP" property="suspendeSapptime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    </association>
+    <association property="student" javaType="com.trkj.tsm.entity.Student">
+      <id column="Student_Id" jdbcType="INTEGER" property="studentId" />
+      <result column="Classes_Id" jdbcType="INTEGER" property="classesId" />
+      <result column="Source_Id" jdbcType="INTEGER" property="sourceId" />
+      <result column="Register_Id" jdbcType="INTEGER" property="registerId" />
+      <result column="Student_Number" jdbcType="VARCHAR" property="studentNumber" />
+      <result column="Student_Name" jdbcType="VARCHAR" property="studentName" />
+      <result column="StudyTime" jdbcType="TIMESTAMP" property="studytime" />
+      <result column="Entrance" jdbcType="VARCHAR" property="entrance" />
+      <result column="Sex" jdbcType="VARCHAR" property="sex" />
+      <result column="Student_Phone" jdbcType="VARCHAR" property="studentPhone" />
+      <result column="Address" jdbcType="VARCHAR" property="address" />
+      <result column="ImgAddress" jdbcType="VARCHAR" property="imgaddress" />
+      <result column="ParentName" jdbcType="VARCHAR" property="parentname" />
+      <result column="ParentPhone" jdbcType="VARCHAR" property="parentphone" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    </association>
+    <association property="classes" javaType="com.trkj.tsm.entity.Classes">
+      <id column="Classes_Id" jdbcType="INTEGER" property="classesId" />
+      <result column="Course_Id" jdbcType="INTEGER" property="courseId" />
+      <result column="Teacher_Id" jdbcType="INTEGER" property="teacherId" />
+      <result column="Emp_Id" jdbcType="INTEGER" property="empId" />
+      <result column="DetailCourse_Id" jdbcType="INTEGER" property="detailcourseId" />
+      <result column="Classes_Name" jdbcType="VARCHAR" property="classesName" />
+      <result column="Classes_Open" jdbcType="INTEGER" property="classesOpen" />
+      <result column="OpenDate" jdbcType="TIMESTAMP" property="opendate" />
+      <result column="Classes_State" jdbcType="INTEGER" property="classesState" />
+      <result column="EndDate" jdbcType="TIMESTAMP" property="enddate" />
+      <result column="AddName" jdbcType="VARCHAR" property="addname" />
+      <result column="AddTIME" jdbcType="TIMESTAMP" property="addtime" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    </association>
+    <association property="course" javaType="com.trkj.tsm.entity.Course">
+      <id column="Course_Id" jdbcType="INTEGER" property="courseId" />
+      <result column="Commission" jdbcType="DECIMAL" property="commission" />
+      <result column="Course_Name" jdbcType="VARCHAR" property="courseName" />
+      <result column="Course_State" jdbcType="INTEGER" property="courseState" />
+      <result column="Classhours" jdbcType="INTEGER" property="classhours" />
+      <result column="Course_Money" jdbcType="DECIMAL" property="courseMoney" />
+      <result column="ClassType_Id" jdbcType="INTEGER" property="classtypeId" />
+      <result column="AddName" jdbcType="VARCHAR" property="addname" />
+      <result column="ADDTIME" jdbcType="TIMESTAMP" property="addtime" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="StopName" jdbcType="VARCHAR" property="stopname" />
+      <result column="StopTime" jdbcType="TIMESTAMP" property="stoptime" />
+      <result column="BeginName" jdbcType="VARCHAR" property="beginname" />
+      <result column="BeginTime" jdbcType="TIMESTAMP" property="begintime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    </association>
+    <association property="detailcourse" javaType="com.trkj.tsm.entity.Detailcourse">
+      <id column="DetailCourse_Id" jdbcType="INTEGER" property="detailcourseId" />
+      <result column="Course_Id" jdbcType="INTEGER" property="courseId" />
+      <result column="DetailCourse_Name" jdbcType="VARCHAR" property="detailcourseName" />
+      <result column="Serial" jdbcType="INTEGER" property="serial" />
+      <result column="AddName" jdbcType="VARCHAR" property="addname" />
+      <result column="ADDTIME" jdbcType="TIMESTAMP" property="addtime" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="StopName" jdbcType="VARCHAR" property="stopname" />
+      <result column="StopTime" jdbcType="TIMESTAMP" property="stoptime" />
+      <result column="BeginName" jdbcType="VARCHAR" property="beginname" />
+      <result column="BeginTime" jdbcType="TIMESTAMP" property="begintime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List_back">
+    ba.Back_Id, ba.Suspende_Id, ba.Student_Id, ba.Classes_Id, ba.Course_Id, ba.DetailCourse_Id, ba.ClassAlreadyOn,
+    ba.Absent, ba.isPay, ba.Intention, ba.Back_Time, ba.Suspende_Handler, ba.Back_Approval,  ba.UpdateName, ba.UpdateTime, ba.DeleteName, ba.DeleteTime, ba.TimeLiness
+  </sql>
+  <sql id="Base_Column_List_Su">
+    su.Suspende_Id, su.Student_Id, su.Classes_Id, su.Course_Id, su.DetailCourse_Id, su.AlreadyOn, su.Suspende_Time,
+    su.Suspende_Reason, su.Suspende_Handler, su.Suspensionstatus, su.Suspende_SAppName, su.Suspende_SAppTime,
+    su.DeleteName, su.DeleteTime, su.UpdateName, su.UpdateTime, su.TimeLiness
+  </sql>
+  <sql id="Base_Column_List_St">
+    s.Student_Id, s.Classes_Id, s.Source_Id, s.Register_Id, s.Student_Number, s.Student_Name, s.StudyTime,
+    s.Entrance, s.Sex, s.Student_Phone, s.Address, s.ImgAddress, s.ParentName, s.ParentPhone, s.UpdateName,
+    s.UpdateTime, s.DeleteName, s.DeleteTime, s.TimeLiness
+  </sql>
+  <sql id="Base_Column_List_Cl">
+    cl.Classes_Id, cl.Course_Id, cl.Teacher_Id, cl.Emp_Id, cl.DetailCourse_Id,
+    cl.Classes_Name, cl.Classes_Open,cl.OpenDate, cl.Classes_State,
+    cl.EndDate, cl.AddName, cl.AddTIME, cl.UpdateName, cl.UpdateTime,
+    cl.DeleteName,cl.DeleteTime, cl.TimeLiness
+  </sql>
+  <sql id="Base_Column_List_Co">
+    co.Course_Id, co.Commission, co.Course_Name, co.Course_State, co.Classhours, co.Course_Money, co.ClassType_Id,
+    co.AddName, co.ADDTIME, co.UpdateName, co.UpdateTime, co.StopName, co.StopTime, co.BeginName, co.BeginTime,
+    co.DeleteName, co.DeleteTime, co.TimeLiness
+  </sql>
+  <sql id="Base_Column_List_De">
+    de.DetailCourse_Id, de.Course_Id, de.DetailCourse_Name, de.Serial, de.AddName, de.ADDTIME, de.UpdateName,
+    de.UpdateTime, de.StopName, de.StopTime, de.BeginName, de.BeginTime, de.DeleteName, de.DeleteTime, de.TimeLiness
+  </sql>
+<!--  查询显示-->
+  <select id="selectLikeStudentName" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List_back" />,
+    <include refid="Base_Column_List_Su" />,
+    <include refid="Base_Column_List_De" />,
+    <include refid="Base_Column_List_St" />,
+    <include refid="Base_Column_List_Cl" />,
+    <include refid="Base_Column_List_Co" />
+    from back ba
+    inner join suspende su on ba.Suspende_Id = su.Suspende_Id
+    inner join student s on ba.Student_Id = s.Student_Id
+    inner join classes cl on ba.Classes_Id = cl.Classes_Id
+    inner join course co on ba.Course_Id = co.Course_Id
+    inner join detailcourse de on ba.DetailCourse_Id = de.DetailCourse_Id
+    where ba.TimeLiness=0
+    <if test="studentName !=null">
+      AND s.Student_Name like CONCAT('%' ,#{studentname , jdbcType=VARCHAR}, '%')
+    </if>
+    order by ba.Back_Id
+  </select>
+  <!--  删除（修改时效性）-->
+  <update id="updateBackTimeLiness" parameterType="com.trkj.tsm.vo.BackVo">
+    update back
+    <set>
+      TimeLiness = 1,
+      DeleteName = #{deletename,jdbcType=VARCHAR},
+      DeleteTime = #{deletetime,jdbcType=TIMESTAMP}
+    </set>
+    where Back_Id = #{backId,jdbcType=INTEGER}
+  </update>
+<!--  修改-->
+  <update id="updateBack" parameterType="com.trkj.tsm.vo.BackVo">
+    update back ba
+    <set>
+      ClassAlreadyOn = #{classalreadyon,jdbcType=VARCHAR},
+      Absent=#{absent,jdbcType=VARCHAR},
+      Intention = #{intention,jdbcType=VARCHAR}
+    </set>
+    where Back_Id = #{backId,jdbcType=INTEGER}
+  </update>
+<!--  审批-->
+  <update id="updateBackApproval" parameterType="com.trkj.tsm.vo.BackVo">
+    update back
+    <set>
+      Back_Approval = 1,
+      Suspende_Handler = #{deletename,jdbcType=VARCHAR},
+      Back_Time = #{deletetime,jdbcType=TIMESTAMP}
+    </set>
+    where Back_Id = #{backId,jdbcType=INTEGER}
+  </update>
+<!--  取消复课-->
+  <delete id="delRowFrom" parameterType="java.lang.Integer">
+    delete from back where Back_Id = #{backId,jdbcType=INTEGER}
+  </delete>
+<!--  增加复课-->
+  <insert id="insertBack" keyColumn="Back_Id" keyProperty="backId" parameterType="com.trkj.tsm.vo.BackVo" useGeneratedKeys="true">
+    insert into back(Suspende_Id,Student_Id,Classes_Id,Course_Id,DetailCourse_Id)
+    values (#{suspendeId,jdbcType=INTEGER},#{studentId,jdbcType=INTEGER},
+    #{classesId,jdbcType=INTEGER},#{courseId,jdbcType=INTEGER},#{detailcourseId,jdbcType=INTEGER})
+  </insert>
+</mapper>

@@ -5,11 +5,12 @@ import com.trkj.tsm.vo.CourseVo;
 import java.util.List;
 
 public interface CourseService {
-    List<CourseVo> selectAllCourse11();
 
     List<CourseVo> ClassesselectAllCourse();//班级查询课程
 
     List<CourseVo> selectAllCourse(String likeke);//页面显示加分页查询
+
+    List<CourseVo> selectAllCourse11();//页面显示加查询
 
     CourseVo updateCourseStateStop(CourseVo courseVo);//停报修改
 

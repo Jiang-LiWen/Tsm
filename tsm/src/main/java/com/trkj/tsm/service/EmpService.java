@@ -23,4 +23,6 @@ public interface EmpService {
     List<EmpVo> selectEmpLike(String likeke);
 
     public EmpVo findByUsername(String username);
+
+    List<EmpVo> selectEmp1();
 }

@@ -5,7 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.trkj.tsm.entity.Trainingperiod;
 import com.trkj.tsm.service.TrainingperiodService;
 import com.trkj.tsm.vo.AjaxResponse;
-import com.trkj.tsm.vo.StudentstatusVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

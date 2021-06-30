@@ -19,8 +19,7 @@
     DeleteName, DeleteTime, TimeLiness
   </sql>
 
-
-    <select id="selectAlls" resultMap="BaseResultMap">
+  <select id="selectAlls" resultMap="BaseResultMap">
       select
       <include refid="Base_Column_List" />
       from classroom
@@ -29,15 +28,13 @@
         AND ClassRoom_Name like concat('%',#{flag,jdbcType=VARCHAR},'%')
       </if>
     </select>
-
   <select id="selectAllsClassRoom" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from classroom
     where TimeLiness=0
   </select>
-
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from classroom
     where ClassRoom_Id = #{classroomId,jdbcType=INTEGER}
   </delete>

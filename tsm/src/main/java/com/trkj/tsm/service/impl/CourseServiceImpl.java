@@ -19,6 +19,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<CourseVo> selectAllCourse11() {
+
         return courseDao.selectAllCourse11();
     }
 
@@ -31,6 +32,7 @@ public class CourseServiceImpl implements CourseService {
     public List<CourseVo> selectAllCourse(String likeke) {
         return courseDao.selectAllCourse(likeke);
     }
+
 
     @Override
     public CourseVo updateCourseStateStop(CourseVo courseVo) {

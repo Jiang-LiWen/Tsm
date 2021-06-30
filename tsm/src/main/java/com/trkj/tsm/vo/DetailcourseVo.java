@@ -20,7 +20,7 @@ public class DetailcourseVo {
     private Integer detailcourseId;
 
     /**
-     * 课程详细编号
+     * 课程编号
      */
     private CourseVo courseVo;
 

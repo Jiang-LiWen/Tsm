@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.tsm.dao.ShiftDao">
+  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Shift">
+    <id column="Shift_Id" jdbcType="INTEGER" property="shiftId" />
+    <result column="Student_Id" jdbcType="INTEGER" property="studentId" />
+    <result column="Classes_Id" jdbcType="INTEGER" property="classesId" />
+    <result column="Shift_Time" jdbcType="TIMESTAMP" property="shiftTime" />
+    <result column="Shift_Reason" jdbcType="VARCHAR" property="shiftReason" />
+    <result column="Shift_Handler" jdbcType="VARCHAR" property="shiftHandler" />
+    <result column="Approval" jdbcType="INTEGER" property="approval" />
+    <result column="JW_AppTime" jdbcType="TIMESTAMP" property="jwApptime" />
+    <result column="JW_AppName" jdbcType="VARCHAR" property="jwAppname" />
+    <result column="JW_DropNameApp" jdbcType="VARCHAR" property="jwDropnameapp" />
+    <result column="JW_DropTimeApp" jdbcType="TIMESTAMP" property="jwDroptimeapp" />
+    <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+    <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+    <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    <association property="student" javaType="com.trkj.tsm.entity.Student">
+      <id column="Student_Id" jdbcType="INTEGER" property="studentId" />
+      <result column="Classes_Id" jdbcType="INTEGER" property="classesId" />
+      <result column="Source_Id" jdbcType="INTEGER" property="sourceId" />
+      <result column="Register_Id" jdbcType="INTEGER" property="registerId" />
+      <result column="Student_Number" jdbcType="VARCHAR" property="studentNumber" />
+      <result column="Student_Name" jdbcType="VARCHAR" property="studentName" />
+      <result column="StudyTime" jdbcType="TIMESTAMP" property="studytime" />
+      <result column="Entrance" jdbcType="VARCHAR" property="entrance" />
+      <result column="Sex" jdbcType="VARCHAR" property="sex" />
+      <result column="Student_Phone" jdbcType="VARCHAR" property="studentPhone" />
+      <result column="Address" jdbcType="VARCHAR" property="address" />
+      <result column="ImgAddress" jdbcType="VARCHAR" property="imgaddress" />
+      <result column="ParentName" jdbcType="VARCHAR" property="parentname" />
+      <result column="ParentPhone" jdbcType="VARCHAR" property="parentphone" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    </association>
+    <association property="classes" javaType="com.trkj.tsm.entity.Classes">
+      <id column="Classes_Id" jdbcType="INTEGER" property="classesId" />
+      <result column="Course_Id" jdbcType="INTEGER" property="courseId" />
+      <result column="Teacher_Id" jdbcType="INTEGER" property="teacherId" />
+      <result column="Emp_Id" jdbcType="INTEGER" property="empId" />
+      <result column="DetailCourse_Id" jdbcType="INTEGER" property="detailcourseId" />
+      <result column="Classes_Name" jdbcType="VARCHAR" property="classesName" />
+      <result column="Classes_Open" jdbcType="INTEGER" property="classesOpen" />
+      <result column="OpenDate" jdbcType="TIMESTAMP" property="opendate" />
+      <result column="Classes_State" jdbcType="INTEGER" property="classesState" />
+      <result column="EndDate" jdbcType="TIMESTAMP" property="enddate" />
+      <result column="AddName" jdbcType="VARCHAR" property="addname" />
+      <result column="AddTIME" jdbcType="TIMESTAMP" property="addtime" />
+      <result column="UpdateName" jdbcType="VARCHAR" property="updatename" />
+      <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
+      <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
+      <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List_Sh">
+    sh.Shift_Id, sh.Student_Id, sh.Classes_Id, sh.Shift_Time, sh.Shift_Reason, sh.Shift_Handler, sh.Approval,
+    sh.JW_AppTime, sh.JW_AppName, sh.JW_DropNameApp, sh.JW_DropTimeApp, sh.DeleteName, sh.DeleteTime, sh.TimeLiness
+  </sql>
+  <sql id="Base_Column_List_St">
+    s.Student_Id, s.Classes_Id, s.Source_Id, s.Register_Id, s.Student_Number, s.Student_Name, s.StudyTime,
+    s.Entrance, s.Sex, s.Student_Phone, s.Address, s.ImgAddress, s.ParentName, s.ParentPhone, s.UpdateName,
+    s.UpdateTime, s.DeleteName, s.DeleteTime, s.TimeLiness
+  </sql>
+  <sql id="Base_Column_List_Cl">
+    cl.Classes_Id, cl.Course_Id, cl.Teacher_Id, cl.Emp_Id, cl.DetailCourse_Id,
+    cl.Classes_Name, cl.Classes_Open,cl.OpenDate, cl.Classes_State,
+    cl.EndDate, cl.AddName, cl.AddTIME, cl.UpdateName, cl.UpdateTime,
+    cl.DeleteName,cl.DeleteTime, cl.TimeLiness
+  </sql>
+<!--  学生姓名模糊查询显示-->
+  <select id="selectStudentNameLike" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List_Sh" />,
+    <include refid="Base_Column_List_St" />,
+    <include refid="Base_Column_List_Cl" />
+    from shift sh
+    inner join student s on sh.Student_Id = s.Student_Id
+    inner join classes cl on sh.Classes_Id = cl.Classes_Id
+    where sh.TimeLiness = 0 and s.TimeLiness = 0 and cl.TimeLiness = 0 and cl.Classes_Open = 0
+    <if test="studentName != null">
+      AND s.Student_Name like CONCAT(CONCAT('%' ,#{studentname , jdbcType=VARCHAR}, '%'))
+    </if>
+    order by sh.Shift_Id
+  </select>
+  <!--  删除（修改时效性）-->
+  <update id="updateShiftTimeLiness" parameterType="com.trkj.tsm.vo.ShiftVo">
+    update shift
+    <set>
+      TimeLiness = 1,
+      DeleteName = #{deletename,jdbcType=VARCHAR},
+      DeleteTime = #{deletetime,jdbcType=TIMESTAMP}
+    </set>
+    where Shift_Id = #{shiftId,jdbcType=INTEGER}
+  </update>
+  <update id="updateShiftApproval" parameterType="com.trkj.tsm.vo.ShiftVo">
+    update shift
+    <set>
+      Approval = 1,
+      JW_AppName = #{deletename,jdbcType=VARCHAR},
+      JW_AppTime = #{deletetime,jdbcType=TIMESTAMP}
+    </set>
+    where Shift_Id = #{shiftId,jdbcType=INTEGER}
+  </update>
+<!--  修改转班理由-->
+  <update id="updataShift" parameterType="com.trkj.tsm.vo.ShiftVo">
+    update shift
+    <set>
+      Shift_Reason=#{shiftReason,jdbcType=VARCHAR}
+    </set>
+    where Shift_Id=#{shiftId,jdbcType=INTEGER}
+  </update>
+<!--增加学员转班-->
+  <insert id="insertShift" keyColumn="Shift_Id" keyProperty="shiftId" parameterType="com.trkj.tsm.vo.ShiftVo">
+    insert into shift(Shift_Id,Student_Id,Classes_Id,Shift_Reason,Shift_Handler)
+    values (#{shiftId,jdbcType=INTEGER},#{studentId,jdbcType=INTEGER},
+    #{classesId,jdbcType=INTEGER},#{shiftReason,jdbcType=VARCHAR},#{shiftHandler,jdbcType=VARCHAR})
+  </insert>
+</mapper>

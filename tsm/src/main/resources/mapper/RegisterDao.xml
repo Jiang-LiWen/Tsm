@@ -131,7 +131,7 @@
   </sql>
 <!--  显示全部-->
   <select id="selectRegisterAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List_reg" />,
     <include refid="Base_Column_List_sou" />,
     <include refid="Base_Column_List_cou" />,

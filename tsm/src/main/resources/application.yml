@@ -4,6 +4,8 @@ server:
   port: 8089
 
 spring:
+  jackson:
+    time-zone: GMT+8
   security:
     user:
       name: admin
