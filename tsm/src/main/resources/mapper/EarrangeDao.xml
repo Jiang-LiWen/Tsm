@@ -86,9 +86,44 @@
     inner join classes on eClasses_Id=classes.Classes_Id
     inner join classroom on eClassRoom_Id=classroom.ClassRoom_Id
   </select>
-  <delete id="deleteEarrangeById" parameterType="java.lang.Integer">
+  <select id="selectAllEarrangeGroupBys" resultMap="BaseResultMap">
+    select
+    ePeriod_Id,eArrangeDate
+    from earrange
+    inner join trainingperiod on ePeriod_Id=trainingperiod.Period_Id
+    inner join classes on eClasses_Id=classes.Classes_Id
+    inner join classroom on eClassRoom_Id=classroom.ClassRoom_Id
+    Group BY ePeriod_Id,eArrangeDate
+  </select>
+  <select id="selectAllEarrangeGroupByeClassRoom_Id" resultMap="BaseResultMap">
+    select
+    eClassRoom_Id,classroom.Catacity
+    from earrange
+    inner join trainingperiod on ePeriod_Id=trainingperiod.Period_Id
+    inner join classes on eClasses_Id=classes.Classes_Id
+    inner join classroom on eClassRoom_Id=classroom.ClassRoom_Id
+    Group BY eClassRoom_Id
+  </select>
+  <select id="selectAllEarrangeGroupByeClasses_Id" resultMap="BaseResultMap">
+    select
+    eClasses_Id,classes.Teacher_Id,classes.Course_Id, classes.DetailCourse_Id,classes.Classes_RCount
+    from earrange
+    inner join trainingperiod on ePeriod_Id=trainingperiod.Period_Id
+    inner join classes on eClasses_Id=classes.Classes_Id
+    inner join classroom on eClassRoom_Id=classroom.ClassRoom_Id
+    Group BY eClasses_Id
+  </select>
+  <select id="selectAllEarrangeGroupByTeacher_Id" resultMap="BaseResultMap">
+    select
+    classes.Teacher_Id
+    from earrange
+    inner join trainingperiod on ePeriod_Id=trainingperiod.Period_Id
+    inner join classes on eClasses_Id=classes.Classes_Id
+    inner join classroom on eClassRoom_Id=classroom.ClassRoom_Id
+    Group BY classes.Teacher_Id
+  </select>
+  <delete id="deleteAllEarrange">
     delete from earrange
-    where eArrange_Id = #{earrangeId,jdbcType=INTEGER}
   </delete>
   <insert id="insertEarrange" keyColumn="eArrange_Id" keyProperty="earrangeId" parameterType="com.trkj.tsm.entity.Earrange" useGeneratedKeys="true">
     insert into earrange (ePeriod_Id, eClasses_Id, eClassRoom_Id, 

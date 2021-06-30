@@ -1,6 +1,7 @@
 package com.trkj.tsm.service.impl;
 
 import com.trkj.tsm.dao.DetailcourseDao;
+import com.trkj.tsm.entity.Detailcourse;
 import com.trkj.tsm.service.DetailcourseService;
 import com.trkj.tsm.util.BeanCopyUtil;
 import com.trkj.tsm.vo.DetailcourseVo;
@@ -15,6 +16,20 @@ import java.util.List;
 public class DetailcourseServiceImpl implements DetailcourseService {
     @Resource
     private DetailcourseDao detailcourseDao;
+
+    @Override
+    public List<Detailcourse> selectBypp(int courseId, int serial) {
+        log.debug("DetailcourseService:查找课时----------------------------------------------------");
+        List<Detailcourse> detailcourse=detailcourseDao.selectBypp(courseId,serial);
+        return detailcourse;
+    }
+
+    @Override
+    public Detailcourse selectById(int detailcourseId) {
+        log.debug("DetailcourseService:根据Id查找课时----------------------------------------------------");
+        Detailcourse detailcourse=detailcourseDao.selectById(detailcourseId);
+        return detailcourse;
+    }
 
     @Override
     public List<DetailcourseVo> selectByCourseId(int courseid) {

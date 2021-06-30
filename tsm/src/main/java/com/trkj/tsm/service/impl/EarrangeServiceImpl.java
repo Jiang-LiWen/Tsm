@@ -29,10 +29,34 @@ public class EarrangeServiceImpl implements EarrangeService {
     }
 
     @Override
-    public Earrange deleteEarrangeById(Integer earrangeId) {
-        log.debug("EarrangeService:根据Id删除预排课-------------------------------------");
+    public List<Earrange> selectAllEarrangeGroupBys() {
+        log.debug("EarrangeService:查找到所有预排课可选组合-------------------------------------");
+        return earrangeDao.selectAllEarrangeGroupBys();
+    }
+
+    @Override
+    public List<Earrange> selectAllEarrangeGroupByeClassRoom_Id() {
+        log.debug("EarrangeService:查找到所有预排课的教室-------------------------------------");
+        return earrangeDao.selectAllEarrangeGroupByeClassRoom_Id();
+    }
+
+    @Override
+    public List<Earrange> selectAllEarrangeGroupByeClasses_Id() {
+        log.debug("EarrangeService:查找到所有预排课的班级及其所对应的老师-------------------------------------");
+        return earrangeDao.selectAllEarrangeGroupByeClasses_Id();
+    }
+
+    @Override
+    public List<Earrange> selectAllEarrangeGroupByTeacher_Id() {
+        log.debug("EarrangeService:查找所有预排课的老师-------------------------------------");
+        return earrangeDao.selectAllEarrangeGroupByTeacher_Id();
+    }
+
+    @Override
+    public Earrange deleteAllEarrange() {
+        log.debug("EarrangeService:删除预排课-------------------------------------");
         Earrange earrange=new Earrange();
-        int EarrangeId=earrangeDao.deleteEarrangeById(earrangeId);
+        int EarrangeId=earrangeDao.deleteAllEarrange();
         return earrange;
     }
 }

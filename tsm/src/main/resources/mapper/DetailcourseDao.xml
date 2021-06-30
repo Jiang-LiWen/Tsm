@@ -42,6 +42,37 @@
     DetailCourse_Id, Course_Id, DetailCourse_Name, Serial, AddName, ADDTIME, UpdateName, 
     UpdateTime, StopName, StopTime, BeginName, BeginTime, DeleteName, DeleteTime, TimeLiness
   </sql>
+  <select id="selectBypp" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  SELECT
+    detailcourse.DetailCourse_Id, detailcourse.Course_Id, detailcourse.DetailCourse_Name,
+    detailcourse.Serial, detailcourse.AddName, detailcourse.ADDTIME, detailcourse.UpdateName,
+    detailcourse.UpdateTime, detailcourse.StopName, detailcourse.StopTime,
+    detailcourse.BeginName, detailcourse.BeginTime, detailcourse.DeleteName,
+    detailcourse.DeleteTime, detailcourse.TimeLiness,
+    course.Course_Id, course.Commission, course.Course_Name, course.Course_State,
+    course.Classhours, course.Course_Money, course.ClassType_Id, course.AddName,
+    course.ADDTIME, course.UpdateName, course.UpdateTime, course.StopName, course.StopTime,
+    course.BeginName, course.BeginTime, course.DeleteName, course.DeleteTime, course.TimeLiness
+    FROM detailcourse
+    detailcourse INNER JOIN course ON detailcourse.Course_Id=course.Course_Id
+    WHERE detailcourse.TimeLiness=0 AND detailcourse.Course_Id=#{param1} AND detailcourse.Serial>#{param2}
+    ORDER BY SERIAL ASC
+  </select>
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  select
+    detailcourse.DetailCourse_Id, detailcourse.Course_Id, detailcourse.DetailCourse_Name,
+    detailcourse.Serial, detailcourse.AddName, detailcourse.ADDTIME, detailcourse.UpdateName,
+    detailcourse.UpdateTime, detailcourse.StopName, detailcourse.StopTime,
+    detailcourse.BeginName, detailcourse.BeginTime, detailcourse.DeleteName,
+    detailcourse.DeleteTime, detailcourse.TimeLiness,
+    course.Course_Id, course.Commission, course.Course_Name, course.Course_State,
+    course.Classhours, course.Course_Money, course.ClassType_Id, course.AddName,
+    course.ADDTIME, course.UpdateName, course.UpdateTime, course.StopName, course.StopTime,
+    course.BeginName, course.BeginTime, course.DeleteName, course.DeleteTime, course.TimeLiness
+    from detailcourse
+    detailcourse inner join course on detailcourse.Course_Id=course.Course_Id
+    where detailcourse.DetailCourse_Id = #{detailcourseId,jdbcType=INTEGER}
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
   select
     detailcourse.DetailCourse_Id, detailcourse.Course_Id, detailcourse.DetailCourse_Name,
@@ -111,145 +142,6 @@
 <!--      #{beginname,jdbcType=VARCHAR}, #{begintime,jdbcType=TIMESTAMP}, #{deletename,jdbcType=VARCHAR}, -->
 <!--      #{deletetime,jdbcType=TIMESTAMP}, #{timeliness,jdbcType=INTEGER})-->
 <!--  </insert>-->
-<!--  <insert id="insertSelective" keyColumn="DetailCourse_Id" keyProperty="detailcourseId" parameterType="com.trkj.tsm.entity.Detailcourse" useGeneratedKeys="true">-->
-<!--    insert into detailcourse-->
-<!--    <trim prefix="(" suffix=")" suffixOverrides=",">-->
-<!--      <if test="courseId != null">-->
-<!--        Course_Id,-->
-<!--      </if>-->
-<!--      <if test="detailcourseName != null">-->
-<!--        DetailCourse_Name,-->
-<!--      </if>-->
-<!--      <if test="serial != null">-->
-<!--        Serial,-->
-<!--      </if>-->
-<!--      <if test="addname != null">-->
-<!--        AddName,-->
-<!--      </if>-->
-<!--      <if test="addtime != null">-->
-<!--        ADDTIME,-->
-<!--      </if>-->
-<!--      <if test="updatename != null">-->
-<!--        UpdateName,-->
-<!--      </if>-->
-<!--      <if test="updatetime != null">-->
-<!--        UpdateTime,-->
-<!--      </if>-->
-<!--      <if test="stopname != null">-->
-<!--        StopName,-->
-<!--      </if>-->
-<!--      <if test="stoptime != null">-->
-<!--        StopTime,-->
-<!--      </if>-->
-<!--      <if test="beginname != null">-->
-<!--        BeginName,-->
-<!--      </if>-->
-<!--      <if test="begintime != null">-->
-<!--        BeginTime,-->
-<!--      </if>-->
-<!--      <if test="deletename != null">-->
-<!--        DeleteName,-->
-<!--      </if>-->
-<!--      <if test="deletetime != null">-->
-<!--        DeleteTime,-->
-<!--      </if>-->
-<!--      <if test="timeliness != null">-->
-<!--        TimeLiness,-->
-<!--      </if>-->
-<!--    </trim>-->
-<!--    <trim prefix="values (" suffix=")" suffixOverrides=",">-->
-<!--      <if test="courseId != null">-->
-<!--        #{courseId,jdbcType=INTEGER},-->
-<!--      </if>-->
-<!--      <if test="detailcourseName != null">-->
-<!--        #{detailcourseName,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="serial != null">-->
-<!--        #{serial,jdbcType=INTEGER},-->
-<!--      </if>-->
-<!--      <if test="addname != null">-->
-<!--        #{addname,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="addtime != null">-->
-<!--        #{addtime,jdbcType=TIMESTAMP},-->
-<!--      </if>-->
-<!--      <if test="updatename != null">-->
-<!--        #{updatename,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="updatetime != null">-->
-<!--        #{updatetime,jdbcType=TIMESTAMP},-->
-<!--      </if>-->
-<!--      <if test="stopname != null">-->
-<!--        #{stopname,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="stoptime != null">-->
-<!--        #{stoptime,jdbcType=TIMESTAMP},-->
-<!--      </if>-->
-<!--      <if test="beginname != null">-->
-<!--        #{beginname,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="begintime != null">-->
-<!--        #{begintime,jdbcType=TIMESTAMP},-->
-<!--      </if>-->
-<!--      <if test="deletename != null">-->
-<!--        #{deletename,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="deletetime != null">-->
-<!--        #{deletetime,jdbcType=TIMESTAMP},-->
-<!--      </if>-->
-<!--      <if test="timeliness != null">-->
-<!--        #{timeliness,jdbcType=INTEGER},-->
-<!--      </if>-->
-<!--    </trim>-->
-<!--  </insert>-->
-<!--  <update id="updateByPrimaryKeySelective" parameterType="com.trkj.tsm.entity.Detailcourse">-->
-<!--    update detailcourse-->
-<!--    <set>-->
-<!--      <if test="courseId != null">-->
-<!--        Course_Id = #{courseId,jdbcType=INTEGER},-->
-<!--      </if>-->
-<!--      <if test="detailcourseName != null">-->
-<!--        DetailCourse_Name = #{detailcourseName,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="serial != null">-->
-<!--        Serial = #{serial,jdbcType=INTEGER},-->
-<!--      </if>-->
-<!--      <if test="addname != null">-->
-<!--        AddName = #{addname,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="addtime != null">-->
-<!--        ADDTIME = #{addtime,jdbcType=TIMESTAMP},-->
-<!--      </if>-->
-<!--      <if test="updatename != null">-->
-<!--        UpdateName = #{updatename,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="updatetime != null">-->
-<!--        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},-->
-<!--      </if>-->
-<!--      <if test="stopname != null">-->
-<!--        StopName = #{stopname,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="stoptime != null">-->
-<!--        StopTime = #{stoptime,jdbcType=TIMESTAMP},-->
-<!--      </if>-->
-<!--      <if test="beginname != null">-->
-<!--        BeginName = #{beginname,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="begintime != null">-->
-<!--        BeginTime = #{begintime,jdbcType=TIMESTAMP},-->
-<!--      </if>-->
-<!--      <if test="deletename != null">-->
-<!--        DeleteName = #{deletename,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="deletetime != null">-->
-<!--        DeleteTime = #{deletetime,jdbcType=TIMESTAMP},-->
-<!--      </if>-->
-<!--      <if test="timeliness != null">-->
-<!--        TimeLiness = #{timeliness,jdbcType=INTEGER},-->
-<!--      </if>-->
-<!--    </set>-->
-<!--    where DetailCourse_Id = #{detailcourseId,jdbcType=INTEGER}-->
-<!--  </update>-->
 <!--  <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Detailcourse">-->
 <!--    update detailcourse-->
 <!--    set Course_Id = #{courseId,jdbcType=INTEGER},-->

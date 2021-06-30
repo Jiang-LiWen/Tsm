@@ -3,7 +3,6 @@ package com.trkj.tsm.controller;
 import com.trkj.tsm.entity.Earrange;
 import com.trkj.tsm.service.EarrangeService;
 import com.trkj.tsm.vo.AjaxResponse;
-import com.trkj.tsm.vo.ClassesVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,12 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import javax.xml.ws.Response;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @Slf4j
@@ -58,8 +55,8 @@ public class EarrangeController {
             dateLists.add(new SimpleDateFormat("yyyy-MM-dd").format(dateList.get(a)));
         }
         List<Object> classroomLists= (List<Object>) biglist.get(0);
-        List<Object> classesLists= (List<Object>) biglist.get(1);
         List<Object> trainingperiodLists= (List<Object>) biglist.get(2);
+        List<Object> classesLists= (List<Object>) biglist.get(1);
 
         for (int i=0;i<classesLists.size();i++){
             for (int i1=0;i1<classroomLists.size();i1++){
@@ -76,16 +73,33 @@ public class EarrangeController {
             }
         }
 
-        List<Earrange> earrangeList=earrangeService.selectAllEarrange();
-        for (int i4=0;i4<earrangeList.size();i4++){
-            if(earrangeList.get(i4).getClasses().getClassesRCount()>
-                    earrangeList.get(i4).getClassroom().getCatacity()){
-                Earrange earrangeDelete=earrangeService.deleteEarrangeById(earrangeList.get(i4).getEarrangeId());
+//        List<Earrange> earrangeList=earrangeService.selectAllEarrange();
+//        for (int i4=0;i4<earrangeList.size();i4++){
+//            if(earrangeList.get(i4).getClasses().getClassesRCount()>
+//                    earrangeList.get(i4).getClassroom().getCatacity()){
+//                Earrange earrangeDelete=earrangeService.deleteEarrangeById(earrangeList.get(i4).getEarrangeId());
+//            }
+//        }
+
+        List<Earrange> earrangeListeClasses_Id=earrangeService.selectAllEarrangeGroupByeClasses_Id();
+        List<Earrange> earrangeListTeacher_Id=earrangeService.selectAllEarrangeGroupByTeacher_Id();
+        List<Integer> Classes1=new ArrayList<>();
+
+        for (int j=0;j<earrangeListTeacher_Id.size();j++){
+            int count=0;
+            for (int j1=0;j1<earrangeListeClasses_Id.size();j1++){
+                if(earrangeListTeacher_Id.get(j).getClasses().getTeacherId()==
+                        earrangeListeClasses_Id.get(j1).getClasses().getTeacherId()){
+                    count++;
+                }
             }
+            Classes1.add(count);
         }
 
+        int num1=classroomLists.size()*trainingperiodLists.size()*dateLists.size();
+        int num2=Collections.max(Classes1);
+        int num3=num1/num2;
 
-
-        return AjaxResponse.success(biglist);
+        return AjaxResponse.success(num3);
     }
 }

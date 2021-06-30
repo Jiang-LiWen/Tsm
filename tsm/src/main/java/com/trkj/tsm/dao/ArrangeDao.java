@@ -1,17 +1,17 @@
 package com.trkj.tsm.dao;
 
 import com.trkj.tsm.entity.Arrange;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
+@Mapper
 public interface ArrangeDao {
-    int deleteByPrimaryKey(Integer arrangeId);
+    int deleteAllArrange();//删除排课
 
-    int insert(Arrange record);
+    int insertArrange(Arrange record);//添加排课
 
-    int insertSelective(Arrange record);
-
-    Arrange selectByPrimaryKey(Integer arrangeId);
-
-    int updateByPrimaryKeySelective(Arrange record);
+    List<Arrange> selectAllArrange(String likelike);//查找排课信息
 
     int updateByPrimaryKey(Arrange record);
 }
