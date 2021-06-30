@@ -168,4 +168,13 @@
     where SystemType_Id = #{systemtypeId,jdbcType=INTEGER}
   </update>
 
+  <update id="updateByPrimaryKehciuj" parameterType="com.trkj.tsm.entity.Systemtype">
+    update systemtype
+    set TimeLiness = 1,
+        DeleteName = #{deletename,jdbcType=VARCHAR},
+        DeleteTime = #{deletetime,jdbcType=TIMESTAMP}
+    where SystemType_Id = #{systemtypeId,jdbcType=INTEGER}
+  </update>
+
+
 </mapper>

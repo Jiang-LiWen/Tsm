@@ -31,6 +31,7 @@ public class SystemTypeServiceImpl implements SystemTypeService {
     public Systemtype addSysyemtype(Systemtype systemtype) {
         log.debug("新增信息");
         Systemtype d = new Systemtype();
+        systemtype.setAddname("adianm");
         BeanCopyUtil.copyProperties(systemtype, d);
         systemtypeDao.insert(d);
         return systemtype;
@@ -40,6 +41,7 @@ public class SystemTypeServiceImpl implements SystemTypeService {
     public Systemtype updateSysyemtype(Systemtype systemtype) {
         log.debug("修改到了");
         Systemtype d = new Systemtype();
+        systemtype.setUpdatename("adianm");
         BeanCopyUtil.copyProperties(systemtype, d);
         systemtypeDao.updateByPrimaryKey(d);
         return systemtype;
@@ -52,11 +54,10 @@ public class SystemTypeServiceImpl implements SystemTypeService {
     }
 
     @Override
-    public int deleteSystemType(Integer systemtypeId) {
+    public int updateByPrimaryKehciuj(Integer systemtypeId) {
             log.debug("删除教室信息成功");
             Systemtype systemtype=new Systemtype();
-            systemtype.setSystemtypeId(systemtypeId);
-            systemtype.setTimeliness(1);
-            return systemtypeDao.updateByPrimaryKey(systemtype);
+            systemtype.setDeletename("adianm");
+            return systemtypeDao.updateByPrimaryKehciuj(systemtype);
     }
 }

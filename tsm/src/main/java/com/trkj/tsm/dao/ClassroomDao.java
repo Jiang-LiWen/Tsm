@@ -11,7 +11,7 @@ public interface ClassroomDao {
     //删除
     int deleteByPrimaryKey(Integer classroomId);
 
-    int insert(Classroom record);
+    int addClassroom(Classroom record);
 
     int insertSelective(Classroom record);
 

@@ -34,14 +34,12 @@ public class ClassroomServiceImpl implements ClassroomService {
 
 
   @Override
-    @Caching(evict = {@CacheEvict(value = "alldepts", allEntries = true)},
-            put = {@CachePut(value = "classroom", key = "#classroomVo.getClassroomId()")})
     public ClassroomVo addClassroom(ClassroomVo classroomVo) {
         log.debug("新增企业档案信息");
         Classroom d = new Classroom();
         classroomVo.setAddname("Admin");
         BeanCopyUtil.copyProperties(classroomVo, d);
-        classroomDao.insert(d);
+        classroomDao.addClassroom(d);
         return classroomVo;
     }
 

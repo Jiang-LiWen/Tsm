@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SystSevice {
 
-    List<SystemVo> selectAllSystem();
+    List<SystemVo> selectAllSystem(String flag);
 
     SystemVo addsSystem(SystemVo systemVo);
 

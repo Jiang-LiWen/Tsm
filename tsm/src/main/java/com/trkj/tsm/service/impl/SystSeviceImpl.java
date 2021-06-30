@@ -18,8 +18,8 @@ public class SystSeviceImpl implements SystSevice {
     private SystemDao systemDao;
 
     @Override
-    public List<SystemVo> selectAllSystem() {
-        return systemDao.selectAllSystem();
+    public List<SystemVo> selectAllSystem(String flag) {
+        return systemDao.selectAllSystem(flag);
     }
 
     @Override

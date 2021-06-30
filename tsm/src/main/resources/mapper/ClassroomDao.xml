@@ -38,9 +38,9 @@
     delete from classroom
     where ClassRoom_Id = #{classroomId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="ClassRoom_Id" keyProperty="classroomId" parameterType="com.trkj.tsm.entity.Classroom" useGeneratedKeys="true">
-    insert into classroom (ClassRoom_Id,ClassRoom_Name, Catacity, Place,addName)
-    values (#{classroomId,jdbcType=INTEGER},#{classroomName,jdbcType=VARCHAR}, #{catacity,jdbcType=INTEGER}, #{place,jdbcType=VARCHAR},#{addname,jdbcType=VARCHAR})
+  <insert id="addClassroom" keyColumn="ClassRoom_Id" keyProperty="classroomId" parameterType="com.trkj.tsm.entity.Classroom" useGeneratedKeys="true">
+    insert into classroom (ClassRoom_Name, Catacity, Place,addName)
+    values (#{classroomName,jdbcType=VARCHAR}, #{catacity,jdbcType=INTEGER}, #{place,jdbcType=VARCHAR},#{addname,jdbcType=VARCHAR})
 
   </insert>
   <insert id="insertSelective" keyColumn="ClassRoom_Id" keyProperty="classroomId" parameterType="com.trkj.tsm.entity.Classroom" useGeneratedKeys="true">

@@ -28,5 +28,5 @@ public interface SystemDao {
 
     int updateByPrimaryKey3(SystemVo systemVo);
 
-    List<SystemVo> selectAllSystem();
+    List<SystemVo> selectAllSystem(String flag);
 }
