@@ -32,6 +32,7 @@ public class CourseServiceImpl implements CourseService {
         return courseDao.selectAllCourse(likeke);
     }
 
+
     @Override
     public CourseVo updateCourseStateStop(CourseVo courseVo) {
         log.debug("修改课程类别信息");

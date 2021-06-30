@@ -19,6 +19,28 @@
         select  <include refid="Base_Column_List"/> from sys_role_menu
     </select>
 
+    <insert id="insertSelectives">
+        insert into sys_role_menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleid != null">
+                role_id,
+            </if>
+            menu_id
+        </trim>
+        <trim prefix="values" suffixOverrides=",">
+            <foreach collection='Authors' item='Authorid' >
+                <trim prefix="(" suffix=")" suffixOverrides=",">
+                    <if test="roleid != null">
+                        #{roleid,jdbcType=INTEGER},
+                    </if>
+                    <if test="Authorid != null">
+                        #{Authorid,jdbcType=INTEGER},
+                    </if>
+                </trim>,
+            </foreach>
+        </trim>
+    </insert>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from sys_role_menu
         where id = #{id,jdbcType=INTEGER}

@@ -2,6 +2,7 @@ package com.trkj.tsm.service;
 
 import com.trkj.tsm.entity.Semester;
 import com.trkj.tsm.vo.SemesterVo;
+import com.trkj.tsm.vo.SessionVo;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface SemesterService {
     SemesterVo updateByPrimaryKey(SemesterVo semesterVo);
 
     List<SemesterVo> selectSemester();
+
+    List<SemesterVo> selectfindslike(String likeke);
 }

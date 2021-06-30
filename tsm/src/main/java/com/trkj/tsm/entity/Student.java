@@ -2,22 +2,20 @@ package com.trkj.tsm.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
 /**
  * student
  * @author 
  */
-@Validated
 @Data
-@NonNull
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class Student implements Serializable {
     /**
      * 学员编号

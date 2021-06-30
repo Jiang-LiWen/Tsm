@@ -4,6 +4,7 @@ import com.trkj.tsm.dao.StudentDao;
 import com.trkj.tsm.entity.Student;
 import com.trkj.tsm.service.StudentService;
 import com.trkj.tsm.util.BeanCopyUtil;
+import com.trkj.tsm.vo.BookVo;
 import com.trkj.tsm.vo.StudentVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,17 @@ public class StudentServiceImpl implements StudentService {
         BeanCopyUtil.copyProperties(studentVo,d);
         studentDao.deleteStudent(d);
         return studentVo;
+    }
+
+    @Override
+    public List<Student> wjselectAllsStudet() {
+        log.debug("查询所有");
+        return studentDao.wjselectAllsStudet();
+    }
+
+    @Override
+    public Student wjselectByPrimaryKeystudent(Integer studentId) {
+        log.debug("id查询");
+        return studentDao.wjselectByPrimaryKeystudent(studentId);
     }
 }

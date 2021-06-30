@@ -44,6 +44,19 @@
             </foreach>
         </trim>
     </select>
+
+    <select id="findMenusByRoleid" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM sys_menu m
+        inner JOIN sys_role_menu rm ON m.id = rm.menu_id
+        inner JOIN position r ON r.Position_Id = rm.role_id
+        where rm.role_id=#{roleid}
+    </select>
+    <select id="findMenus" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM sys_menu m
+    </select>
+
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

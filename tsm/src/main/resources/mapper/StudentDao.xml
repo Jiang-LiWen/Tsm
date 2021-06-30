@@ -21,6 +21,7 @@
     <result column="DeleteName" jdbcType="VARCHAR" property="deletename" />
     <result column="DeleteTime" jdbcType="TIMESTAMP" property="deletetime" />
     <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+
     <association property="register" javaType="com.trkj.tsm.entity.Register">
       <id column="Register_Id" jdbcType="INTEGER" property="registerId" />
       <result column="Source_Id" jdbcType="INTEGER" property="sourceId" />
@@ -93,5 +94,18 @@
     TimeLiness = 1
     where Student_Id = #{studentId,jdbcType=INTEGER}
   </update>
+
+  <select id="wjselectAllsStudet" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from student
+  </select>
+
+  <select id="wjselectByPrimaryKeystudent"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from student
+    where Student_Id = #{studentId,jdbcType=INTEGER}
+  </select>
 
 </mapper>

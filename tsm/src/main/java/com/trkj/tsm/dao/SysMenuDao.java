@@ -23,4 +23,7 @@ public interface SysMenuDao {
     List<String> findAuthorityByRoleCodes(@Param("roleCodes") List<String> roleCodes);
 
     List<SysMenu> findMenusByRoleCodes(@Param("roleCodes") List<String> roleCodes);
+
+    List<SysMenu> findMenusByRoleid(int roleid);
+    List<SysMenu> findMenus();
 }

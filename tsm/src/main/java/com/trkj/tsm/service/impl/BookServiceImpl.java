@@ -20,7 +20,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> selectAlls1() {
-        log.debug("分页查询所有");
+        log.debug("查询所有");
         return bookDao.selectAlls1();
     }
 

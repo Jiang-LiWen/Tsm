@@ -5,6 +5,7 @@ import com.trkj.tsm.entity.Enterprise;
 import com.trkj.tsm.entity.Unittype;
 import com.trkj.tsm.service.UnittypeService;
 import com.trkj.tsm.util.BeanCopyUtil;
+import com.trkj.tsm.vo.PositionVo;
 import com.trkj.tsm.vo.UnittypeVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +57,11 @@ public class UnittypeServiceImpl implements UnittypeService {
     public List<UnittypeVo> selectUnittypes() {
         log.debug("进行分页查询业务");
         return unittypeDao.selectUnittype();
+    }
+
+    @Override
+    public List<UnittypeVo> selectPositionlike(String likeke) {
+
+        return unittypeDao.selectfindslike(likeke);
     }
 }

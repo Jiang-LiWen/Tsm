@@ -30,6 +30,7 @@ public class CourseController {
     public List<CourseVo> selectAllCourse(){
         log.debug("班级查询所有课程信息---------------------------------------------------");
         List<CourseVo> entityPage =courseService.ClassesselectAllCourse();
+        log.debug(entityPage.toString());
         return entityPage;
     }
 

@@ -21,8 +21,8 @@
     </delete>
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.trkj.tsm.entity.SysUserRole"
             useGeneratedKeys="true">
-        insert into sys_user_role (role_id, user_id)
-        values (#{roleId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
+        insert into sys_user_role (id, role_id, user_id)
+        values (#{id,jdbcType=INTEGER},#{roleId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id"
             parameterType="com.trkj.tsm.entity.SysUserRole" useGeneratedKeys="true">

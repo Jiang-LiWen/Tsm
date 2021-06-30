@@ -19,6 +19,14 @@ public class ClassesController {
     @Autowired
     private ClassesService classesService;
 
+
+    @GetMapping("/selectClassesBycid")
+    public Classes selectClassesBycid(@RequestParam("cid") int cid){
+        log.debug("查询班级信息---------------------------------------------------");
+        Classes entityPage =classesService.selectClassesBycid(cid);
+        return entityPage;
+    }
+
     @GetMapping("/selectClassesOpen1")
     public List<Classes> selectClassesOpen1(){
         log.debug("查询班级信息---------------------------------------------------");
@@ -32,14 +40,7 @@ public class ClassesController {
         List<Classes> entityPage =classesService.selectClassesOpen();
         return entityPage;
     }
-
-    @GetMapping("/selectClassesBycid/{cid}")
-    public Classes selectClassesBycid(@PathVariable("cid") int cid){
-        log.debug("查询班级信息---------------------------------------------------");
-        Classes entityPage =classesService.selectClassesBycid(cid);
-        return entityPage;
-    }
-
+    
     @GetMapping("/selectAllClasses")
     public PageInfo<ClassesVo> selectAllClasses(@RequestParam("currentPage") int currentPage,
                                                 @RequestParam("pagesize") int pagesize,

@@ -1,98 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.trkj.tsm.dao.DaillogreplyDao">
-  <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Daillogreply">
-    <id column="DailLogReply_Id" jdbcType="INTEGER" property="daillogreplyId" />
-    <result column="DailLog_Id" jdbcType="INTEGER" property="daillogId" />
-    <result column="ReplierName" jdbcType="VARCHAR" property="repliername" />
-    <result column="ReplierTime" jdbcType="TIMESTAMP" property="repliertime" />
-    <result column="ReplierContent" jdbcType="VARCHAR" property="repliercontent" />
+    <resultMap id="BaseResultMap" type="com.trkj.tsm.entity.Daillogreply">
+        <id column="DailLogReply_Id" jdbcType="INTEGER" property="daillogreplyId"/>
+        <result column="DailLog_Id" jdbcType="INTEGER" property="daillogId"/>
+        <result column="ReplierName" jdbcType="VARCHAR" property="repliername"/>
+        <result column="ReplierTime" jdbcType="TIMESTAMP" property="repliertime"/>
+        <result column="ReplierContent" jdbcType="VARCHAR" property="repliercontent"/>
         <association property="daillog" javaType="com.trkj.tsm.entity.Daillog">
-          <id column="DailLog_Id" jdbcType="INTEGER" property="daillogId" />
-          <result column="HandoverMatters" jdbcType="VARCHAR" property="handovermatters" />
-          <result column="HandoverName" jdbcType="VARCHAR" property="handovername" />
-          <result column="LogState" jdbcType="INTEGER" property="logstate" />
-          <result column="DelteName" jdbcType="VARCHAR" property="deltename" />
-          <result column="DelteTime" jdbcType="TIMESTAMP" property="deltetime" />
-          <result column="AddName" jdbcType="VARCHAR" property="addname" />
-          <result column="AddTime" jdbcType="TIMESTAMP" property="addtime" />
-          <result column="TimeLiness" jdbcType="INTEGER" property="timeliness" />
+            <id column="DailLog_Id" jdbcType="INTEGER" property="daillogId"/>
+            <result column="HandoverMatters" jdbcType="VARCHAR" property="handovermatters"/>
+            <result column="HandoverName" jdbcType="VARCHAR" property="handovername"/>
+            <result column="LogState" jdbcType="INTEGER" property="logstate"/>
+            <result column="DelteName" jdbcType="VARCHAR" property="deltename"/>
+            <result column="DelteTime" jdbcType="TIMESTAMP" property="deltetime"/>
+            <result column="AddName" jdbcType="VARCHAR" property="addname"/>
+            <result column="AddTime" jdbcType="TIMESTAMP" property="addtime"/>
+            <result column="TimeLiness" jdbcType="INTEGER" property="timeliness"/>
         </association>
-  </resultMap>
-  <sql id="Base_Column_List">
-    DailLogReply_Id, DailLog_Id, ReplierName, ReplierTime, ReplierContent
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    d.DailLogReply_Id, d.DailLog_Id, d.ReplierName, d.ReplierTime, d.ReplierContent,
-    dd.DailLog_Id, dd.HandoverMatters, dd.HandoverName
-    from daillogreply d inner join daillog dd where d.DailLog_Id=dd.DailLog_Id
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from daillogreply
-    where DailLogReply_Id = #{daillogreplyId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" keyColumn="DailLogReply_Id" keyProperty="daillogreplyId" parameterType="com.trkj.tsm.entity.Daillogreply" useGeneratedKeys="true">
-      insert into daillogreply (dd.HandoverMatters, HandoverName, ReplierTime,
-      ReplierName,ReplierContent)
-    values (#{handovermatters,jdbcType=VARCHAR}, #{handovername,jdbcType=VARCHAR}, #{repliertime,jdbcType=TIMESTAMP},
-      #{repliername,jdbcType=VARCHAR},#{repliercontent,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" keyColumn="DailLogReply_Id" keyProperty="daillogreplyId" parameterType="com.trkj.tsm.entity.Daillogreply" useGeneratedKeys="true">
-    insert into daillogreply
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="daillogId != null">
-        DailLog_Id,
-      </if>
-      <if test="repliername != null">
-        ReplierName,
-      </if>
-      <if test="repliertime != null">
-        ReplierTime,
-      </if>
-      <if test="repliercontent != null">
-        ReplierContent,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="daillogId != null">
-        #{daillogId,jdbcType=INTEGER},
-      </if>
-      <if test="repliername != null">
-        #{repliername,jdbcType=VARCHAR},
-      </if>
-      <if test="repliertime != null">
+    </resultMap>
+    <sql id="Base_Column_List">
+        DailLogReply_Id, DailLog_Id, ReplierName, ReplierTime, ReplierContent
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        d.DailLogReply_Id, d.DailLog_Id, d.ReplierName, d.ReplierTime, d.ReplierContent,
+        dd.DailLog_Id, dd.HandoverMatters, dd.HandoverName
+        from daillogreply d inner join dailLog dd where d.DailLog_Id=dd.DailLog_Id
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from daillogreply
+        where DailLogReply_Id = #{daillogreplyId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="DailLogReply_Id" keyProperty="daillogreplyId"
+            parameterType="com.trkj.tsm.entity.Daillogreply" useGeneratedKeys="true">
+        insert into daillogreply (HandoverMatters, HandoverName, ReplierTime,
+        ReplierName,ReplierContent)
+        values (#{handovermatters,jdbcType=VARCHAR}, #{handovername,jdbcType=VARCHAR},
         #{repliertime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="repliercontent != null">
-        #{repliercontent,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.trkj.tsm.entity.Daillogreply">
-    update daillogreply
-    <set>
-      <if test="daillogId != null">
-        DailLog_Id = #{daillogId,jdbcType=INTEGER},
-      </if>
-      <if test="repliername != null">
+        #{repliername,jdbcType=VARCHAR},#{repliercontent,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="DailLogReply_Id" keyProperty="daillogreplyId"
+            parameterType="com.trkj.tsm.entity.Daillogreply" useGeneratedKeys="true">
+        insert into daillogreply
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="daillogId != null">
+                DailLog_Id,
+            </if>
+            <if test="repliername != null">
+                ReplierName,
+            </if>
+            <if test="repliertime != null">
+                ReplierTime,
+            </if>
+            <if test="repliercontent != null">
+                ReplierContent,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="daillogId != null">
+                #{daillogId,jdbcType=INTEGER},
+            </if>
+            <if test="repliername != null">
+                #{repliername,jdbcType=VARCHAR},
+            </if>
+            <if test="repliertime != null">
+                #{repliertime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="repliercontent != null">
+                #{repliercontent,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.trkj.tsm.entity.Daillogreply">
+        update daillogreply
+        <set>
+            <if test="daillogId != null">
+                DailLog_Id = #{daillogId,jdbcType=INTEGER},
+            </if>
+            <if test="repliername != null">
+                ReplierName = #{repliername,jdbcType=VARCHAR},
+            </if>
+            <if test="repliertime != null">
+                ReplierTime = #{repliertime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="repliercontent != null">
+                ReplierContent = #{repliercontent,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where DailLogReply_Id = #{daillogreplyId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Daillogreply">
+        update daillogreply
+        set DailLog_Id = #{daillogId,jdbcType=INTEGER},
         ReplierName = #{repliername,jdbcType=VARCHAR},
-      </if>
-      <if test="repliertime != null">
         ReplierTime = #{repliertime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="repliercontent != null">
-        ReplierContent = #{repliercontent,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where DailLogReply_Id = #{daillogreplyId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Daillogreply">
-    update daillogreply
-    set DailLog_Id = #{daillogId,jdbcType=INTEGER},
-      ReplierName = #{repliername,jdbcType=VARCHAR},
-      ReplierTime = #{repliertime,jdbcType=TIMESTAMP},
-      ReplierContent = #{repliercontent,jdbcType=VARCHAR}
-    where DailLogReply_Id = #{daillogreplyId,jdbcType=INTEGER}
-  </update>
+        ReplierContent = #{repliercontent,jdbcType=VARCHAR}
+        where DailLogReply_Id = #{daillogreplyId,jdbcType=INTEGER}
+    </update>
 </mapper>

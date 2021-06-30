@@ -1,10 +1,7 @@
 package com.trkj.tsm.controller;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.trkj.tsm.entity.Book;
+
 import com.trkj.tsm.entity.Bookdelivery;
-import com.trkj.tsm.entity.Deliveryddetails;
 import com.trkj.tsm.service.BookDeliveryService;
 import com.trkj.tsm.service.BookService;
 import com.trkj.tsm.service.DeliveryddetailsServce;
@@ -38,7 +35,6 @@ public class BookDeliveryController {
     @PutMapping("/updateByPrimaryKeymmx")
     public AjaxResponse updateByPrimaryKeymmx(@RequestBody @Valid BookdeliveryVo bookdeliveryVo){
         log.debug("修改");
-        log.debug(bookdeliveryVo+toString()+"0000000000000000000000000000000");
         bookdeliveryVo.setApptime(new Date());
         //获取当前时间
         bookDeliveryService.updateByPrimaryKeymmx(bookdeliveryVo);
@@ -48,7 +44,6 @@ public class BookDeliveryController {
     //增加
     @PostMapping("/insertSelectivessb")
     public Bookdelivery insertSelectivessb(@RequestBody @Valid Bookdelivery bookdelivery) {
-        log.debug(bookdelivery.toString()+"ccccccccccccccccc");
         bookdelivery.setDeliverytime(new Date());
         bookDeliveryService.insertSelectivessb(bookdelivery);
         return bookdelivery;
