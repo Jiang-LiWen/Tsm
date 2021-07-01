@@ -76,8 +76,8 @@
     inner join dept de on cr.Dept_Id=de.Dept_Id
     inner join systemtype sy on cr.SystemType_Id=sy.SystemType_Id
     where cr.TimeLiness=0
-    <if test="bookname!=null">
-      AND bo.BookName like CONCAT ('%',#{flag,jdbcType=VARCHAR},'%')
+    <if test="systemTheme!=null">
+      AND cr.System_Theme like CONCAT ('%',#{flag,jdbcType=VARCHAR},'%')
     </if>
   </select>
 

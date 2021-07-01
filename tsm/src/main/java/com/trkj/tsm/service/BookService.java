@@ -18,4 +18,6 @@ public interface BookService {
     List<BookVo> selectByPrimaryKeyyyyy(BookVo bookVo);
 
     List<Book> selsebook();
+
+    Book updateBook(Book book);
 }

@@ -21,10 +21,10 @@ public class StsyemController {
     private SystSevice systSevice;
 
     @GetMapping("/selectAllSystem")
-    public PageInfo<SystemVo> selectAllSystem(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize) {
+    public PageInfo<SystemVo> selectAllSystem(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize ,@RequestParam("flag") String flag) {
         PageHelper.startPage(currentPage, pagesize);
         log.debug("--------------------");
-        List<SystemVo> entityPage = systSevice.selectAllSystem();
+        List<SystemVo> entityPage = systSevice.selectAllSystem(flag);
         PageInfo<SystemVo> SystemPageInfo = new PageInfo<>(entityPage);
         return SystemPageInfo;
     }

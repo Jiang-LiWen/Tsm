@@ -1,6 +1,7 @@
 package com.trkj.tsm.dao;
 
 import com.trkj.tsm.entity.Systemtype;
+import com.trkj.tsm.vo.SystemVo;
 import com.trkj.tsm.vo.SystemtypeVo;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -23,4 +24,6 @@ public interface SystemtypeDao {
     List<Systemtype> selectAlls2();
 
     List<Systemtype> selectAlls9();
+
+    int updateByPrimaryKehciuj(Systemtype systemtype);
 }

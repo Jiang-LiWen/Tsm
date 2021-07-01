@@ -40,6 +40,7 @@ public class AttendanceVo  {
     /**
      * 考勤时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date attendanceTime;
 
     /**

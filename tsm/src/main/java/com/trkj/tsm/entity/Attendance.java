@@ -41,6 +41,7 @@ public class Attendance implements Serializable {
     /**
      * 考勤时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date attendanceTime;
 
     /**

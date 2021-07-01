@@ -15,6 +15,8 @@ public interface SystemTypeService {
 
     List<Systemtype> selectSysyemtype(String systemtypeName);
 
-    int deleteSystemType(Integer systemtypeId);//删除
+    int updateByPrimaryKehciuj(Integer systemtypeId);
+
+
 
 }

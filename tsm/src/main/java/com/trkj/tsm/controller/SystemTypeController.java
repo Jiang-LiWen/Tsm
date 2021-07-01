@@ -6,6 +6,7 @@ import com.trkj.tsm.entity.Systemtype;
 import com.trkj.tsm.service.SystemTypeService;
 import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.ClassroomVo;
+import com.trkj.tsm.vo.SystemVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,9 +59,10 @@ public class SystemTypeController {
         return SysnamePageInfo;
     }
 
-    @PutMapping("/deleteSystemType")
-    public String deleteSystemType(@RequestBody @Valid Systemtype systemtype){
-        systemTypeService.deleteSystemType(systemtype.getSystemtypeId());
+    @PutMapping("/updateByPrimaryKehciuj")
+    public String updateByPrimaryKehciuj(@RequestBody @Valid Systemtype systemtype){
+        systemTypeService.updateByPrimaryKehciuj(systemtype.getSystemtypeId());
         return "删除成功";
     }
+
 }
