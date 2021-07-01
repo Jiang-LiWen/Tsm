@@ -261,6 +261,12 @@
     classes.UpdateTime = #{updatetime,jdbcType=TIMESTAMP}
     where classes.Classes_Id = #{classesId,jdbcType=INTEGER}
   </update>
+  <update id="updateClassesDC" parameterType="com.trkj.tsm.entity.Classes">
+    update classes
+    set
+    classes.DetailCourse_Id = #{detailcourseId,jdbcType=INTEGER}
+    where classes.Classes_Id = #{classesId,jdbcType=INTEGER}
+  </update>
   <update id="deleteClasses" parameterType="com.trkj.tsm.entity.Classes">
     update classes
     set classes.TimeLiness = 1

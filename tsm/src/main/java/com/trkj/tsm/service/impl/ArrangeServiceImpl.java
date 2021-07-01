@@ -34,4 +34,11 @@ public class ArrangeServiceImpl implements ArrangeService {
         int arrangeId=arrangeDao.deleteAllArrange();
         return arrange;
     }
+
+    @Override
+    public Arrange updateArrange(Arrange record) {
+        log.debug("ArrangeService:修改课表-------------------------------------");
+        int ArrangeId=arrangeDao.updateArrange(record);
+        return record;
+    }
 }

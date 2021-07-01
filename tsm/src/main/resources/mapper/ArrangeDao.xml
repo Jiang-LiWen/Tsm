@@ -9,6 +9,7 @@
     <result column="aTeacher_Id" jdbcType="INTEGER" property="teacherId" />
     <result column="aDetailCourse_Id" jdbcType="INTEGER" property="detailcourseId" />
     <result column="ArrangeDate" jdbcType="VARCHAR" property="arrangedate" />
+    <result column="ArrangeState" jdbcType="INTEGER" property="arrangestate" />
     <association property="trainingperiod" javaType="com.trkj.tsm.entity.Trainingperiod">
       <id column="tPeriod_Id" jdbcType="INTEGER" property="periodId" />
       <result column="PeriodTime" jdbcType="VARCHAR" property="periodtime" />
@@ -110,7 +111,7 @@
   <sql id="Base_Column_List">
     arrange.Arrange_Id, arrange.Period_Id aPeriod_Id, arrange.Classes_Id aClasses_Id,
     arrange.ClassRoom_Id aClassRoom_Id,arrange.Teacher_Id aTeacher_Id,
-    arrange.DetailCourse_Id aDetailCourse_Id, arrange.ArrangeDate
+    arrange.DetailCourse_Id aDetailCourse_Id, arrange.ArrangeDate, arrange.ArrangeState
   </sql>
   <sql id="Base_Column_tList">
     trainingperiod.Period_Id tPeriod_Id, trainingperiod.PeriodTime, trainingperiod.Period
@@ -166,14 +167,10 @@
       #{teacherId,jdbcType=INTEGER}, #{detailcourseId,jdbcType=INTEGER}, #{arrangedate,jdbcType=VARCHAR}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.trkj.tsm.entity.Arrange">
+  <update id="updateArrange" parameterType="com.trkj.tsm.entity.Arrange">
     update arrange
-    set Period_Id = #{periodId,jdbcType=INTEGER},
-      Classes_Id = #{classesId,jdbcType=INTEGER},
-      ClassRoom_Id = #{classroomId,jdbcType=INTEGER},
-      Teacher_Id = #{teacherId,jdbcType=INTEGER},
-      DetailCourse_Id = #{detailcourseId,jdbcType=INTEGER},
-      ArrangeDate = #{arrangedate,jdbcType=VARCHAR}
+    set
+      ArrangeState = 1
     where Arrange_Id = #{arrangeId,jdbcType=INTEGER}
   </update>
 </mapper>

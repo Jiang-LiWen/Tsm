@@ -21,6 +21,8 @@ public interface ClassesService {
 
     ClassesVo updateClasses(ClassesVo classesVo);//修改班级
 
+    ClassesVo updateClassesDC(ClassesVo classesVo);//修改班级
+
     ClassesVo deleteClasses(ClassesVo classesVo);//删除班级
 
     ClassesVo insertClasses(ClassesVo classesVo);//添加班级

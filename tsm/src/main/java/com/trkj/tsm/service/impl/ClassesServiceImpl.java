@@ -65,6 +65,15 @@ public class ClassesServiceImpl implements ClassesService {
     }
 
     @Override
+    public ClassesVo updateClassesDC(ClassesVo classesVo) {
+        log.debug("修改班级");
+        Classes d = new Classes();
+        BeanCopyUtil.copyProperties(classesVo,d);
+        classesDao.updateClassesDC(d);
+        return classesVo;
+    }
+
+    @Override
     public ClassesVo deleteClasses(ClassesVo classesVo) {
         log.debug("删除班级");
         Classes d = new Classes();
