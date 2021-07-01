@@ -6,9 +6,11 @@ import com.trkj.tsm.entity.Arrange;
 import com.trkj.tsm.entity.Detailcourse;
 import com.trkj.tsm.entity.Earrange;
 import com.trkj.tsm.service.ArrangeService;
+import com.trkj.tsm.service.ClassesService;
 import com.trkj.tsm.service.DetailcourseService;
 import com.trkj.tsm.service.EarrangeService;
 import com.trkj.tsm.vo.AjaxResponse;
+import com.trkj.tsm.vo.ClassesVo;
 import com.trkj.tsm.vo.CourseVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class ArrangeController {
     private EarrangeService earrangeService;
     @Autowired
     private DetailcourseService detailcourseService;
+    @Autowired
+    private ClassesService classesService;
 
     @PostMapping("/insertArrange")
     public AjaxResponse insertArrange(@RequestBody @Valid int CC){
@@ -91,4 +95,19 @@ public class ArrangeController {
         return AjaxResponse.success("课表清除成功！");
     }
 
+    @PutMapping("/updateArrange")
+    public AjaxResponse updateArrange(@RequestParam("aid") int aid,
+                                      @RequestParam("cid") int cid,
+                                      @RequestParam("did") int did){
+        Arrange arrange=new Arrange();
+        arrange.setArrangeId(aid);
+        Arrange arrange1=arrangeService.updateArrange(arrange);
+
+        ClassesVo classesVo=new ClassesVo();
+        classesVo.setClassesId(cid);
+        classesVo.setDetailcourseId(did);
+        ClassesVo classesVo1=classesService.updateClassesDC(classesVo);
+
+        return AjaxResponse.success(arrange1);
+    }
 }

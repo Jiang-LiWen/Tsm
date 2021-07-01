@@ -45,6 +45,7 @@ public class Arrange implements Serializable {
      * 排课日期
      */
     private String arrangedate;
+    private int arrangestate;
 
     private static final long serialVersionUID = 1L;
 }

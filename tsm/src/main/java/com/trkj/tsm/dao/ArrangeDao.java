@@ -13,5 +13,5 @@ public interface ArrangeDao {
 
     List<Arrange> selectAllArrange(String likelike);//查找排课信息
 
-    int updateByPrimaryKey(Arrange record);
+    int updateArrange(Arrange record);
 }

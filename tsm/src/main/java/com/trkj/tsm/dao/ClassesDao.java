@@ -21,6 +21,8 @@ public interface ClassesDao {
 
     int updateClasses(Classes record);//修改班级
 
+    int updateClassesDC(Classes record);//修改班级
+
     int deleteClasses(Classes record);//删除班级
 
     int insertClasses(Classes record);//添加班级

@@ -10,4 +10,6 @@ public interface ArrangeService {
     List<Arrange> selectAllArrange(String likelike);//查找排课信息
 
     Arrange deleteAllArrange();//删除排课
+
+    Arrange updateArrange(Arrange record);//修改课表
 }
