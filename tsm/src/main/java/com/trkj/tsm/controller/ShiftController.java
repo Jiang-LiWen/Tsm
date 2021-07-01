@@ -3,6 +3,7 @@ package com.trkj.tsm.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.trkj.tsm.service.ShiftService;
+import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.DropoutVo;
 import com.trkj.tsm.vo.ShiftVo;
 import com.trkj.tsm.vo.SuspendeVo;
@@ -56,10 +57,10 @@ public class ShiftController {
     }
 //    增加
     @PostMapping("/insertShift")
-    public ShiftVo insertShift(@RequestBody @Valid ShiftVo shiftVo){
+    public AjaxResponse insertShift(@RequestBody @Valid ShiftVo shiftVo){
         log.debug("添加--------------------Controllrt");
         shiftService.insertShift(shiftVo);
-        return shiftVo;
+        return AjaxResponse.success("转班操作成功");
     }
 //    修改转班理由
     @PutMapping("/updateShift")

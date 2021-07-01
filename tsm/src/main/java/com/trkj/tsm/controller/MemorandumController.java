@@ -26,8 +26,8 @@ public class MemorandumController {
         return memorandumService.selectByPrimaryKey();
     }
 
-    @DeleteMapping("/delenmemorandum/{memorandumid}")
-    public String delenmemorandum(@PathVariable("memorandumid") int memorandumid) {
+    @DeleteMapping("/delenmemorandum")
+    public String delenmemorandum(@RequestParam int memorandumid) {
         log.debug("根据id删除备忘录");
         memorandumService.deleteMemorandum(memorandumid);
         return "删除成功";
@@ -58,8 +58,8 @@ public class MemorandumController {
         return memorandumVoPageInfo;
     }
 
-    @GetMapping("/selectMemorandum/{value11}/{value1}")
-    public List<MemorandumVo> selectMemorandum(@PathVariable("value11")String value11,@PathVariable("value1")String value1){
+    @GetMapping("/selectMemorandum")
+    public List<MemorandumVo> selectMemorandum(@RequestParam String value11,@RequestParam String value1){
         log.debug("备忘录模糊查询");
         List<MemorandumVo> memorandumVoList=memorandumService.selectMemorandum(value11,value1);
         return memorandumVoList;

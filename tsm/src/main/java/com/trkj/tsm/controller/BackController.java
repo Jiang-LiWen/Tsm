@@ -3,6 +3,7 @@ package com.trkj.tsm.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.trkj.tsm.service.BackService;
+import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.BackVo;
 import com.trkj.tsm.vo.DropoutVo;
 import com.trkj.tsm.vo.SuspendeVo;
@@ -59,11 +60,11 @@ public class BackController {
     }
 //    增加复课
     @PostMapping("/insertBack")
-    public BackVo insertBack(@RequestBody @Valid BackVo backVo){
+    public AjaxResponse insertBack(@RequestBody @Valid BackVo backVo){
         log.debug(backVo.toString()+"========================-----------");
         log.debug("添加--------------------Controllrt");
         log.debug(backService.toString()+"添加的信息在这里");
         backService.insertBack(backVo);
-        return backVo;
+        return AjaxResponse.success("复课成功");
     }
 }

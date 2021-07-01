@@ -27,11 +27,11 @@ public class ReturnvisitController {
     }
 //    增加
     @PostMapping("/addReturnisit")
-    public ReturnvisitVo addReturnisit(@RequestBody @Valid ReturnvisitVo returnvisitVo){
+    public AjaxResponse addReturnisit(@RequestBody @Valid ReturnvisitVo returnvisitVo){
         log.debug("添加成功");
         log.debug(returnvisitVo.toString()+"======/////");
         returnvisitService.insertReturnvisit(returnvisitVo);
-        return returnvisitVo;
+        return AjaxResponse.success("添加回访记录成功");
     }
     //    删除
     @PutMapping("/updateReturnVisitTimeLiness")

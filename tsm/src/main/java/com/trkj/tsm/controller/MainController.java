@@ -30,19 +30,19 @@ public class MainController {
         return mainService.selectOutbox();
     }
 
-    @DeleteMapping("/delentmain/{mainId}")
-    public String delentMain(@PathVariable("mainId") int mainId) {
+    @DeleteMapping("/delentmain")
+    public String delentMain(@RequestParam int mainId) {
         log.debug("根据id删除邮件");
         mainService.deleteMail(mainId);
         return "删除成功";
     }
-    @GetMapping("/selectmailRank/{value2}")
-    public List<MainVo> selectmailRank(@PathVariable("value2") String value2){
+    @GetMapping("/selectmailRank")
+    public List<MainVo> selectmailRank(@RequestParam String value2){
         log.debug("根据阅读状态查询");
         return mainService.selectmailRank(value2);
     }
-    @GetMapping("/selectState4/{value4}")
-    public List<MainVo> selectState4(@PathVariable("value4") String value4){
+    @GetMapping("/selectState4")
+    public List<MainVo> selectState4(@RequestParam String value4){
         log.debug("根据级别查询");
         return mainService.selectState4(value4);
     }
@@ -60,8 +60,8 @@ public class MainController {
         return AjaxResponse.success(mainVo);
     }
 
-    @GetMapping("/selectmailTitle/{value13}/{value3}")
-    public List<MainVo> selectmailTitle(@PathVariable("value13") String value13,@PathVariable("value3") String value3){
+    @GetMapping("/selectmailTitle")
+    public List<MainVo> selectmailTitle(@RequestParam String value13,@RequestParam String value3){
         log.debug(value3);
         log.debug("根据标题发送人模糊查询");
         List<MainVo> mainVoList=mainService.selectmailTitle(value13,value3);
@@ -69,8 +69,8 @@ public class MainController {
 
     }
 
-    @GetMapping("/select4/{value15}/{value5}")
-    public List<MainVo> select4(@PathVariable("value15") String value15,@PathVariable("value5") String value5){
+    @GetMapping("/select4")
+    public List<MainVo> select4(@RequestParam String value15,@RequestParam String value5){
         log.debug("发件箱模糊查询");
         List<MainVo> mainVoList1=mainService.select4(value15,value5);
         return mainVoList1;

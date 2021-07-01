@@ -38,12 +38,12 @@ public class SourceController {
     }
 //    添加生源渠道信息
     @PostMapping("/insertSource")
-    public SourceVo insertSource(@RequestBody @Valid SourceVo sourceVo){
+    public AjaxResponse insertSource(@RequestBody @Valid SourceVo sourceVo){
         log.debug("添加成功");
         log.debug(sourceVo.toString());
         sourceVo.setAddchannelname("ssb");
         sourceService.insertSource(sourceVo);
-        return sourceVo;
+        return AjaxResponse.success("添加生源渠道成功");
     }
 //    修改生源渠道名称
     @PutMapping("/updateSource")

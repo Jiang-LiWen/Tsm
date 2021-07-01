@@ -3,6 +3,7 @@ package com.trkj.tsm.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.trkj.tsm.service.DropOutService;
+import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.DropoutVo;
 import com.trkj.tsm.vo.PositionVo;
 import com.trkj.tsm.vo.RegisterVo;
@@ -44,11 +45,11 @@ public class DropOutControllrt {
     }
 //    添加退学记录
     @PostMapping("/insertDropOut")
-    public DropoutVo insertDropOut(@RequestBody @Valid DropoutVo dropoutVo){
+    public AjaxResponse insertDropOut(@RequestBody @Valid DropoutVo dropoutVo){
         log.debug("添加--------------------Controllrt");
         log.debug(dropoutVo.toString()+"添加的信息在这里");
         dropOutService.insertDropOut(dropoutVo);
-        return dropoutVo;
+        return AjaxResponse.success("退学操作成功");
     }
     //    审批（修改时效性）
     @PutMapping("/updateDropOutDropoutStatus")

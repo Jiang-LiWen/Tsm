@@ -90,8 +90,8 @@
         inner join emp e on m.Emp_Id=e.Emp_Id
        where
              m.TimeLiness = 0 and m.`Type`= 0
-            <if test="value3=='2' and value13!=null">
-                and e.`Emp_Name` like CONCAT('%' ,#{value13}, '%')
+            <if test='value3 == "2" and value13 ! =null'>
+                and e.`Emp_Id` like CONCAT('%' ,#{value13}, '%')
 
             </if>
             <if test='value3 == "1"'>
@@ -108,7 +108,7 @@
         where
         m.TimeLiness = 0 and m.`Type`= 1
         <if test="value5=='2' and value15!=null">
-            and e.`Emp_Name` like CONCAT('%' ,#{value15}, '%')
+            and e.`Emp_Id` like CONCAT('%' ,#{value15}, '%')
 
         </if>
         <if test='value5 == "1"'>

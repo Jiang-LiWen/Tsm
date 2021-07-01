@@ -22,8 +22,8 @@ public class DailLogController {
         return daillogService.selectByPrimaryKey();
     }
 
-    @DeleteMapping("/deledaillog/{daillogId}")
-    public String deledaillog(@PathVariable("daillogId") Integer daillogId) {
+    @DeleteMapping("/deledaillog")
+    public String deledaillog(@RequestParam Integer daillogId) {
         log.debug("根据id删除备忘录");
         daillogService.deledaillog(daillogId);
         return "删除成功";
@@ -38,8 +38,8 @@ public class DailLogController {
         return AjaxResponse.success(daillogVo);
     }
 
-    @GetMapping("/selectDaillog{value11}/{value1}")
-    public List<DaillogVo> selectDaillog(@PathVariable("value11")String value11,@PathVariable("value1")String value1){
+    @GetMapping("/selectDaillog")
+    public List<DaillogVo> selectDaillog(@RequestParam String value11,@RequestParam String value1){
         log.debug("模糊查询工作日志表");
         List<DaillogVo> daillogVoList=daillogService.selectDaillog(value11, value1);
         return daillogVoList;

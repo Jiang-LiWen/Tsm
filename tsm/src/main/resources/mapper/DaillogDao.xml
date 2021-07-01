@@ -32,7 +32,7 @@
             and handovermatters like CONCAT('%' ,#{value11}, '%')
         </if>
         <if test='value1 == "2"' >
-            and handovername like CONCAT('%' ,#{value11}, '%')
+            and daillogId like CONCAT('%' ,#{value11}, '%')
         </if>
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

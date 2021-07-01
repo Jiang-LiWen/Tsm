@@ -3,6 +3,7 @@ package com.trkj.tsm.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.trkj.tsm.service.SuspendeService;
+import com.trkj.tsm.vo.AjaxResponse;
 import com.trkj.tsm.vo.DropoutVo;
 import com.trkj.tsm.vo.SuspendeVo;
 import lombok.extern.slf4j.Slf4j;
@@ -57,9 +58,9 @@ public class SuspendeController {
     }
     //    添加停课记录
     @PostMapping("/insertSusoende")
-    public SuspendeVo insertSusoende(@RequestBody @Valid SuspendeVo suspendeVo){
+    public AjaxResponse insertSusoende(@RequestBody @Valid SuspendeVo suspendeVo){
         log.debug("添加--------------------Controllrt");
         suspendeService.insertSuspende(suspendeVo);
-        return suspendeVo;
+        return AjaxResponse.success("停课操作成功");
     }
 }

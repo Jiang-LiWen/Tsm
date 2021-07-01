@@ -30,14 +30,14 @@ public class IdeasController {
         ideasService.insert(ideasVo);
         return ideasVo;
     }
-    @GetMapping("/selectState/{value1}")
-    public List<IdeasVo> selectState(@PathVariable("value1") String value1){
+    @GetMapping("/selectState")
+    public List<IdeasVo> selectState(@RequestParam String value1){
         log.debug("查询意见发件表状态未为回复的");
         return ideasService.selectState(value1);
     }
 
-    @GetMapping("/selectIdeas/{value2}")
-    public List<IdeasVo> selectIdeas(@PathVariable("value2") String value2){
+    @GetMapping("/selectIdeas2")
+    public List<IdeasVo> selectIdeas(@RequestParam String value2){
         log.debug("查询收件表状态");
         List<IdeasVo> ideasVos=ideasService.selectIdeas(value2);
         log.debug("dd"+ideasVos.toString());

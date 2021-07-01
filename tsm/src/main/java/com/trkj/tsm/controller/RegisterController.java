@@ -30,11 +30,11 @@ public class RegisterController {
     }
 //    增加咨询登记
     @PostMapping("/addRegister")
-    public RegisterVo addRegister(@RequestBody @Valid RegisterVo registerVo){
+    public AjaxResponse addRegister(@RequestBody @Valid RegisterVo registerVo){
         log.debug("添加成功");
         log.debug(registerVo.toString());
         registerService.insertRegister(registerVo);
-        return registerVo;
+        return AjaxResponse.success("添加咨询信息成功");
     }
     //    删除
     @PutMapping("/updateRegisterTimeLiness")
